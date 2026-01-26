@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis Ambientes Autorizados</title>
+    <link rel="stylesheet" href="/aprendiz/css/ambientes.css" />
+  </head>
+  <body>
+    <div class="ambientes-panel">
+      <div class="ambientes-container">
+        <div class="ambientes-header">
+          <h1 class="ambientes-title"><i data-lucide="building" class="ambientes-icons"></i> Ambientes Autorizados (Consulta)</h1>
+          <div class="ambientes-actions">
+            <button
+              class="ambientes-btn ambientes-btn-success"
+              onclick="refreshAmbientesList()"
+            >
+              <span><i data-lucide="refresh-cw" class="ambientes-icons"></i></span> Actualizar
+            </button>
+          </div>
+        </div>
+
+        <div class="ambientes-filters-container">
+          <div class="ambientes-filters">
+            <div class="ambientes-search">
+              <label for="searchAmbientes" class="ambientes-label"
+                >Buscar:</label
+              >
+              <input
+                type="text"
+                class="ambientes-search-input"
+                id="searchAmbientes"
+                placeholder="Buscar ambiente por nombre, ubicación o descripción..."
+              />
+            </div>
+            <div class="ambientes-filter-options">
+              <label for="filterTipo" class="ambientes-label">Tipo:</label>
+              <select id="filterTipo" class="ambientes-select">
+                <option value="">Todos</option>
+                <option value="laboratorio">Laboratorio</option>
+                <option value="aula">Aula</option>
+                <option value="taller">Taller</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="ambientes-table-container">
+          <table class="ambientes-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Ubicación</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="ambientesTableBody">
+              <tr>
+                <td>Laboratorio de Informática 1</td>
+                <td>Laboratorio</td>
+                <td>Edificio A - Piso 2</td>
+                <td>Laboratorio para prácticas de código.</td>
+                <td>
+                  <span class="status-badge status-success">Acceso OK</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Aula 201</td>
+                <td>Aula</td>
+                <td>Edificio B - Piso 1</td>
+                <td>Aula teórica general.</td>
+                <td>
+                  <span class="status-badge status-success">Acceso OK</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Taller de Electrónica</td>
+                <td>Taller</td>
+                <td>Edificio C - Piso 1</td>
+                <td>Taller para proyectos de hardware.</td>
+                <td>
+                  <span class="status-badge status-warning">Mantenimiento</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Sala de Conferencias</td>
+                <td>Aula</td>
+                <td>Edificio Principal - Piso 3</td>
+                <td>Sala para presentaciones y reuniones.</td>
+                <td>
+                  <span class="status-badge status-success">Acceso OK</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="/admin/js/ambientes.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Instructor - SALT</title>
+    <link rel="stylesheet" href="css/instructor.css">
+</head>
+<body>
+    <div class="instructor-container">
+        <aside class="instructor-sidebar" id="instructor-sidebar">
+            <div class="instructor-sidebar-brand">
+                <a href="#" class="instructor-logo">
+                    <span>👨‍🏫</span> SALT Instructor
+                </a>
+            </div>
+            <nav>
+                <ul class="instructor-sidebar-nav">
+                    <li class="instructor-nav-item">
+                        <a href="#mis-ambientes" class="instructor-nav-link active" data-view="mis-ambientes">
+                            <span class="instructor-nav-icon">🏢</span>
+                            <span>Mis Ambientes</span>
+                        </a>
+                    </li>
+                    <li class="instructor-nav-item">
+                        <a href="#irregularidades" class="instructor-nav-link" data-view="irregularidades">
+                            <span class="instructor-nav-icon">⚠️</span>
+                            <span>Irregularidades</span>
+                        </a>
+                    </li>
+                    <li class="instructor-nav-item">
+                        <a href="#reportes" class="instructor-nav-link" data-view="reportes">
+                            <span class="instructor-nav-icon">📈</span>
+                            <span>Generar Reportes</span>
+                        </a>
+                    </li>
+                    <li class="instructor-nav-item">
+                        <a href="#justificacion-accesos" class="instructor-nav-link" data-view="justificacion-accesos">
+                             <span class="nav-icon">🛡️</span>
+                            <span>Justificación de Accesos y Faltas</span>
+                        </a>
+                    </li>
+
+                    <li class="instructor-nav-item">
+                        <a href="#gestion-tarjetas" class="instructor-nav-link" data-view="gestion-tarjetas">
+                             <span class="nav-icon">💳</span>
+                            <span>Justificación de Accesos y Faltas</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <header class="instructor-header">
+            <div class="instructor-welcome-message">
+                <h1>Bienvenido, <span class="instructor-admin-name">Instructor</span></h1>
+                <p>Panel de control del sistema SALT</p>
+            </div>
+            <div class="instructor-user-menu">
+                <div class="instructor-user-info">
+                    <div class="instructor-user-name">Instructor</div>
+                    <div class="instructor-user-role">Instructor</div>
+                </div>
+                <div class="instructor-user-avatar">IN</div>
+            </div>
+            <div class="btnSidebar" id="btnSidebar">☰</div>
+        </header>
+
+        <main class="instructor-main-content">
+            <div id="mis-ambientes" class="instructor-view-content active">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Cargando Mis Ambientes...</p>
+                </div>
+            </div>
+            <div id="irregularidades" class="instructor-view-content">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Cargando Irregularidades...</p>
+                </div>
+            </div>
+            <div id="reportes" class="instructor-view-content">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Cargando Reportes...</p>
+                </div>
+            </div>
+            <div id="justificacion-accesos" class="instructor-view-content">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Cargando Justificación de Accesos y Faltas...</p>
+                </div>
+
+            </div>
+             <div id="gestion-tarjetas" class="instructor-view-content">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p>Cargando Gestión de Tarjetas...</p>
+                </div>
+        </main>
+    </div>
+
+
+
+    <!-- ESTA MIERDA HAY QUE CAMBIARLA POR UN SOLO ZELDA-->
+    <!-- Scripts en ORDEN CORRECTO -->
+     <script src="js/gestion-tarjetas.js"></script>
+    <script src="js/mis-ambientes.js"></script>
+    <script src="js/irregularidades.js"></script>
+    <script src="js/reportes.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

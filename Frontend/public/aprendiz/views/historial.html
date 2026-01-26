@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Historial - Aprendiz</title>
+    <link rel="stylesheet" href="/aprendiz/css/historial.css">
+</head>
+<body>
+    <div class="historial-panel">
+        <div class="historial-container">
+            <!-- Header de la sección -->
+            <div class="historial-header">
+                <h1 class="historial-title"><i data-lucide="history" class="historial-icons"></i> Mi Historial de Accesos</h1>
+                <div class="historial-actions">
+                    <button class="historial-btn historial-btn-success" onclick="refreshHistorial()">
+                        <span><i data-lucide="refresh-cw" class="historial-icons"></i></span> Actualizar
+                    </button>
+                    <button class="historial-btn historial-btn-primary" onclick="exportarMiHistorial()">
+                        <span><i data-lucide="download" class="historial-icons"></i></span> Exportar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Estadísticas personales -->
+            <div class="historial-stats">
+                <div class="historial-stat">
+                    <div class="historial-stat-icon"><i data-lucide="user" class="historial-icons"></i></div>
+                    <span class="historial-stat-number" id="totalAccesos">0</span>
+                    <span class="historial-stat-label">Total Accesos</span>
+                </div>
+                <div class="historial-stat">
+                    <div class="historial-stat-icon"><i data-lucide="check-circle" class="historial-icons"></i></div>
+                    <span class="historial-stat-number" id="accesosExitosos">0</span>
+                    <span class="historial-stat-label">Accesos Exitosos</span>
+                </div>
+                <div class="historial-stat">
+                    <div class="historial-stat-icon"><i data-lucide="clock" class="historial-icons"></i></div>
+                    <span class="historial-stat-number" id="tiempoTotal">0h</span>
+                    <span class="historial-stat-label">Tiempo Total</span>
+                </div>
+                <div class="historial-stat">
+                    <div class="historial-stat-icon"><i data-lucide="building" class="historial-icons"></i></div>
+                    <span class="historial-stat-number" id="ambientesVisitados">0</span>
+                    <span class="historial-stat-label">Ambientes Visitados</span>
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="historial-filters">
+                <div class="historial-search">
+                    <input type="text" class="historial-search-input" id="searchHistorial" placeholder="Buscar por ambiente...">
+                    <button class="historial-btn historial-btn-primary" onclick="searchHistorial()"><i data-lucide="search" class="historial-icons"></i> Buscar</button>
+                </div>
+                <div class="historial-filter-options">
+                    <select class="historial-select" id="filterTipo" onchange="filterHistorial()">
+                        <option value="">Todos los tipos</option>
+                        <option value="entrada">Entradas</option>
+                        <option value="salida">Salidas</option>
+                    </select>
+                    <select class="historial-select" id="filterResultado" onchange="filterHistorial()">
+                        <option value="">Todos los resultados</option>
+                        <option value="exitoso">Exitosos</option>
+                        <option value="denegado">Denegados</option>
+                    </select>
+                    <div class="historial-date-inputs">
+                        <input type="date" class="historial-form-control" id="fechaDesde">
+                        <span>a</span>
+                        <input type="date" class="historial-form-control" id="fechaHasta">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de accesos -->
+            <div class="historial-table-container">
+                <div class="historial-table-header">
+                    <h2 class="historial-table-title">Registro de Mis Accesos</h2>
+                    <div class="historial-table-actions">
+                        <button class="historial-btn historial-btn-outline" onclick="clearFilters()">
+                            <span><i data-lucide="trash-2" class="historial-icons"></i></span> Limpiar Filtros
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="historial-table-responsive">
+                    <table class="historial-table" id="historialTable">
+                        <thead>
+                            <tr>
+                                <th>Fecha y Hora</th>
+                                <th>Ambiente</th>
+                                <th>Tipo</th>
+                                <th>Resultado</th>
+                                <th>Duración</th>
+                                <th>Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historialTableBody">
+                            <!-- Los accesos se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Paginación -->
+                <div class="historial-pagination">
+                    <div class="historial-pagination-info" id="paginationInfo">
+                        Mostrando 0 de 0 registros
+                    </div>
+                    <div class="historial-pagination-controls">
+                        <button class="historial-page-btn" onclick="changePage(-1)" id="prevPage">‹ Anterior</button>
+                        <span class="historial-page-btn active" id="currentPage">1</span>
+                        <button class="historial-page-btn" onclick="changePage(1)" id="nextPage">Siguiente ›</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen semanal -->
+            <div class="historial-summary">
+                <h3><i data-lucide="bar-chart-3" class="historial-icons"></i> Resumen Semanal</h3>
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <div class="summary-icon"><i data-lucide="calendar" class="historial-icons"></i></div>
+                        <div class="summary-content">
+                            <strong id="accesosSemana">0</strong>
+                            <span>Accesos esta semana</span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon"><i data-lucide="clock" class="historial-icons"></i></div>
+                        <div class="summary-content">
+                            <strong id="tiempoSemana">0h</strong>
+                            <span>Tiempo promedio</span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-icon"><i data-lucide="trophy" class="historial-icons"></i></div>
+                        <div class="summary-content">
+                            <strong id="ambienteFrecuente">-</strong>
+                            <span>Ambiente más visitado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/aprendiz/js/historial.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

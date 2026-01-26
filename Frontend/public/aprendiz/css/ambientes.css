@@ -1,0 +1,241 @@
+/* ===== VARIABLES CSS (Usando colores del Aprendiz: #20c997) ===== */
+:root {
+  --ambientes-dark-bg: #121212;
+  --ambientes-card-bg: #1e1e1e;
+  --ambientes-primary-color: #0d6efd;
+  --ambientes-success-color: #0d6efd;
+  --ambientes-warning-color: #ffc107;
+  --ambientes-danger-color: #dc3545;
+  --ambientes-text-light: #f8f9fa;
+  --ambientes-text-muted: #adb5bd;
+  --ambientes-border-color: #444;
+}
+
+/* ===== LAYOUT Y ESTILOS BASE AISLADOS ===== */
+.ambientes-panel,
+.ambientes-panel * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ambientes-panel {
+  background-color: var(--ambientes-dark-bg);
+  color: var(--ambientes-text-light);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.ambientes-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Header de la sección (Título y Acciones de Consulta) */
+.ambientes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ambientes-title {
+  font-size: 2rem;
+  color: #ffffff; /* CAMBIADO: Color blanco solicitado */
+  margin: 0;
+}
+
+.ambientes-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Botones de Consulta (Actualizar) */
+.ambientes-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateY(0);
+}
+
+.ambientes-btn-primary {
+  background-color: var(--ambientes-primary-color);
+  color: var(--ambientes-dark-bg);
+}
+
+.ambientes-btn-success {
+  background-color: var(--ambientes-success-color);
+  color: var(--ambientes-dark-bg);
+}
+
+.ambientes-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-5px); /* AGREGADO: Efecto hover solicitado */
+}
+
+.ambientes-btn:active {
+  animation: clickAnimation 0.2s ease; /* AGREGADO: Animación al hacer clic */
+}
+
+@keyframes clickAnimation {
+  0% {
+    transform: translateY(-5px) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(0.95);
+  }
+  100% {
+    transform: translateY(-5px) scale(1);
+  }
+}
+
+/* ===== FILTROS Y BÚSQUEDA ===== */
+.ambientes-filters-container {
+  background: var(--ambientes-card-bg);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid var(--ambientes-primary-color);
+}
+
+.ambientes-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.ambientes-search {
+  flex: 1;
+  min-width: 250px;
+}
+
+.ambientes-search-input,
+.ambientes-select {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 5px;
+  border: 1px solid var(--ambientes-border-color);
+  background-color: var(--ambientes-dark-bg);
+  color: var(--ambientes-text-light);
+  font-size: 1rem;
+}
+
+.ambientes-search-input:focus,
+.ambientes-select:focus {
+  outline: none;
+  border-color: var(--ambientes-primary-color);
+}
+
+.ambientes-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--ambientes-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ===== TABLA DE AMBIENTES (Consulta) ===== */
+.ambientes-table-container {
+  overflow-x: auto;
+  border-radius: 10px;
+  background-color: var(--ambientes-card-bg);
+  padding: 1px;
+}
+
+.ambientes-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.ambientes-table th,
+.ambientes-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--ambientes-border-color);
+}
+
+.ambientes-table th {
+  background-color: #2a2a2a;
+  color: var(--ambientes-text-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  position: sticky;
+  top: 0;
+}
+
+.ambientes-table tbody tr:hover {
+  background-color: #252525;
+}
+
+.ambientes-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== STATUS BADGES ===== */
+.status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-success {
+  background-color: var(--ambientes-primary-color);
+  color: var(--ambientes-dark-bg);
+}
+
+.status-warning {
+  background-color: var(--ambientes-warning-color);
+  color: var(--ambientes-dark-bg);
+}
+
+.status-error {
+  background-color: var(--ambientes-danger-color);
+  color: var(--ambientes-text-light);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .ambientes-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ambientes-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .ambientes-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ambientes-search,
+  .ambientes-filter-options {
+    min-width: 100%;
+  }
+}
+
+/*ICONOS  */
+.ambientes-icons {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  stroke:var(--ambientes-text-light);
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Ambientes - Instructor</title>
+    <!-- RUTA CORREGIDA: desde la carpeta views -->
+    <link rel="stylesheet" href="../css/mis-ambientes.css"> 
+</head>
+<body>
+    <div class="mis-ambientes-panel">
+        <div class="mis-ambientes-container">
+            <h1 class="mis-ambientes-title">🏢 Supervisión de Ambientes y Aprendices</h1>
+            <p class="text-muted">Monitorea en tiempo real quién de tu grupo está utilizando tus ambientes asignados.</p>
+
+            <h3>Estado Actual de Ambientes</h3>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Ambiente</th>
+                            <th>Ubicación</th>
+                            <th>Estado</th>
+                            <th>Ocupación Actual</th>
+                            <th>Aprendices Dentro</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="instructorAmbientesTableBody">
+                        <!-- Los datos se cargan dinámicamente con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Aprendices de mi Grupo (Acceso Rápido)</h3>
+            <p class="text-muted">Lista de aprendices a cargo y su estado de acceso.</p>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Documento</th>
+                            <th>Último Acceso</th>
+                            <th>Ambiente</th>
+                            <th>Validar Acceso</th>
+                        </tr>
+                    </thead>
+                    <tbody id="aprendicesTableBody">
+                        <!-- Los datos se cargan dinámicamente con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- RUTA CORREGIDA: desde la carpeta views -->
+    <script src="../js/mis-ambientes.js"></script>
+    <script>
+        // Inicializar el módulo cuando se cargue la vista
+        if (typeof initializeMisambientesModule === 'function') {
+            console.log('🔄 Inicializando Mis Ambientes desde vista...');
+            initializeMisambientesModule();
+        }
+    </script>
+</body>
+</html>

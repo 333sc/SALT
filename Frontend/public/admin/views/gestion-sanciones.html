@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Sanciones - SALT Admin</title>
+    <link rel="stylesheet" href="/admin/css/gestion-sanciones.css">
+</head>
+<body>
+    <div class="sanciones-container">
+        <div class="sanciones-header">
+            <h2><i data-lucide="scale" class="gestion-icons"></i> Gestión de Sanciones y Tarjetas</h2>
+            <p>Administre sanciones por pérdida de tarjetas y gestione el estado de las tarjetas reportadas</p>
+        </div>
+
+        <!-- Resumen General -->
+        <div class="resumen-stats">
+            <div class="stat-card">
+                <div class="stat-icon"><i data-lucide="clipboard-list" class="gestion-icons"></i></div>
+                <div class="stat-content">
+                    <span class="stat-number" id="total-reportes">12</span>
+                    <span class="stat-label">Reportes Pendientes</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i data-lucide="scale" class="gestion-icons"></i></div>
+                <div class="stat-content">
+                    <span class="stat-number" id="sanciones-activas">5</span>
+                    <span class="stat-label">Sanciones Activas</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i data-lucide="lock" class="gestion-icons"></i></div>
+                <div class="stat-content">
+                    <span class="stat-number" id="tarjetas-bloqueadas">8</span>
+                    <span class="stat-label">Tarjetas Bloqueadas</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i data-lucide="check-circle" class="gestion-icons"></i></div>
+                <div class="stat-content">
+                    <span class="stat-number" id="casos-resueltos">24</span>
+                    <span class="stat-label">Casos Resueltos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sanciones-layout">
+            <!-- Columna Izquierda: Reportes Pendientes -->
+            <div class="columna-izquierda">
+                <!-- Reportes de Tarjetas Pendientes -->
+                <div class="panel-reportes">
+                    <div class="panel-header">
+                        <h3><i data-lucide="clipboard-list" class="gestion-icons"></i> Reportes de Tarjetas Pendientes</h3>
+                        <div class="panel-actions">
+                            <button class="btn btn-outline" id="btn-refrescar-reportes">
+                                <i data-lucide="refresh-cw"></i> Actualizar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filtros-rapidos">
+                        <div class="filtro-group">
+                            <label class="filtro-label">Filtrar por tipo:</label>
+                            <select class="filtro-select" id="filtro-tipo-reporte">
+                                <option value="">Todos los tipos</option>
+                                <option value="perdida">Pérdida</option>
+                                <option value="extraviada">Extraviada</option>
+                                <option value="robada">Robada</option>
+                                <option value="danada">Dañada</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="reportes-list" id="lista-reportes-pendientes">
+                        <!-- Reportes se cargarán dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Aplicar Sanción -->
+                <div class="panel-sancion">
+                    <h3><i data-lucide="scale" class="gestion-icons"></i> Aplicar Sanción</h3>
+
+                    <form id="form-sancion" class="form-sancion">
+                        <div class="form-group">
+                            <label for="usuario-sancion" class="form-label">
+                                <span class="required">*</span> Usuario a Sancionar
+                            </label>
+                            <select id="usuario-sancion" name="usuario_id" class="form-select" required>
+                                <option value="">Seleccione un usuario...</option>
+                                <!-- Usuarios se cargarán dinámicamente -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipo-sancion" class="form-label">
+                                <span class="required">*</span> Tipo de Sanción
+                            </label>
+                            <select id="tipo-sancion" name="tipo_sancion" class="form-select" required>
+                                <option value="">Seleccione tipo de sanción...</option>
+                                <option value="amonestacion_verbal">Amonestación Verbal</option>
+                                <option value="amonestacion_escrita">Amonestación Escrita</option>
+                                <option value="suspension_1dia">Suspensión 1 día</option>
+                                <option value="suspension_3dias">Suspensión 3 días</option>
+                                <option value="suspension_1semana">Suspensión 1 semana</option>
+                                <option value="multa_economica">Multa Económica</option>
+                                <option value="curso_concienciacion">Curso de Concienciación</option>
+                                <option value="otra">Otra</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motivo-sancion" class="form-label">
+                                <span class="required">*</span> Motivo de la Sanción
+                            </label>
+                            <select id="motivo-sancion" name="motivo_sancion" class="form-select" required>
+                                <option value="">Seleccione el motivo...</option>
+                                <option value="perdida_tarjeta">Pérdida de Tarjeta</option>
+                                <option value="multiple_perdida">Múltiples Pérdidas</option>
+                                <option value="negligencia">Negligencia en el Cuidado</option>
+                                <option value="uso_improcedente">Uso Improcedente</option>
+                                <option value="otro">Otro Motivo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion-sancion" class="form-label">
+                                <span class="required">*</span> Descripción Detallada
+                            </label>
+                            <textarea 
+                                id="descripcion-sancion" 
+                                name="descripcion_sancion" 
+                                class="form-textarea" 
+                                placeholder="Describa detalladamente los motivos de la sanción y las circunstancias..." 
+                                rows="4"
+                                required
+                            ></textarea>
+                            <div class="char-count">
+                                <span id="sancion-char-counter">0</span> / 1000 caracteres
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duracion-sancion" class="form-label">
+                                Duración de la Sanción
+                            </label>
+                            <div class="duracion-inputs">
+                                <input type="number" id="duracion-sancion" name="duracion_sancion" class="form-input" min="1" max="365" placeholder="Días">
+                                <select id="tipo-duracion" name="tipo_duracion" class="form-select">
+                                    <option value="dias">Días</option>
+                                    <option value="semanas">Semanas</option>
+                                    <option value="meses">Meses</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Notificación al Usuario
+                            </label>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="notificar-usuario" name="notificar_usuario" checked>
+                                <span class="checkbox-custom"></span>
+                                <span>Enviar notificación por correo electrónico</span>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="btn-cancelar-sancion">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-warning" id="btn-aplicar-sancion">
+                                <span class="btn-loading" style="display: none;">⏳</span>
+                                <i data-lucide="scale"></i> Aplicar Sanción
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Gestión y Historial -->
+            <div class="columna-derecha">
+                <!-- Gestión de Tarjeta Seleccionada -->
+                <div class="panel-gestion-tarjeta">
+                    <h3><i data-lucide="credit-card" class="gestion-icons"></i> Gestión de Tarjeta</h3>
+                    <div class="tarjeta-info" id="info-tarjeta-seleccionada">
+                        <div class="info-vacio">
+                            <p>Seleccione un reporte para gestionar la tarjeta</p>
+                        </div>
+                    </div>
+
+                    <div class="acciones-tarjeta" id="acciones-tarjeta" style="display: none;">
+                        <h4>Acciones Disponibles</h4>
+                        <div class="acciones-grid">
+                            <button class="btn-accion btn-bloquear" id="btn-bloquear-tarjeta">
+                                <i data-lucide="lock"></i> Bloquear Tarjeta
+                            </button>
+                            <button class="btn-accion btn-activar" id="btn-activar-tarjeta">
+                                <i data-lucide="check-circle"></i> Reactivar Tarjeta
+                            </button>
+                            <button class="btn-accion btn-reemplazar" id="btn-reemplazar-tarjeta">
+                                <i data-lucide="refresh-cw"></i> Reemplazar Tarjeta
+                            </button>
+                            <button class="btn-accion btn-ver-historial" id="btn-ver-historial-tarjeta">
+                                <i data-lucide="clipboard-list"></i> Ver Historial
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historial de Sanciones -->
+                <div class="panel-historial">
+                    <div class="panel-header">
+                        <h3><i data-lucide="clipboard-list" class="gestion-icons"></i> Historial de Sanciones</h3>
+                        <div class="panel-actions">
+                            <button class="btn btn-outline" id="btn-exportar-historial">
+                                <i data-lucide="file-text"></i> Exportar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filtros-historial">
+                        <div class="filtro-group">
+                            <label class="filtro-label">Estado:</label>
+                            <select class="filtro-select" id="filtro-estado-sancion">
+                                <option value="">Todas las sanciones</option>
+                                <option value="activa">Activas</option>
+                                <option value="completada">Completadas</option>
+                                <option value="cancelada">Canceladas</option>
+                            </select>
+                        </div>
+                        <div class="filtro-group">
+                            <label class="filtro-label">Usuario:</label>
+                            <input type="text" class="filtro-input" id="filtro-usuario-sancion" placeholder="Buscar usuario...">
+                        </div>
+                    </div>
+
+                    <div class="historial-list" id="lista-historial-sanciones">
+                        <!-- Historial se cargará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Confirmación -->
+        <div class="confirmacion-modal" id="modal-confirmacion" style="display: none;">
+            <div class="confirmacion-content">
+                <div class="confirmacion-icon" id="confirmacion-icon"><i data-lucide="alert-triangle" class="confirmacion-icons"></i></div>
+                <h3 id="confirmacion-titulo">Confirmar Acción</h3>
+                <p id="confirmacion-mensaje">¿Está seguro de que desea realizar esta acción?</p>
+                <div class="confirmacion-details" id="confirmacion-detalles">
+                    <!-- Detalles específicos se cargarán aquí -->
+                </div>
+                <div class="confirmacion-actions">
+                    <button type="button" class="btn btn-secondary" id="btn-cancelar-accion">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn" id="btn-confirmar-accion">
+                        Confirmar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Detalles -->
+        <div class="detalles-modal" id="modal-detalles" style="display: none;">
+            <div class="detalles-content">
+                <div class="detalles-header">
+                    <h3 id="detalles-titulo">Detalles</h3>
+                    <button class="detalles-close" id="detalles-close">&times;</button>
+                </div>
+                <div class="detalles-body" id="detalles-body">
+                    <!-- Contenido dinámico -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de Éxito -->
+        <div class="mensaje-exito" id="mensaje-exito" style="display: none;">
+            <div class="mensaje-icon"><i data-lucide="check-circle"></i></div>
+            <div class="mensaje-content">
+                <h3 id="mensaje-titulo">Acción Completada</h3>
+                <p id="mensaje-descripcion">La acción se ha realizado exitosamente.</p>
+                <button type="button" class="btn btn-primary" id="btn-cerrar-mensaje">
+                    Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/admin/js/gestion-sanciones.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

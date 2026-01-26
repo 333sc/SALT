@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambientes</title>
+    <link rel="stylesheet" href="/admin/css/ambientes.css">
+</head>
+<body>
+    <!-- views/ambientes.html -->
+<div class="ambientes-panel">
+    <div class="ambientes-container">
+        <!-- Header de la sección -->
+        <div class="ambientes-header">
+            <h1 class="ambientes-title"><span><i data-lucide="building" class="ambientes-icons"></i></span> Gestión de Ambientes</h1>
+            <div class="ambientes-actions">
+                <button class="ambientes-btn ambientes-btn-primary" onclick="openAmbienteModal()">
+                    <span><i data-lucide="plus" class="ambientes-icons"></i></span> Nuevo Ambiente
+                </button>
+                <button class="ambientes-btn ambientes-btn-success" onclick="refreshAmbientes()">
+                    <span><i data-lucide="refresh-cw" class="ambientes-icons"></i></span> Actualizar
+                </button>
+            </div>
+        </div>
+
+        <!-- Tarjetas de estadísticas -->
+        <div class="ambientes-stats">
+            <div class="ambientes-stat">
+                <div class="ambientes-stat-icon"><i data-lucide="building" class="ambientes-icons"></i></div>
+                <span class="ambientes-stat-number" id="totalAmbientes">0</span>
+                <span class="ambientes-stat-label">Total Ambientes</span>
+            </div>
+            <div class="ambientes-stat">
+                <div class="ambientes-stat-icon"><i data-lucide="check-circle" class="ambientes-icons"></i></div>
+                <span class="ambientes-stat-number" id="ambientesActivos">0</span>
+                <span class="ambientes-stat-label">Ambientes Activos</span>
+            </div>
+            <div class="ambientes-stat">
+                <div class="ambientes-stat-icon"><i data-lucide="plug" class="ambientes-icons"></i></div>
+                <span class="ambientes-stat-number" id="sensoresAsociados">0</span>
+                <span class="ambientes-stat-label">Sensores Activos</span>
+            </div>
+            <div class="ambientes-stat">
+                <div class="ambientes-stat-icon"><i data-lucide="users" class="ambientes-icons"></i></div>
+                <span class="ambientes-stat-number" id="usuariosAutorizados">0</span>
+                <span class="ambientes-stat-label">Usuarios Autorizados</span>
+            </div>
+        </div>
+
+        <!-- Filtros y búsqueda -->
+        <div class="ambientes-filters">
+            <div class="ambientes-search">
+                <input type="text" class="ambientes-search-input" id="searchAmbientes" placeholder="Buscar ambiente...">
+                <button class="ambientes-btn ambientes-btn-primary" onclick="searchAmbientes()">🔍 Buscar</button>
+            </div>
+            <div class="ambientes-filter-options">
+                <select class="ambientes-select" id="filterEstado" onchange="filterAmbientes()">
+                    <option value="">Todos los estados</option>
+                    <option value="activo">Activos</option>
+                    <option value="inactivo">Inactivos</option>
+                    <option value="mantenimiento">En mantenimiento</option>
+                </select>
+                <select class="ambientes-select" id="filterTipo" onchange="filterAmbientes()">
+                    <option value="">Todos los tipos</option>
+                    <option value="aula">Aula</option>
+                    <option value="laboratorio">Laboratorio</option>
+                    <option value="oficina">Oficina</option>
+                    <option value="biblioteca">Biblioteca</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Lista de ambientes -->
+        <div class="ambientes-table-container">
+            <div class="ambientes-table-header">
+                <h2 class="ambientes-table-title">Lista de Ambientes</h2>
+                <div class="ambientes-table-actions">
+                    <button class="ambientes-btn ambientes-btn-outline" onclick="exportAmbientes()">
+                        <span><i data-lucide="download" class="ambientes-icons"></i></span> Exportar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="ambientes-table-responsive">
+                <table class="ambientes-table" id="ambientesTable">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Ubicación</th>
+                            <th>Sensores</th>
+                            <th>Usuarios Auth.</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ambientesTableBody">
+                        <!-- Los ambientes se cargarán dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para nuevo/editar ambiente -->
+    <div class="ambientes-modal" id="ambienteModal">
+        <div class="ambientes-modal-content">
+            <div class="ambientes-modal-header">
+                <h3 id="ambienteModalTitle">Nuevo Ambiente</h3>
+                <button class="ambientes-close-btn" onclick="closeAmbienteModal()">×</button>
+            </div>
+            <form id="ambienteForm">
+                <div class="ambientes-form-row">
+                    <div class="ambientes-form-group">
+                        <label class="ambientes-form-label">Nombre del Ambiente *</label>
+                        <input type="text" class="ambientes-form-control" id="ambienteNombre" required>
+                    </div>
+                    <div class="ambientes-form-group">
+                        <label class="ambientes-form-label">Tipo *</label>
+                        <select class="ambientes-select" id="ambienteTipo" required>
+                            <option value="">Seleccionar tipo...</option>
+                            <option value="aula">Aula</option>
+                            <option value="laboratorio">Laboratorio</option>
+                            <option value="oficina">Oficina</option>
+                            <option value="biblioteca">Biblioteca</option>
+                            <option value="taller">Taller</option>
+                            <option value="auditorio">Auditorio</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="ambientes-form-row">
+                    <div class="ambientes-form-group">
+                        <label class="ambientes-form-label">Ubicación *</label>
+                        <input type="text" class="ambientes-form-control" id="ambienteUbicacion" required>
+                    </div>
+                    <div class="ambientes-form-group">
+                        <label class="ambientes-form-label">Capacidad</label>
+                        <input type="number" class="ambientes-form-control" id="ambienteCapacidad" min="1">
+                    </div>
+                </div>
+
+                <div class="ambientes-form-group">
+                    <label class="ambientes-form-label">Descripción</label>
+                    <textarea class="ambientes-form-control" id="ambienteDescripcion" rows="3"></textarea>
+                </div>
+
+                <!-- Sensores disponibles -->
+                <div class="ambientes-form-group">
+                    <label class="ambientes-form-label">Sensores RFID Asociados</label>
+                    <div class="ambientes-sensors-list" id="sensorsList">
+                        <!-- Los sensores se cargarán dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="ambientes-form-group">
+                    <label class="ambientes-form-label">Estado</label>
+                    <div class="ambientes-status-options">
+                        <label class="ambientes-radio-label">
+                            <input type="radio" name="estado" value="activo" checked> 
+                            <span class="ambientes-radio-checkmark"></span>
+                            <i data-lucide="check-circle" class="ambientes-icons"></i> Activo
+                        </label>
+                        <label class="ambientes-radio-label">
+                            <input type="radio" name="estado" value="inactivo"> 
+                            <span class="ambientes-radio-checkmark"></span>
+                            <i data-lucide="alert-triangle" class="ambientes-icons"></i> Inactivo
+                        </label>
+                        <label class="ambientes-radio-label">
+                            <input type="radio" name="estado" value="mantenimiento"> 
+                            <span class="ambientes-radio-checkmark"></span>
+                            <i data-lucide="wrench" class="ambientes-icons"></i> En mantenimiento
+                        </label>
+                    </div>
+                </div>
+
+                <div class="ambientes-modal-actions">
+                    <button type="button" class="ambientes-btn ambientes-btn-outline" onclick="closeAmbienteModal()">Cancelar</button>
+                    <button type="submit" class="ambientes-btn ambientes-btn-primary">Guardar Ambiente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para gestión de usuarios autorizados -->
+    <div class="ambientes-modal" id="usuariosModal">
+        <div class="ambientes-modal-content large">
+            <div class="ambientes-modal-header">
+                <h3> <i data-lucide="users" class="ambientes-icons"></i>Usuarios Autorizados - <span id="ambienteUsuariosTitle"></span></h3>
+                <button class="ambientes-close-btn" onclick="closeUsuariosModal()">×</button>
+            </div>
+            
+            <div class="ambientes-usuarios-modal-content">
+                <div class="ambientes-search-section">
+                    <input type="text" class="ambientes-search-input" id="searchUsuariosAuth" placeholder="Buscar usuarios...">
+                    <button class="ambientes-btn ambientes-btn-primary" onclick="searchUsuariosForAuth()">🔍 Buscar</button>
+                </div>
+                
+                <div class="ambientes-users-list-container">
+                    <div class="ambientes-available-users">
+                        <h4>Usuarios Disponibles</h4>
+                        <div id="availableUsersList" class="ambientes-users-list">
+                            <!-- Usuarios disponibles se cargarán aquí -->
+                        </div>
+                    </div>
+                    
+                    <div class="ambientes-authorized-users">
+                        <h4>Usuarios Autorizados</h4>
+                        <div id="authorizedUsersList" class="ambientes-users-list">
+                            <!-- Usuarios autorizados se cargarán aquí -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ambientes-modal-actions">
+                <button class="ambientes-btn ambientes-btn-primary" onclick="saveUsersAuthorization()">💾 Guardar Cambios</button>
+                <button class="ambientes-btn ambientes-btn-outline" onclick="closeUsuariosModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/admin/js/ambientes.js"></script>
+<script src="https://unpkg.com/lucide@latest"onload="lucide.createIcons()"></script>
+
+</body>
+</html>

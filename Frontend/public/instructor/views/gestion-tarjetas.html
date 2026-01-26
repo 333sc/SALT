@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tarjetas - SALT</title>
+    <link rel="stylesheet" href="/css/gestion-tarjetas.css">
+</head>
+<body>
+    <div class="gestion-tarjetas-container">
+        <div class="gestion-tarjetas-header">
+            <h2>🪪 Gestión de Tarjetas</h2>
+            <p>Reporte tarjetas perdidas, extraviadas o dañadas para prevenir accesos no autorizados</p>
+        </div>
+
+        <!-- Información de Tarjeta Actual -->
+        <div class="tarjeta-info-container">
+            <h3>📋 Información de su Tarjeta Actual</h3>
+            <div class="tarjeta-info-card">
+                <div class="tarjeta-estado activa">
+                    <div class="estado-icon">✅</div>
+                    <div class="estado-info">
+                        <h4>Estado: <span class="estado-texto">Activa</span></h4>
+                        <p>Su tarjeta está actualmente activa y operativa</p>
+                    </div>
+                </div>
+                <div class="tarjeta-detalles">
+                    <div class="detalle-item">
+                        <strong>UID de Tarjeta:</strong>
+                        <span id="tarjeta-uid">RFID-001-5A8B9C3D</span>
+                    </div>
+                    <div class="detalle-item">
+                        <strong>Fecha de Asignación:</strong>
+                        <span id="tarjeta-asignacion">15/01/2024</span>
+                    </div>
+                    <div class="detalle-item">
+                        <strong>Último Uso:</strong>
+                        <span id="tarjeta-ultimo-uso">Hoy, 08:30 AM</span>
+                    </div>
+                    <div class="detalle-item">
+                        <strong>Estado:</strong>
+                        <span class="badge-estado activa">Activa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reporte de Pérdida/Extravió -->
+        <div class="reporte-container">
+            <h3>🚨 Reportar Tarjeta Perdida/Extraviada</h3>
+            <div class="alerta-importante">
+                <div class="alerta-icon">⚠️</div>
+                <div class="alerta-content">
+                    <h4>Importante</h4>
+                    <p>Al reportar una tarjeta como perdida o extraviada, esta será <strong>bloqueada inmediatamente</strong> en el sistema para prevenir accesos no autorizados.</p>
+                </div>
+            </div>
+
+            <form id="reporte-tarjeta-form" class="reporte-form">
+                <div class="form-group">
+                    <label for="tipo-reporte" class="form-label">
+                        <span class="required">*</span> Tipo de Reporte
+                    </label>
+                    <select id="tipo-reporte" name="tipo_reporte" class="form-select" required>
+                        <option value="">Seleccione el tipo de reporte...</option>
+                        <option value="perdida">Pérdida</option>
+                        <option value="extraviada">Extraviada</option>
+                        <option value="robada">Robada</option>
+                        <option value="danada">Dañada/Inutilizable</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha-incidente" class="form-label">
+                        <span class="required">*</span> Fecha del Incidente
+                    </label>
+                    <input type="date" id="fecha-incidente" name="fecha_incidente" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hora-incidente" class="form-label">
+                        Hora Aproximada (Opcional)
+                    </label>
+                    <input type="time" id="hora-incidente" name="hora_incidente" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label for="ubicacion-incidente" class="form-label">
+                        Ubicación Aproximada (Opcional)
+                    </label>
+                    <input type="text" id="ubicacion-incidente" name="ubicacion_incidente" class="form-input" 
+                           placeholder="Ej: Cafetería, Parqueadero, Aula 201...">
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion-incidente" class="form-label">
+                        <span class="required">*</span> Descripción del Incidente
+                    </label>
+                    <textarea 
+                        id="descripcion-incidente" 
+                        name="descripcion_incidente" 
+                        class="form-textarea" 
+                        placeholder="Describa cómo y cuándo perdió o extravió su tarjeta. Incluya cualquier detalle relevante..." 
+                        rows="4"
+                        required
+                    ></textarea>
+                    <div class="char-count">
+                        <span id="descripcion-char-counter">0</span> / 500 caracteres
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        ¿Dónde cree que pudo perderla?
+                    </label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ubicaciones_posibles" value="cafeteria">
+                            <span class="checkbox-custom"></span>
+                            <span>Cafetería</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ubicaciones_posibles" value="aula">
+                            <span class="checkbox-custom"></span>
+                            <span>Aula/Laboratorio</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ubicaciones_posibles" value="biblioteca">
+                            <span class="checkbox-custom"></span>
+                            <span>Biblioteca</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ubicaciones_posibles" value="parqueadero">
+                            <span class="checkbox-custom"></span>
+                            <span>Parqueadero</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ubicaciones_posibles" value="transporte">
+                            <span class="checkbox-custom"></span>
+                            <span>Transporte</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="ubicaciones_posibles" value="otro">
+                            <span class="checkbox-custom"></span>
+                            <span>Otro lugar</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="btn-cancelar">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-danger" id="btn-reportar">
+                        <span class="btn-loading" style="display: none;">⏳</span>
+                        🚨 Reportar y Bloquear Tarjeta
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Confirmación de Bloqueo -->
+        <div id="confirmacion-bloqueo" class="confirmacion-modal" style="display: none;">
+            <div class="confirmacion-content">
+                <div class="confirmacion-icon">⚠️</div>
+                <h3>Confirmar Bloqueo de Tarjeta</h3>
+                <p>Está a punto de reportar su tarjeta como <strong id="confirmacion-tipo">perdida</strong> y <strong>bloquearla permanentemente</strong> en el sistema.</p>
+                <div class="confirmacion-details">
+                    <p><strong>Esta acción:</strong></p>
+                    <ul>
+                        <li>❌ Bloqueará el acceso inmediatamente</li>
+                        <li>📧 Notificará al administrador</li>
+                        <li>🔄 Requerirá una nueva tarjeta para reactivar</li>
+                        <li>⏰ Puede tomar hasta 24 horas procesar</li>
+                    </ul>
+                </div>
+                <div class="confirmacion-actions">
+                    <button type="button" class="btn btn-secondary" id="btn-cancelar-bloqueo">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn btn-danger" id="btn-confirmar-bloqueo">
+                        ✅ Confirmar y Bloquear
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historial de Reportes -->
+        <div class="historial-container">
+            <h3>📊 Historial de Reportes</h3>
+            
+            <div class="historial-list" id="lista-historial">
+                <div class="historial-item">
+                    <div class="historial-icon">✅</div>
+                    <div class="historial-content">
+                        <h4>No hay reportes anteriores</h4>
+                        <p>No ha realizado reportes de tarjetas anteriormente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de Éxito -->
+        <div id="mensaje-exito" class="mensaje-exito" style="display: none;">
+            <div class="mensaje-icon">✅</div>
+            <div class="mensaje-content">
+                <h3>Reporte Enviado Exitosamente</h3>
+                <p>Su tarjeta ha sido <strong>bloqueada exitosamente</strong> en el sistema.</p>
+                <div class="mensaje-details">
+                    <p><strong>ID del Reporte:</strong> <span id="reporte-id">#TRP-0001</span></p>
+                    <p><strong>Próximos pasos:</strong></p>
+                    <ul>
+                        <li>📞 Contacte al administrador para solicitar una nueva tarjeta</li>
+                        <li>📧 Recibirá una notificación cuando su solicitud sea procesada</li>
+                        <li>⏰ Tiempo estimado: 24-48 horas</li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-primary" id="btn-cerrar-mensaje">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/gestion-tarjetas.js"></script>
+</body>
+</html>

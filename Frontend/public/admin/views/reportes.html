@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - SALT Admin</title>
+    <link rel="stylesheet" href="/admin/css/reportes.css">
+</head>
+<body>
+    <div class="reportes-panel">
+        <div class="reportes-container">
+            <!-- Header de la sección -->
+            <div class="reportes-header">
+                <h1 class="reportes-title"><i data-lucide="bar-chart-3" class="reportes-icons"></i> Reportes y Estadísticas</h1>
+                <div class="reportes-actions">
+                    <button class="reportes-btn reportes-btn-primary" onclick="reportesGenerarReporte()">
+                        <span><i data-lucide="refresh-cw"></i></span> Generar Reporte
+                    </button>
+                    <button class="reportes-btn reportes-btn-success" onclick="reportesExportarTodo()">
+                        <span><i data-lucide="download"></i></span> Exportar Todo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="reportes-filters">
+                <div class="reportes-filter-group">
+                    <label class="reportes-filter-label">Tipo de Reporte</label>
+                    <select class="reportes-select" id="reportType" onchange="reportesCambiarTipo()">
+                        <option value="asistencia">Asistencia por Período</option>
+                        <option value="accesos-ambiente">Accesos por Ambiente</option>
+                        <option value="accesos-fallidos">Accesos Fallidos</option>
+                        <option value="usuarios-top">Usuarios con Más Accesos</option>
+                        <option value="horarios">Distribución por Horarios</option>
+                    </select>
+                </div>
+                
+                <div class="reportes-filter-group">
+                    <label class="reportes-filter-label">Período</label>
+                    <select class="reportes-select" id="periodo">
+                        <option value="hoy">Hoy</option>
+                        <option value="semana" selected>Esta Semana</option>
+                        <option value="mes">Este Mes</option>
+                        <option value="trimestre">Este Trimestre</option>
+                        <option value="anio">Este Año</option>
+                        <option value="personalizado">Personalizado</option>
+                    </select>
+                </div>
+                
+                <div class="reportes-filter-group" id="fechaPersonalizadaGroup" style="display: none;">
+                    <label class="reportes-filter-label">Rango de Fechas</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="date" class="reportes-date-input" id="fechaDesde">
+                        <input type="date" class="reportes-date-input" id="fechaHasta">
+                    </div>
+                </div>
+                
+                <div class="reportes-filter-group">
+                    <label class="reportes-filter-label">Ambiente</label>
+                    <select class="reportes-select" id="ambienteFilter">
+                        <option value="">Todos los Ambientes</option>
+                        <option value="lab1">Laboratorio 1</option>
+                        <option value="lab2">Laboratorio 2</option>
+                        <option value="aula201">Aula 201</option>
+                        <option value="biblioteca">Biblioteca</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Loading -->
+            <div class="reportes-loading" id="reportesLoading">
+                <div class="reportes-spinner"></div>
+                <p>Generando reporte...</p>
+            </div>
+
+            <!-- Resumen Estadístico -->
+            <div class="reportes-summary">
+                <div class="reportes-summary-card">
+                    <div class="reportes-summary-icon"><i data-lucide="users" class="reportes-icons"></i></div>
+                    <span class="reportes-summary-number" id="totalAccesos">0</span>
+                    <span class="reportes-summary-label">Total Accesos</span>
+                    <div class="reportes-summary-trend reportes-trend-up" id="tendenciaAccesos">+12% vs semana anterior</div>
+                </div>
+                <div class="reportes-summary-card">
+                    <div class="reportes-summary-icon"><i data-lucide="building" class="reportes-icons"></i></div>
+                    <span class="reportes-summary-number" id="ambientesActivos">0</span>
+                    <span class="reportes-summary-label">Ambientes Activos</span>
+                </div>
+                <div class="reportes-summary-card">
+                    <div class="reportes-summary-icon"><i data-lucide="check-circle" class="reportes-icons"></i></div>
+                    <span class="reportes-summary-number" id="accesosExitosos">0</span>
+                    <span class="reportes-summary-label">Accesos Exitosos</span>
+                    <div class="reportes-summary-trend reportes-trend-up" id="tasaExito">98% de éxito</div>
+                </div>
+                <div class="reportes-summary-card">
+                    <div class="reportes-summary-icon"><i data-lucide="alert-triangle" class="reportes-icons"></i></div>
+                    <span class="reportes-summary-number" id="accesosFallidos">0</span>
+                    <span class="reportes-summary-label">Accesos Fallidos</span>
+                    <div class="reportes-summary-trend reportes-trend-down" id="tasaFallos">-5% vs semana anterior</div>
+                </div>
+            </div>
+
+            <!-- Grid de Reportes -->
+            <div class="reportes-grid">
+                <!-- Gráfico Principal -->
+                <div class="reportes-card">
+                    <div class="reportes-card-header">
+                        <h2 class="reportes-card-title" id="chartTitle"><i data-lucide="bar-chart-3" class="reportes-icons"></i> Asistencia por Día</h2>
+                        <div class="reportes-card-actions">
+                            <button class="reportes-btn reportes-btn-primary" onclick="reportesExportarGrafico()">
+                                <span><i data-lucide="download"></i></span> Exportar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="reportes-card-content">
+                        <div class="reportes-chart-container">
+                            <div class="reportes-chart-placeholder" id="mainChart">
+                                Selecciona un tipo de reporte y haz clic en "Generar Reporte"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla de Datos -->
+                <div class="reportes-card">
+                    <div class="reportes-card-header">
+                        <h2 class="reportes-card-title" id="tableTitle"><i data-lucide="table"></i> Datos Detallados</h2>
+                        <div class="reportes-card-actions">
+                            <button class="reportes-btn reportes-btn-success" onclick="reportesExportarTabla()">
+                                <span><i data-lucide="download"></i></span> CSV
+                            </button>
+                        </div>
+                    </div>
+                    <div class="reportes-card-content">
+                        <div class="reportes-table-container">
+                            <table class="reportes-table" id="dataTable">
+                                <thead>
+                                    <tr id="tableHeaders">
+                                        <th>Fecha</th>
+                                        <th>Accesos</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <tr>
+                                        <td colspan="2" style="text-align: center; color: var(--reportes-text-muted);">
+                                            No hay datos para mostrar
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exportación -->
+            <div class="reportes-export">
+                <h3><i data-lucide="download"></i> Exportar Reporte Completo</h3>
+                <p>Descarga el reporte actual en diferentes formatos</p>
+                <div class="reportes-export-options">
+                    <button class="reportes-export-btn" onclick="reportesExportarPDF()">
+                        <span><i data-lucide="download" class="reportes-icons"></i></span> PDF
+                    </button>
+                    <button class="reportes-export-btn" onclick="reportesExportarExcel()">
+                        <span><i data-lucide="download" class="reportes-icons"></i></span> Excel
+                    </button>
+                    <button class="reportes-export-btn" onclick="reportesExportarCSV()">
+                        <span><i data-lucide="download" class="reportes-icons"></i></span> CSV
+                    </button>
+                    <button class="reportes-export-btn" onclick="reportesExportarJSON()">
+                        <span><i data-lucide="download" class="reportes-icons"></i></span> JSON
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin/js/reportes.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

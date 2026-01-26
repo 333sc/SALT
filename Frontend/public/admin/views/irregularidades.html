@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Irregularidades - SALT Admin</title>
+    <link rel="stylesheet" href="/admin/css/irregularidades.css" />
+  </head>
+  <body>
+    <div class="irregularidades-panel">
+      <div class="irregularidades-container">
+        <!-- Header de la sección -->
+        <div class="irregularidades-header">
+          <!--cambio de irregularidades a Excepciones-->
+          <h1 class="irregularidades-title"><i data-lucide="alert-triangle" class="irregularidades-icons"></i> Excepciones</h1>
+          <div class="irregularidades-actions">
+            <button
+              class="irregularidades-btn irregularidades-btn-primary"
+              onclick="IrregularidadesModule.abrirModalNuevo()"
+            >
+              <span><i data-lucide="plus" class="irregularidades-icons"></i></span> Nuevo Reporte
+            </button>
+            <button
+              class="irregularidades-btn irregularidades-btn-success"
+              onclick="IrregularidadesModule.exportarReportes()"
+            >
+              <span><i data-lucide="download" class="irregularidades-icons"></i></span> Exportar
+            </button>
+          </div>
+        </div>
+
+        <!-- Estadísticas rápidas -->
+        <div class="irregularidades-stats">
+          <div class="irregularidades-stat">
+            <div class="irregularidades-stat-icon"><i data-lucide="clipboard-list" class="irregularidades-icons"></i></div>
+            <span class="irregularidades-stat-number" id="totalReportes"
+              >0</span
+            >
+            <span class="irregularidades-stat-label">Total Reportes</span>
+          </div>
+          <div class="irregularidades-stat">
+            <div class="irregularidades-stat-icon"><i data-lucide="clock" class="irregularidades-icons"></i></div>
+            <span class="irregularidades-stat-number" id="reportesPendientes"
+              >0</span
+            >
+            <span class="irregularidades-stat-label">Pendientes</span>
+          </div>
+          <div class="irregularidades-stat">
+            <div class="irregularidades-stat-icon"><i data-lucide="wrench" class="irregularidades-icons"></i></div>
+            <span class="irregularidades-stat-number" id="reportesProceso"
+              >0</span
+            >
+            <span class="irregularidades-stat-label">En Proceso</span>
+          </div>
+          <div class="irregularidades-stat">
+            <div class="irregularidades-stat-icon"><i data-lucide="check-circle" class="irregularidades-icons"></i></div>
+            <span class="irregularidades-stat-number" id="reportesResueltos"
+              >0</span
+            >
+            <span class="irregularidades-stat-label">Resueltos</span>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="irregularidades-filters">
+          <div class="irregularidades-search">
+            <input
+              type="text"
+              class="irregularidades-search-input"
+              id="searchIrregularidades"
+              placeholder="Buscar en reportes..."
+            />
+            <button
+              class="irregularidades-btn irregularidades-btn-primary"
+              onclick="IrregularidadesModule.buscarReportes()"
+            >
+              <span><i data-lucide="search" class="irregularidades-icons"></i></span> Buscar
+            </button>
+          </div>
+          <div class="irregularidades-filter-group">
+            <label class="irregularidades-filter-label">Estado</label>
+            <select
+              class="irregularidades-select"
+              id="filterEstado"
+              onchange="IrregularidadesModule.filtrarReportes()"
+            >
+              <option value="">Todos los estados</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="en-proceso">En Proceso</option>
+              <option value="resuelto">Resuelto</option>
+            </select>
+          </div>
+          <div class="irregularidades-filter-group">
+            <label class="irregularidades-filter-label">Tipo</label>
+            <select
+              class="irregularidades-select"
+              id="filterTipo"
+              onchange="IrregularidadesModule.filtrarReportes()"
+            >
+              <option value="">Todos los tipos</option>
+              <option value="hardware">Hardware</option>
+              <option value="software">Software</option>
+              <option value="acceso">Acceso</option>
+              <option value="seguridad">Seguridad</option>
+              <option value="infraestructura">Infraestructura</option>
+            </select>
+          </div>
+          <div class="irregularidades-filter-group">
+            <label class="irregularidades-filter-label">Ambiente</label>
+            <select
+              class="irregularidades-select"
+              id="filterAmbiente"
+              onchange="IrregularidadesModule.filtrarReportes()"
+            >
+              <option value="">Todos los ambientes</option>
+              <option value="lab1">Laboratorio 1</option>
+              <option value="lab2">Laboratorio 2</option>
+              <option value="aula201">Aula 201</option>
+              <option value="biblioteca">Biblioteca</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Lista de irregularidades -->
+        <div class="irregularidades-list">
+          <div class="irregularidades-list-header">
+            <!--cambio de irregularidades a Reportes de Excepciones-->
+            <h2 class="irregularidades-list-title">
+              <i data-lucide="clipboard-list" class="irregularidades-icons"></i> Reportes de Excepciones
+            </h2>
+            <div class="irregularidades-list-actions">
+              <button
+                class="irregularidades-btn irregularidades-btn-warning"
+                onclick="IrregularidadesModule.limpiarFiltros()"
+              >
+                <span><i data-lucide="rotate-cw" class="irregularidades-icons"></i></span> Limpiar Filtros
+              </button>
+            </div>
+          </div>
+          <div class="irregularidades-items" id="irregularidadesList">
+            <!-- Los reportes se cargarán dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Modal para nuevo reporte -->
+        <div class="irregularidades-modal" id="nuevoReporteModal">
+          <div class="irregularidades-modal-content">
+            <div class="irregularidades-modal-header">
+              <!--cambio de Irregularidades a Reporte de Excepción-->
+              <h3 class="irregularidades-modal-title">
+                <i data-lucide="plus" class="irregularidades-icons"></i> Nuevo Reporte de Excepción
+              </h3>
+              <button
+                class="irregularidades-close-btn"
+                onclick="IrregularidadesModule.cerrarModalNuevo()"
+              >
+                ×
+              </button>
+            </div>
+            <div class="irregularidades-modal-body">
+              <form id="nuevoReporteForm">
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Título del Reporte *</label
+                  >
+                  <input
+                    type="text"
+                    class="irregularidades-form-control"
+                    id="reporteTitulo"
+                    required
+                    placeholder="Ej: Sensor RFID no funciona"
+                  />
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Tipo de Excepción *</label
+                  >
+                  <select
+                    class="irregularidades-form-control"
+                    id="reporteTipo"
+                    required
+                  >
+                    <option value="">Seleccionar tipo...</option>
+                    <option value="hardware">Hardware</option>
+                    <option value="software">Software</option>
+                    <option value="acceso">Acceso</option>
+                    <option value="seguridad">Seguridad</option>
+                    <option value="infraestructura">Infraestructura</option>
+                    <option value="otros">Otros</option>
+                  </select>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label">Ambiente *</label>
+                  <select
+                    class="irregularidades-form-control"
+                    id="reporteAmbiente"
+                    required
+                  >
+                    <option value="">Seleccionar ambiente...</option>
+                    <option value="lab1">Laboratorio de Informática 1</option>
+                    <option value="lab2">Laboratorio de Informática 2</option>
+                    <option value="aula201">Aula 201</option>
+                    <option value="biblioteca">Biblioteca Central</option>
+                    <option value="oficina">Oficina Administrativa</option>
+                  </select>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Nivel de Criticidad</label
+                  >
+                  <select
+                    class="irregularidades-form-control"
+                    id="reporteCriticidad"
+                  >
+                    <option value="baja">Baja</option>
+                    <option value="media" selected>Media</option>
+                    <option value="alta">Alta</option>
+                  </select>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Descripción Detallada *</label
+                  >
+                  <textarea
+                    class="irregularidades-form-control"
+                    id="reporteDescripcion"
+                    required
+                    placeholder="Describe la irregularidad en detalle..."
+                    rows="4"
+                  ></textarea>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Evidencia (Opcional)</label
+                  >
+                  <div
+                    class="irregularidades-file-upload"
+                    onclick="document.getElementById('reporteEvidencia').click()"
+                  >
+                    <div class="irregularidades-file-icon"><i data-lucide="paperclip" class="irregularidades-icons"></i></div>
+                    <div class="irregularidades-file-text">
+                      Haz clic para subir fotos o archivos
+                    </div>
+                    <div class="irregularidades-file-hint">
+                      Máximo 5 archivos, 10MB cada uno
+                    </div>
+                    <input
+                      type="file"
+                      id="reporteEvidencia"
+                      multiple
+                      style="display: none"
+                      onchange="IrregularidadesModule.manejarSubidaArchivos(this)"
+                    />
+                  </div>
+                  <div
+                    class="irregularidades-file-preview"
+                    id="filePreview"
+                  ></div>
+                </div>
+              </form>
+            </div>
+            <div class="irregularidades-modal-actions">
+              <button
+                type="button"
+                class="irregularidades-btn"
+                onclick="IrregularidadesModule.cerrarModalNuevo()"
+                style="
+                  background: var(--irregularidades-border-color);
+                  color: white;
+                "
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="irregularidades-btn irregularidades-btn-primary"
+                onclick="IrregularidadesModule.guardarReporte()"
+              >
+                <i data-lucide="save" class="irregularidades-icons"></i> Guardar Reporte
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal para editar reporte -->
+        <div class="irregularidades-modal" id="editarReporteModal">
+          <div class="irregularidades-modal-content">
+            <div class="irregularidades-modal-header">
+              <h3 class="irregularidades-modal-title">
+                <i data-lucide="edit-3" class="irregularidades-icons"></i> Editar Reporte de Excepción
+              </h3>
+              <button
+                class="irregularidades-close-btn"
+                onclick="IrregularidadesModule.cerrarModalEditar()"
+              >
+                <i data-lucide="x" class="irregularidades-icons"></i>
+              </button>
+            </div>
+            <div class="irregularidades-modal-body">
+              <form id="editarReporteForm">
+                <input type="hidden" id="editarReporteId" />
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Título del Reporte *</label
+                  >
+                  <input
+                    type="text"
+                    class="irregularidades-form-control"
+                    id="editarReporteTitulo"
+                    required
+                    placeholder="Ej: Sensor RFID no funciona"
+                  />
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Tipo de Excepción <i data-lucide="info" class="irregularidades-icons"></i></label
+                  >
+                  <select
+                    class="irregularidades-form-control"
+                    id="editarReporteTipo"
+                    required
+                  >
+                    <option value="">Seleccionar tipo...</option>
+                    <option value="hardware">Hardware</option>
+                    <option value="software">Software</option>
+                    <option value="acceso">Acceso</option>
+                    <option value="seguridad">Seguridad</option>
+                    <option value="infraestructura">Infraestructura</option>
+                    <option value="otros">Otros</option>
+                  </select>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label">Ambiente *</label>
+                  <select
+                    class="irregularidades-form-control"
+                    id="editarReporteAmbiente"
+                    required
+                  >
+                    <option value="">Seleccionar ambiente...</option>
+                    <option value="lab1">Laboratorio de Informática 1</option>
+                    <option value="lab2">Laboratorio de Informática 2</option>
+                    <option value="aula201">Aula 201</option>
+                    <option value="biblioteca">Biblioteca Central</option>
+                    <option value="oficina">Oficina Administrativa</option>
+                  </select>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Nivel de Criticidad</label
+                  >
+                  <select
+                    class="irregularidades-form-control"
+                    id="editarReporteCriticidad"
+                  >
+                    <option value="baja">Baja</option>
+                    <option value="media">Media</option>
+                    <option value="alta">Alta</option>
+                  </select>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Estado del Reporte</label
+                  >
+                  <select
+                    class="irregularidades-form-control"
+                    id="editarReporteEstado"
+                  >
+                    <option value="pendiente">Pendiente</option>
+                    <option value="en-proceso">En Proceso</option>
+                    <option value="resuelto">Resuelto</option>
+                  </select>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Descripción Detallada *</label
+                  >
+                  <textarea
+                    class="irregularidades-form-control"
+                    id="editarReporteDescripcion"
+                    required
+                    placeholder="Describe la irregularidad en detalle..."
+                    rows="4"
+                  ></textarea>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Archivos Adjuntos Actuales</label
+                  >
+                  <div
+                    class="irregularidades-archivos-actuales"
+                    id="archivosActualesContainer"
+                  >
+                    <!-- Los archivos existentes se mostrarán aquí -->
+                  </div>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Agregar Nueva Evidencia (Opcional)</label
+                  >
+                  <div
+                    class="irregularidades-file-upload"
+                    onclick="document.getElementById('editarReporteEvidencia').click()"
+                  >
+                    <div class="irregularidades-file-icon"><i data-lucide="paperclip" class="irregularidades-icons"></i></div>
+                    <div class="irregularidades-file-text">
+                      Haz clic para agregar más archivos
+                    </div>
+                    <div class="irregularidades-file-hint">
+                      Máximo 5 archivos en total, 10MB cada uno
+                    </div>
+                    <input
+                      type="file"
+                      id="editarReporteEvidencia"
+                      multiple
+                      style="display: none"
+                      onchange="IrregularidadesModule.manejarSubidaArchivosEdicion(this)"
+                    />
+                  </div>
+                  <div
+                    class="irregularidades-file-preview"
+                    id="editarFilePreview"
+                  ></div>
+                </div>
+
+                <div class="irregularidades-form-group">
+                  <label class="irregularidades-form-label"
+                    >Reportado por</label
+                  >
+                  <input
+                    type="text"
+                    class="irregularidades-form-control"
+                    id="editarReporteReportadoPor"
+                    readonly
+                  />
+                </div>
+
+                <div class="irregularidades-form-row">
+                  <div class="irregularidades-form-group">
+                    <label class="irregularidades-form-label"
+                      >Fecha de Reporte</label
+                    >
+                    <input
+                      type="text"
+                      class="irregularidades-form-control"
+                      id="editarReporteFechaReporte"
+                      readonly
+                    />
+                  </div>
+                  <div class="irregularidades-form-group">
+                    <label class="irregularidades-form-label"
+                      >Última Actualización</label
+                    >
+                    <input
+                      type="text"
+                      class="irregularidades-form-control"
+                      id="editarReporteFechaActualizacion"
+                      readonly
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="irregularidades-modal-actions">
+              <button
+                type="button"
+                class="irregularidades-btn"
+                onclick="IrregularidadesModule.cerrarModalEditar()"
+                style="
+                  background: var(--irregularidades-border-color);
+                  color: white;
+                "
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="irregularidades-btn irregularidades-btn-danger"
+                onclick="IrregularidadesModule.eliminarArchivosSeleccionados()"
+              >
+                <i data-lucide="trash-2" class="irregularidades-icons"></i> Eliminar Seleccionados
+              </button>
+              <button
+                type="button"
+                class="irregularidades-btn irregularidades-btn-primary"
+                onclick="IrregularidadesModule.guardarCambiosReporte()"
+              >
+                <i data-lucide="save" class="irregularidades-icons"></i> Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/admin/js/irregularidades.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+  </body>
+</html>

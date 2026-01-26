@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - SALT</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside id="side-menu" class="sidebar active">
+            <div class="sidebar-brand">
+                <a href="#" class="logo">
+                    <span><i data-lucide="shield" class="sidebar-icon"></i></span> SALT Admin    
+                </a>
+            </div>
+            <nav>
+                <ul class="sidebar-nav">
+                    <li class="nav-item">
+                        <a href="#inicio" class="nav-link active" data-view="inicio">
+                            <span class="nav-icon"><i data-lucide="home" class="sidebar-icon"></i></span>
+                            <span>Inicio</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#usuarios" class="nav-link " data-view="usuarios">
+                            <span class="nav-icon"><i data-lucide="users" class="sidebar-icon"></i></span>
+                            <span>Usuarios</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#ambientes" class="nav-link" data-view="ambientes">
+                            <span class="nav-icon"><i data-lucide="building" class="sidebar-icon"></i></span>
+                            <span>Ambientes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#sensores" class="nav-link" data-view="sensores">
+                            <span class="nav-icon"><i data-lucide="rss" class="sidebar-icon"></i></span>
+                            <span>Sensores</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#accesos" class="nav-link" data-view="accesos">
+                            <span class="nav-icon"><i data-lucide="lock" class="sidebar-icon"></i></span>
+                            <span>Accesos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#monitoreo" class="nav-link" data-view="monitoreo">
+                            <span class="nav-icon"><i data-lucide="monitor" class="sidebar-icon"></i></span>
+                            <span>Monitoreo</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#irregularidades" class="nav-link" data-view="irregularidades">
+                            <span class="nav-icon"><i data-lucide="alert-triangle" class="sidebar-icon"></i></span>
+                            <span>Excepciones</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#reportes" class="nav-link" data-view="reportes">
+                            <span class="nav-icon"><i data-lucide="bar-chart-3" class="sidebar-icon"></i></span>
+                            <span>Reportes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#configuracion" class="nav-link" data-view="configuracion">
+                            <span class="nav-icon"><i data-lucide="settings" class="sidebar-icon"></i></span>
+                            <span>Configuración</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#gestion-sanciones" class="nav-link" data-view="gestion-sanciones">
+                            <span class="nav-icon"><i data-lucide="ban" class="sidebar-icon"></i></span>
+                            <span>Gestion de sanciones</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="welcome-message">
+                <h1>Bienvenido, <span class="admin-name">Administrador</span></h1>
+                <p>Panel de control del sistema SALT</p>
+            </div>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name">Admin user</div>
+                    <div class="user-role">Administrador</div>
+                </div>
+                <div id="action-button" class="user-avatar">A</div>
+                <div class="btnSidebar" id="btnSidebar">&#9776;</div>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <!-- Vista de Inicio -->
+            <div id="inicio" class="view-content active">
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="users"></i></div>
+                        <span class="stat-number">1,248</span>
+                        <span class="stat-label">Usuarios Registrados</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="building"></i></div>
+                        <span class="stat-number">18</span>
+                        <span class="stat-label">Ambientes Activos</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="plug"></i></div>
+                        <span class="stat-number">24</span>
+                        <span class="stat-label">Sensores Conectados</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="clock"></i></div>
+                        <span class="stat-number">327</span>
+                        <span class="stat-label">Accesos Hoy</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Actividad Reciente</h3>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <span class="activity-icon"><i data-lucide="lock"></i></span>
+                            <div class="activity-content">
+                                <strong>Juan Pérez</strong> accedió al Laboratorio 3
+                            </div>
+                            <span class="activity-time">Hace 5 min</span>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-icon"><i data-lucide="user"></i></span>
+                            <div class="activity-content">
+                                Nuevo usuario registrado: <strong>María Gómez</strong>
+                            </div>
+                            <span class="activity-time">Hace 15 min</span>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-icon"><i data-lucide="alert-triangle"></i></span>
+                            <div class="activity-content">
+                                Intento de acceso no autorizado en Aula 201
+                            </div>
+                            <span class="activity-time">Hace 25 min</span>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-icon"><i data-lucide="settings"></i></span>
+                            <div class="activity-content">
+                                Configuración actualizada del sensor RFID-001
+                            </div>
+                            <span class="activity-time">Hace 1 hora</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Vista de Usuarios -->
+            <div id="usuarios" class="view-content">
+                <h2>Gestión de Usuarios</h2>
+                <p>Contenido de gestión de usuarios cargado dinámicamente...</p>
+            </div>
+
+            <!-- Vista de Ambientes -->
+            <div id="ambientes" class="view-content">
+                <h2>Gestión de Ambientes</h2>
+                <p>Contenido de gestión de ambientes cargado dinámicamente...</p>
+            </div>
+
+            <!-- Vista de Sensores -->
+            <div id="sensores" class="view-content">
+                <h2>Gestión de Sensores</h2>
+                <p>Contenido de gestión de sensores cargado dinámicamente...</p>
+            </div>
+
+            <!-- Vista de Accesos -->
+            <div id="accesos" class="view-content">
+                <h2>Registro de Accesos</h2>
+                <p>Contenido de registro de accesos cargado dinámicamente...</p>
+            </div>
+
+            <!-- Vista de Monitoreo -->
+            <div id="monitoreo" class="view-content">
+                <h2>Monitoreo en Tiempo Real</h2>
+                <p>Contenido de monitoreo cargado dinámicamente...</p>
+            </div>
+
+            <!-- Vista de Irregularidades -->
+            <div id="irregularidades" class="view-content">
+                <h2>Reporte de Irregularidades</h2>
+                <p>Contenido de irregularidades cargado dinámicamente...</p>
+            </div>
+
+            <!-- Vista de Reportes -->
+            <div id="reportes" class="view-content">
+                <h2>Generación de Reportes</h2>
+                <p>Contenido de reportes cargado dinámicamente...</p>
+            </div>
+
+            <!-- Vista de Configuración -->
+            <div id="configuracion" class="view-content">
+                <h2>Configuración del Sistema</h2>
+                <p>Contenido de configuración cargado dinámicamente...</p>
+            </div>
+
+            <div id="gestion-sanciones" class="view-content">
+                <h2>gestion-sanciones</h2>
+                <p>Contenido de configuración cargado dinámicamente...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justificación de Irregularidades - SALT</title>
+    <link rel="stylesheet" href="/generales/css/justificacion-accesos.css">
+</head>
+<body>
+    <div class="justificacion-container">
+        <div class="justificacion-header">
+            <h2>🛡️ Justificación de Irregularidades</h2>
+            <p>Justifique las irregularidades detectadas por el sistema para evitar sanciones injustas</p>
+        </div>
+
+        <!-- Panel de Irregularidades Notificadas -->
+        <div class="justificacion-pendientes">
+            <h3>📋 Irregularidades Pendientes de Justificación</h3>
+            <p class="justificacion-subtitulo">Estas son las irregularidades que el sistema ha detectado y notificado</p>
+            
+            <div class="irregularidades-list" id="lista-irregularidades-pendientes">
+                <!-- Las irregularidades se cargarán dinámicamente -->
+                <div class="irregularidad-vacio">
+                    <p>No tiene irregularidades pendientes de justificación</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario de Justificación -->
+        <div class="justificacion-form-container">
+            <h3>📝 Justificar Irregularidad Detectada</h3>
+            
+            <form id="justificacion-form" class="justificacion-form">
+                <div class="justificacion-form-group">
+                    <label for="justificacion-irregularidad" class="justificacion-form-label">
+                        <span class="justificacion-required">*</span> Seleccionar Irregularidad a Justificar
+                    </label>
+                    <select id="justificacion-irregularidad" name="irregularidad_id" class="justificacion-form-select" required>
+                        <option value="">Seleccione una irregularidad notificada...</option>
+                        <!-- Opciones se llenarán dinámicamente -->
+                    </select>
+                    <div class="justificacion-help">
+                        Solo se muestran las irregularidades detectadas automáticamente por el sistema
+                    </div>
+                </div>
+
+                <!-- Información de la Irregularidad Seleccionada -->
+                <div class="irregularidad-info" id="info-irregularidad" style="display: none;">
+                    <h4>📄 Información de la Irregularidad</h4>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Tipo:</strong>
+                            <span id="info-tipo">-</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Fecha y Hora:</strong>
+                            <span id="info-fecha-hora">-</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Ubicación:</strong>
+                            <span id="info-ubicacion">-</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Descripción:</strong>
+                            <span id="info-descripcion">-</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Gravedad:</strong>
+                            <span id="info-gravedad">-</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Notificación:</strong>
+                            <span id="info-notificacion">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="justificacion-form-group">
+                    <label for="justificacion-tipo" class="justificacion-form-label">
+                        <span class="justificacion-required">*</span> Tipo de Justificación
+                    </label>
+                    <select id="justificacion-tipo" name="tipo_justificacion" class="justificacion-form-select" required>
+                        <option value="">Seleccione el tipo de justificación...</option>
+                        <option value="emergencia_medica">Emergencia Médica</option>
+                        <option value="problema_familiar">Problema Familiar Urgente</option>
+                        <option value="problema_transporte">Problema de Transporte</option>
+                        <option value="condiciones_climaticas">Condiciones Climáticas Adversas</option>
+                        <option value="actividad_institucional">Actividad Institucional Autorizada</option>
+                        <option value="error_sistema">Error del Sistema</option>
+                        <option value="capacitacion">Capacitación/Reunión No Registrada</option>
+                        <option value="otro">Otro Motivo</option>
+                    </select>
+                </div>
+
+                <div class="justificacion-form-group">
+                    <label for="justificacion-descripcion" class="justificacion-form-label">
+                        <span class="justificacion-required">*</span> Explicación Detallada
+                    </label>
+                    <textarea 
+                        id="justificacion-descripcion" 
+                        name="descripcion" 
+                        class="justificacion-form-textarea" 
+                        placeholder="Describa detalladamente los motivos de la irregularidad. Sea específico y proporcione toda la información relevante..." 
+                        rows="5"
+                        required
+                    ></textarea>
+                    <div class="justificacion-char-count">
+                        <span id="justificacion-char-counter">0</span> / 1000 caracteres
+                    </div>
+                </div>
+
+                <div class="justificacion-form-group">
+                    <label class="justificacion-form-label">
+                        <span class="justificacion-required">*</span> Adjuntar Documento de Justificación
+                    </label>
+                    <div class="justificacion-file-upload">
+                        <input 
+                            type="file" 
+                            id="justificacion-documento" 
+                            name="documento" 
+                            class="justificacion-file-input" 
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            required
+                        >
+                        <label for="justificacion-documento" class="justificacion-file-label">
+                            <span class="justificacion-file-icon">📎</span>
+                            <span class="justificacion-file-text">Seleccionar archivo</span>
+                        </label>
+                        <div id="justificacion-file-name" class="justificacion-file-name">
+                            No se ha seleccionado ningún archivo
+                        </div>
+                    </div>
+                    <div class="justificacion-file-info">
+                        Formatos permitidos: PDF, JPG, PNG (Máx. 5MB por archivo)
+                    </div>
+                </div>
+
+                <div class="justificacion-form-actions">
+                    <button type="button" class="justificacion-btn justificacion-btn-secondary" id="justificacion-btn-cancelar">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="justificacion-btn justificacion-btn-primary" id="justificacion-btn-enviar">
+                        <span class="justificacion-btn-loading" style="display: none;">⏳</span>
+                        Enviar Justificación
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Historial de Justificaciones -->
+        <div class="justificacion-historial">
+            <h3>📊 Historial de Justificaciones</h3>
+            
+            <div class="historial-filtros">
+                <div class="filtro-group">
+                    <label class="filtro-label">Estado:</label>
+                    <select class="filtro-select" id="filtro-estado">
+                        <option value="">Todos los estados</option>
+                        <option value="pendiente">Pendiente de revisión</option>
+                        <option value="aprobado">Aprobado</option>
+                        <option value="rechazado">Rechazado</option>
+                        <option value="requiere_info">Requiere más información</option>
+                    </select>
+                </div>
+                <div class="filtro-group">
+                    <label class="filtro-label">Tipo de Irregularidad:</label>
+                    <select class="filtro-select" id="filtro-tipo">
+                        <option value="">Todos los tipos</option>
+                        <option value="retardo">Retardo</option>
+                        <option value="falta_asistencia">Falta de asistencia</option>
+                        <option value="salida_temprana">Salida temprana</option>
+                        <option value="acceso_fuera_horario">Acceso fuera de horario</option>
+                        <option value="acceso_area_restringida">Acceso a área restringida</option>
+                    </select>
+                </div>
+                <button class="justificacion-btn justificacion-btn-outline" id="btn-aplicar-filtros">
+                    🔍 Aplicar Filtros
+                </button>
+            </div>
+
+            <div class="historial-list" id="lista-historial">
+                <!-- El historial se cargará dinámicamente -->
+                <div class="historial-vacio">
+                    <p>No hay justificaciones registradas</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Detalles -->
+        <div class="justificacion-modal" id="modal-detalles">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Detalles de Justificación</h3>
+                    <button class="modal-close" id="modal-close">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Contenido dinámico del modal -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de éxito -->
+        <div id="justificacion-mensaje-exito" class="justificacion-mensaje-exito" style="display: none;">
+            <div class="justificacion-mensaje-icon">✅</div>
+            <div class="justificacion-mensaje-content">
+                <h3>Justificación Enviada Exitosamente</h3>
+                <p>Su justificación ha sido registrada con el ID: <strong id="justificacion-id">#0000</strong></p>
+                <p class="justificacion-mensaje-info">El administrador revisará su solicitud y notificará el resultado por este mismo medio.</p>
+                <div class="justificacion-mensaje-actions">
+                    <button type="button" class="justificacion-btn justificacion-btn-outline" id="justificacion-btn-nueva">
+                        Nueva Justificación
+                    </button>
+                    <button type="button" class="justificacion-btn justificacion-btn-secondary" id="justificacion-btn-ver-historial">
+                        Ver Historial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/generales/js/justificacion-accesos.js"></script>
+</body>
+</html>
+

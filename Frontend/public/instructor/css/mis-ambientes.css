@@ -1,0 +1,102 @@
+/*
+ * mis-ambientes.css
+ * Estilos específicos para la vista de Mis Ambientes
+ * Ubicación: SALT-PROJECT/public/instructor/css/mis-ambientes.css
+ */
+
+:root {
+    /* Colores principales para Mis Ambientes */
+    --mis-ambientes-primary-color: #0d6efd;
+    --mis-ambientes-text-light: #ffffff;
+    --mis-ambientes-warning-color: #ffc107;
+    --mis-ambientes-text-muted: #6c757d;
+    --mis-ambientes-border-color: #444;
+}
+
+.mis-ambientes-panel {
+    padding: 0;
+}
+
+.mis-ambientes-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.mis-ambientes-title {
+    color: var(--mis-ambientes-primary-color);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.mis-ambientes-container h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--mis-ambientes-text-light);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.mis-ambientes-container .text-muted {
+    margin-bottom: 2rem;
+}
+
+/* Estilos de tabla específicos para esta vista */
+.status-ocupado { 
+    color: var(--mis-ambientes-warning-color); 
+    font-weight: bold; 
+}
+
+/* Filtros y selectores */
+.mis-ambientes-filters { 
+    display: flex; 
+    gap: 1.5rem; 
+    align-items: flex-end; 
+    margin-bottom: 2rem;
+}
+
+.mis-ambientes-label { 
+    display: block; 
+    margin-bottom: 0.5rem; 
+    color: var(--mis-ambientes-text-muted); 
+    font-size: 0.9rem; 
+    font-weight: 500;
+}
+
+.mis-ambientes-select, 
+.mis-ambientes-search-input { 
+    width: 100%; 
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--mis-ambientes-border-color);
+    background: #2d2d2d;
+    color: var(--mis-ambientes-text-light);
+    transition: border-color 0.2s;
+    font-size: 0.95rem;
+}
+
+.mis-ambientes-select:focus,
+.mis-ambientes-search-input:focus {
+    border-color: var(--mis-ambientes-primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+/* Ajustes para las tablas en esta vista */
+.mis-ambientes-container .table-container {
+    margin-bottom: 2rem;
+}
+
+/* Responsive para esta vista específica */
+@media (max-width: 768px) {
+    .mis-ambientes-filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .mis-ambientes-title {
+        font-size: 1.5rem;
+    }
+}

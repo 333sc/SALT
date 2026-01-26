@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportar Fallas - SALT Generales</title>
+    <link rel="stylesheet" href="/generales/css/reporte-fallas.css">
+</head>
+<body>
+    <div class="reportar-fallas-container">
+        <div class="reportar-fallas-content-header">
+            <h2>Reportar Fallas o Incidentes</h2>
+            <p>Complete el formulario para reportar fallas en el sistema o incidentes detectados</p>
+        </div>
+
+        <div class="reportar-fallas-form-container">
+            <form id="reportar-fallas-form" class="reportar-fallas-form">
+                <div class="reportar-fallas-form-row">
+                    <div class="reportar-fallas-form-group">
+                        <label for="reportar-fallas-tipo-falla" class="reportar-fallas-form-label">
+                            <span class="reportar-fallas-required">*</span> Tipo de Falla
+                        </label>
+                        <select id="reportar-fallas-tipo-falla" name="tipo_falla" class="reportar-fallas-form-select" required>
+                            <option value="">Seleccione el tipo de falla...</option>
+                            <option value="sensor">Falla de Sensor</option>
+                            <option value="acceso_forzado">Acceso Forzado</option>
+                            <option value="electrico">Problema Eléctrico</option>
+                            <option value="hardware">Falla de Hardware</option>
+                            <option value="software">Falla de Software</option>
+                            <option value="comunicacion">Problema de Comunicación</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="reportar-fallas-form-group">
+                        <label for="reportar-fallas-ubicacion" class="reportar-fallas-form-label">
+                            <span class="reportar-fallas-required">*</span> Ubicación
+                        </label>
+                        <select id="reportar-fallas-ubicacion" name="ubicacion" class="reportar-fallas-form-select" required>
+                            <option value="">Seleccione la ubicación...</option>
+                            <option value="lab1">Laboratorio 1</option>
+                            <option value="lab2">Laboratorio 2</option>
+                            <option value="lab3">Laboratorio 3</option>
+                            <option value="aula101">Aula 101</option>
+                            <option value="aula102">Aula 102</option>
+                            <option value="aula201">Aula 201</option>
+                            <option value="aula202">Aula 202</option>
+                            <option value="oficina1">Oficina Administrativa</option>
+                            <option value="almacen">Almacén</option>
+                            <option value="exterior">Área Exterior</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="reportar-fallas-form-group">
+                    <label for="reportar-fallas-sensor" class="reportar-fallas-form-label">
+                        Sensor (opcional)
+                    </label>
+                    <select id="reportar-fallas-sensor" name="sensor" class="reportar-fallas-form-select">
+                        <option value="">Seleccione el sensor...</option>
+                        <option value="rfid001">RFID-001 - Puerta Principal</option>
+                        <option value="rfid002">RFID-002 - Laboratorio 1</option>
+                        <option value="rfid003">RFID-003 - Laboratorio 2</option>
+                        <option value="temp001">TEMP-001 - Aula 101</option>
+                        <option value="temp002">TEMP-002 - Almacén</option>
+                        <option value="mov001">MOV-001 - Pasillo Central</option>
+                        <option value="mov002">MOV-002 - Entrada Secundaria</option>
+                    </select>
+                </div>
+
+                <div class="reportar-fallas-form-group">
+                    <label for="reportar-fallas-descripcion" class="reportar-fallas-form-label">
+                        <span class="reportar-fallas-required">*</span> Descripción Detallada
+                    </label>
+                    <textarea 
+                        id="reportar-fallas-descripcion" 
+                        name="descripcion" 
+                        class="reportar-fallas-form-textarea" 
+                        placeholder="Describa la falla o incidente en detalle..." 
+                        rows="4"
+                        required
+                    ></textarea>
+                    <div class="reportar-fallas-char-count">
+                        <span id="reportar-fallas-char-counter">0</span> / 500 caracteres
+                    </div>
+                </div>
+
+                <div class="reportar-fallas-form-group">
+                    <label class="reportar-fallas-form-label">
+                        Adjuntar Evidencia (Opcional)
+                    </label>
+                    <div class="reportar-fallas-file-upload">
+                        <input 
+                            type="file" 
+                            id="reportar-fallas-foto" 
+                            name="foto" 
+                            class="reportar-fallas-file-input" 
+                            accept="image/*,.pdf"
+                        >
+                        <label for="reportar-fallas-foto" class="reportar-fallas-file-label">
+                            <span class="reportar-fallas-file-icon">📎</span>
+                            <span class="reportar-fallas-file-text">Seleccionar archivo</span>
+                        </label>
+                        <div id="reportar-fallas-file-name" class="reportar-fallas-file-name">No se ha seleccionado ningún archivo</div>
+                    </div>
+                    <div class="reportar-fallas-file-info">
+                        Formatos permitidos: JPG, PNG, PDF (Máx. 5MB)
+                    </div>
+                </div>
+
+                <div class="reportar-fallas-form-group">
+                    <label class="reportar-fallas-form-label">
+                        <span class="reportar-fallas-required">*</span> Prioridad
+                    </label>
+                    <div class="reportar-fallas-prioridad-options">
+                        <label class="reportar-fallas-radio-option">
+                            <input type="radio" name="prioridad" value="baja" required>
+                            <span class="reportar-fallas-radio-custom"></span>
+                            <span class="reportar-fallas-radio-label">
+                                <span class="reportar-fallas-prioridad-baja">Baja</span>
+                                <small>No afecta operaciones críticas</small>
+                            </span>
+                        </label>
+                        <label class="reportar-fallas-radio-option">
+                            <input type="radio" name="prioridad" value="media" required>
+                            <span class="reportar-fallas-radio-custom"></span>
+                            <span class="reportar-fallas-radio-label">
+                                <span class="reportar-fallas-prioridad-media">Media</span>
+                                <small>Afecta algunas operaciones</small>
+                            </span>
+                        </label>
+                        <label class="reportar-fallas-radio-option">
+                            <input type="radio" name="prioridad" value="alta" required>
+                            <span class="reportar-fallas-radio-custom"></span>
+                            <span class="reportar-fallas-radio-label">
+                                <span class="reportar-fallas-prioridad-alta">Alta</span>
+                                <small>Afecta operaciones críticas</small>
+                            </span>
+                        </label>
+                        <label class="reportar-fallas-radio-option">
+                            <input type="radio" name="prioridad" value="urgente" required>
+                            <span class="reportar-fallas-radio-custom"></span>
+                            <span class="reportar-fallas-radio-label">
+                                <span class="reportar-fallas-prioridad-urgente">Urgente</span>
+                                <small>Requiere atención inmediata</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="reportar-fallas-form-actions">
+                    <button type="button" class="reportar-fallas-btn reportar-fallas-btn-secondary" id="reportar-fallas-btn-cancelar">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="reportar-fallas-btn reportar-fallas-btn-primary" id="reportar-fallas-btn-enviar">
+                        <span class="reportar-fallas-btn-loading" style="display: none;">⏳</span>
+                        Reportar Falla
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="reportar-fallas-mensaje-exito" class="reportar-fallas-mensaje-exito" style="display: none;">
+            <div class="reportar-fallas-mensaje-icon">✅</div>
+            <div class="reportar-fallas-mensaje-content">
+                <h3>Reporte Enviado Exitosamente</h3>
+                <p>El reporte de falla ha sido registrado en el sistema con el ID: <strong id="reportar-fallas-reporte-id">#0000</strong></p>
+                <button type="button" class="reportar-fallas-btn reportar-fallas-btn-outline" id="reportar-fallas-btn-nuevo-reporte">
+                    Realizar Nuevo Reporte
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/generales/js/reporte-fallas.js"></script>
+</body>
+</html>

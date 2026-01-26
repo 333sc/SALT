@@ -1,0 +1,215 @@
+/* css/notificaciones.css */
+
+/* Se asume que las variables como --dark-bg, --card-bg, --primary-color, etc., 
+   están definidas en aprendiz.css y son accesibles. */
+:root {
+    --danger-color: #dc3545;
+    --warning-color: #ffc107; /* Añadir esta línea */
+    --border-color: #444; /* Añadir esta línea */
+}
+
+.notificaciones-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.notificaciones-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.notificaciones-title {
+    font-size: 2rem;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+
+.notificaciones-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.notificacion-action-btn {
+    background: none;
+    border: 1px solid var(--primary-color, #0d6efd);
+    color: var(--primary-color, #0d6efd);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.notificacion-action-btn.primary {
+    background-color: var(--primary-color, #0d6efd);
+    color: var(--dark-bg, #121212);
+    border: none;
+}
+
+.notificacion-action-btn.danger {
+    background-color: var(--danger-color, #dc3545);
+    color: var(--dark-bg, #121212);
+    border: none;
+}
+
+.notificacion-action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.notificacion-action-btn:active {
+    transform: translateY(0);
+}
+
+.notificaciones-list {
+    list-style: none;
+    padding: 0;
+}
+
+.notificacion-item {
+    background: var(--card-bg, #1e1e1e);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border-left: 5px solid var(--primary-color, #0d6efd);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilo para notificaciones ya leídas */
+.notificacion-item.read {
+    opacity: 0.7;
+    background-color: #252525;
+    border-left: 5px solid var(--border-color, #444);
+}
+
+.notificacion-item.unread {
+    border-left: 5px solid var(--primary-color, #0d6efd);
+}
+
+.notificacion-item:hover {
+    background-color: #2a2a2a;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.notificacion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notificacion-subject {
+    font-weight: bold;
+    font-size: 1.1rem;
+    flex: 1;
+}
+
+.notificacion-time {
+    color: var(--text-muted, #adb5bd);
+    font-size: 0.85rem;
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+
+.notificacion-item p {
+    margin-bottom: 1rem;
+    color: var(--text-light, #f8f9fa);
+    line-height: 1.5;
+}
+
+.notificacion-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.notificacion-btn {
+    background: none;
+    border: 1px solid var(--primary-color, #0d6efd);
+    color: var(--primary-color, #0d6efd);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.notificacion-btn.mark-read-btn {
+    border-color: var(--primary-color, #0d6efd);
+    color: var(--primary-color, #0d6efd);
+}
+
+.notificacion-btn.delete-btn {
+    border-color: var(--danger-color, #dc3545);
+    color: var(--danger-color, #dc3545);
+}
+
+.notificacion-btn:hover {
+    background-color: var(--primary-color, #0d6efd);
+    color: var(--dark-bg, #121212);
+}
+
+.notificacion-btn.delete-btn:hover {
+    background-color: var(--danger-color, #dc3545);
+    color: var(--dark-bg, #121212);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .notificaciones-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .notificaciones-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .notificacion-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .notificacion-time {
+        margin-left: 0;
+        margin-top: 0.25rem;
+    }
+    
+    .notificacion-actions {
+        justify-content: flex-start;
+    }
+}
+
+
+    .notificaciones-icons {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+        stroke: var(--text-light);
+    }

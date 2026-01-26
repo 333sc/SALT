@@ -1,0 +1,99 @@
+/* SALT-PROJECT/public/instructor/css/irregularidades.css */
+:root {
+    /* Colores principales */
+    --irregularidades-danger-color: #dc3545;
+    --irregularidades-warning-color: #ffc107;
+    --irregularidades-card-bg: #1e1e1e;
+    --irregularidades-text-light: #ffffff;
+    --irregularidades-text-muted: #6c757d;
+}
+
+.irregularidades-panel {
+    padding: 0;
+}
+
+.irregularidades-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.irregularidades-title {
+    color: var(--irregularidades-danger-color);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* Lista de irregularidades */
+.irregularidades-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.irregularidad-item {
+    background: var(--irregularidades-card-bg);
+    padding: 1.5rem;
+    border-left: 5px solid var(--irregularidades-warning-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    gap: 1.5rem;
+}
+
+.irregularidad-item:hover {
+    background-color: #252525;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.irregularidad-item.danger {
+    border-left-color: var(--irregularidades-danger-color);
+}
+
+.irregularidad-item strong {
+    color: var(--irregularidades-text-light);
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.irregularidad-item p {
+    color: var(--irregularidades-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+}
+
+.irregularidad-item > div:first-child {
+    flex: 1;
+}
+
+.irregularidad-item > div:last-child {
+    text-align: right;
+    min-width: 200px;
+}
+
+/* Responsive específico */
+@media (max-width: 768px) {
+    .irregularidades-title {
+        font-size: 1.5rem;
+    }
+    
+    .irregularidad-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        text-align: left;
+    }
+    
+    .irregularidad-item > div:last-child {
+        text-align: left;
+        min-width: auto;
+    }
+}

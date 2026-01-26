@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoreo en Tiempo Real - SALT Admin</title>
+    <link rel="stylesheet" href="/admin/css/monitoreo.css">
+</head>
+<body>
+    <div class="monitoreo-panel">
+        <div class="monitoreo-container">
+            <!-- Header de la sección -->
+            <div class="monitoreo-header">
+                <h1 class="monitoreo-title"><i data-lucide="monitor" class="monitoreo-icons"></i> Monitoreo en Tiempo Real</h1>
+                <div class="monitoreo-actions">
+                    <button class="monitoreo-btn monitoreo-btn-primary" onclick="monitoreoStartSimulation()">
+                        <span><i data-lucide="play" class="monitoreo-icons"></i></span> Iniciar Simulación
+                    </button>
+                    <button class="monitoreo-btn monitoreo-btn-success" onclick="monitoreoClearActivity()">
+                        <span><i data-lucide="trash-2" class="monitoreo-icons"></i></span> Limpiar Actividad
+                    </button>
+                    <button class="monitoreo-btn monitoreo-btn-warning" onclick="monitoreoToggleSound()">
+                        <span><i data-lucide="volume-2" class="monitoreo-icons"></i></span> <span id="soundStatus">Sonido: ON</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Estadísticas en tiempo real -->
+            <div class="monitoreo-stats">
+                <div class="monitoreo-stat">
+                    <div class="monitoreo-stat-icon"><i data-lucide="users" class="monitoreo-icons"></i></div>
+                    <span class="monitoreo-stat-number" id="activeUsers">0</span>
+                    <span class="monitoreo-stat-label">Usuarios Activos</span>
+                </div>
+                <div class="monitoreo-stat">
+                    <div class="monitoreo-stat-icon"><i data-lucide="plug" class="monitoreo-icons"></i></div>
+                    <span class="monitoreo-stat-number" id="onlineSensors">0</span>
+                    <span class="monitoreo-stat-label">Sensores Online</span>
+                </div>
+                <div class="monitoreo-stat">
+                    <div class="monitoreo-stat-icon"><i data-lucide="building" class="monitoreo-icons"></i></div>
+                    <span class="monitoreo-stat-number" id="activeEnvironments">0</span>
+                    <span class="monitoreo-stat-label">Ambientes Activos</span>
+                </div>
+                <div class="monitoreo-stat">
+                    <div class="monitoreo-stat-icon"><i data-lucide="clock" class="monitoreo-icons"></i></div>
+                    <span class="monitoreo-stat-number" id="todayAccess">0</span>
+                    <span class="monitoreo-stat-label">Accesos Hoy</span>
+                </div>
+            </div>
+
+            <!-- Layout principal -->
+            <div class="monitoreo-grid">
+                <!-- Actividad en vivo -->
+                <div class="monitoreo-activity">
+                    <div class="monitoreo-activity-header">
+                        <h2 class="monitoreo-activity-title">
+                            <i data-lucide="activity" class="monitoreo-icons"></i> Actividad en Vivo
+                            <div class="monitoreo-live-indicator">
+                                <div class="monitoreo-pulse"></div>
+                                EN VIVO
+                            </div>
+                        </h2>
+                        <span class="monitoreo-badge monitoreo-badge-success" id="activityCount">0 eventos</span>
+                    </div>
+                    <div class="monitoreo-activity-list" id="activityList">
+                        <!-- La actividad se cargará dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Estado de sensores -->
+                <div class="monitoreo-sensors-panel">
+                    <div class="monitoreo-sensors-header">
+                        <h2 class="monitoreo-sensors-title"><i data-lucide="plug" class="monitoreo-icons"></i> Estado de Sensores</h2>
+                    </div>
+                    <div class="monitoreo-sensors-list" id="sensorsList">
+                        <!-- Los sensores se cargarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notificaciones -->
+        <div class="monitoreo-notifications" id="notificationsContainer">
+            <!-- Las notificaciones aparecerán aquí -->
+        </div>
+    </div>
+
+    <script src="/admin/js/monitoreo.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

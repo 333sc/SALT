@@ -1,0 +1,694 @@
+:root {
+    --justificacion-dark-bg: #121212;
+    --justificacion-card-bg: #1e1e1e;
+    --justificacion-primary-color: #0d6efd;
+    --justificacion-success-color: #198754;
+    --justificacion-warning-color: #ffc107;
+    --justificacion-danger-color: #dc3545;
+    --justificacion-text-light: #f8f9fa;
+    --justificacion-text-muted: #adb5bd;
+    --justificacion-border-color: #444;
+    --justificacion-hover-bg: #2a2a2a;
+}
+
+.justificacion-container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.justificacion-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.justificacion-header h2 {
+    color: var(--justificacion-text-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.justificacion-header p {
+    color: var(--justificacion-text-muted);
+    font-size: 1rem;
+}
+
+/* Panel de Accesos Pendientes */
+.justificacion-pendientes {
+    background-color: var(--justificacion-card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--justificacion-border-color);
+    margin-bottom: 2rem;
+}
+
+.justificacion-pendientes h3 {
+    color: var(--justificacion-text-light);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.accesos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.acceso-item {
+    background-color: var(--justificacion-dark-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--justificacion-warning-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.acceso-info h4 {
+    color: var(--justificacion-text-light);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.acceso-detalles {
+    color: var(--justificacion-text-muted);
+    font-size: 0.9rem;
+}
+
+.acceso-fecha {
+    font-weight: 500;
+    color: var(--justificacion-warning-color);
+}
+
+.acceso-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.acceso-vacio {
+    text-align: center;
+    padding: 2rem;
+    color: var(--justificacion-text-muted);
+}
+
+/* Formulario */
+.justificacion-form-container {
+    background-color: var(--justificacion-card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--justificacion-border-color);
+    margin-bottom: 2rem;
+}
+
+.justificacion-form-container h3 {
+    color: var(--justificacion-text-light);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.justificacion-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.justificacion-form-label {
+    display: block;
+    color: var(--justificacion-text-light);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.justificacion-required {
+    color: var(--justificacion-danger-color);
+}
+
+.justificacion-form-select,
+.justificacion-form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--justificacion-dark-bg);
+    border: 1px solid var(--justificacion-border-color);
+    border-radius: 5px;
+    color: var(--justificacion-text-light);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+.justificacion-form-select:focus,
+.justificacion-form-textarea:focus {
+    outline: none;
+    border-color: var(--justificacion-primary-color);
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.1);
+}
+
+.justificacion-form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.justificacion-char-count {
+    text-align: right;
+    color: var(--justificacion-text-muted);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* File upload */
+.justificacion-file-upload {
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+
+.justificacion-file-input {
+    display: none;
+}
+
+.justificacion-file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--justificacion-dark-bg);
+    border: 2px dashed var(--justificacion-border-color);
+    border-radius: 5px;
+    color: var(--justificacion-text-muted);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.justificacion-file-label:hover {
+    border-color: var(--justificacion-primary-color);
+    color: var(--justificacion-text-light);
+}
+
+.justificacion-file-icon {
+    font-size: 1.2rem;
+}
+
+.justificacion-file-name {
+    margin-top: 0.5rem;
+    color: var(--justificacion-text-muted);
+    font-size: 0.8rem;
+}
+
+.justificacion-file-info {
+    color: var(--justificacion-text-muted);
+    font-size: 0.75rem;
+    font-style: italic;
+}
+
+/* Botones */
+.justificacion-form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--justificacion-border-color);
+}
+
+.justificacion-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.justificacion-btn-primary {
+    background-color: var(--justificacion-primary-color);
+    color: white;
+}
+
+.justificacion-btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+.justificacion-btn-secondary {
+    background-color: transparent;
+    color: var(--justificacion-text-light);
+    border: 1px solid var(--justificacion-border-color);
+}
+
+.justificacion-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--justificacion-text-muted);
+}
+
+.justificacion-btn-outline {
+    background-color: transparent;
+    color: var(--justificacion-primary-color);
+    border: 1px solid var(--justificacion-primary-color);
+}
+
+.justificacion-btn-outline:hover {
+    background-color: var(--justificacion-primary-color);
+    color: white;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+/* Historial */
+.justificacion-historial {
+    background-color: var(--justificacion-card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--justificacion-border-color);
+}
+
+.justificacion-historial h3 {
+    color: var(--justificacion-text-light);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.historial-filtros {
+    display: flex;
+    gap: 1rem;
+    align-items: end;
+    margin-bottom: 1.5rem;
+}
+
+.filtro-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filtro-label {
+    color: var(--justificacion-text-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.filtro-select {
+    padding: 0.6rem;
+    background-color: var(--justificacion-dark-bg);
+    border: 1px solid var(--justificacion-border-color);
+    border-radius: 5px;
+    color: var(--justificacion-text-light);
+    font-size: 0.9rem;
+}
+
+.historial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.historial-item {
+    background-color: var(--justificacion-dark-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--justificacion-warning-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.historial-item.aprobado {
+    border-left-color: var(--justificacion-success-color);
+}
+
+.historial-item.rechazado {
+    border-left-color: var(--justificacion-danger-color);
+}
+
+.historial-info h4 {
+    color: var(--justificacion-text-light);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.historial-detalles {
+    color: var(--justificacion-text-muted);
+    font-size: 0.9rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.historial-estado {
+    font-weight: 500;
+}
+
+.estado-pendiente { color: var(--justificacion-warning-color); }
+.estado-aprobado { color: var(--justificacion-success-color); }
+.estado-rechazado { color: var(--justificacion-danger-color); }
+
+.historial-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.historial-vacio {
+    text-align: center;
+    padding: 2rem;
+    color: var(--justificacion-text-muted);
+}
+
+/* Modal */
+.justificacion-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--justificacion-card-bg);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--justificacion-border-color);
+}
+
+.modal-header h3 {
+    color: var(--justificacion-text-light);
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--justificacion-text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: var(--justificacion-text-light);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.detalle-justificacion .info-item {
+    margin-bottom: 1rem;
+}
+
+.detalle-justificacion .info-item strong {
+    color: var(--justificacion-text-light);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.detalle-justificacion .info-item span {
+    color: var(--justificacion-text-muted);
+}
+
+/* Mensaje de éxito */
+.justificacion-mensaje-exito {
+    background-color: var(--justificacion-card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--justificacion-success-color);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.justificacion-mensaje-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.justificacion-mensaje-content h3 {
+    color: var(--justificacion-text-light);
+    margin-bottom: 1rem;
+}
+
+.justificacion-mensaje-content p {
+    color: var(--justificacion-text-muted);
+    margin-bottom: 1rem;
+}
+
+.justificacion-mensaje-info {
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Estilos adicionales para la nueva funcionalidad */
+.justificacion-subtitulo {
+    color: var(--justificacion-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.irregularidades-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.irregularidad-item {
+    background-color: var(--justificacion-dark-bg);
+    padding: 1.2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--justificacion-warning-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: all 0.3s;
+}
+
+.irregularidad-item:hover {
+    background-color: var(--justificacion-hover-bg);
+}
+
+.irregularidad-item.alta {
+    border-left-color: var(--justificacion-danger-color);
+}
+
+.irregularidad-item.media {
+    border-left-color: var(--justificacion-warning-color);
+}
+
+.irregularidad-item.baja {
+    border-left-color: var(--justificacion-info-color);
+}
+
+.irregularidad-info {
+    flex: 1;
+}
+
+.irregularidad-info h4 {
+    color: var(--justificacion-text-light);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.irregularidad-detalles {
+    color: var(--justificacion-text-muted);
+    font-size: 0.9rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.irregularidad-detalle {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.irregularidad-detalle strong {
+    color: var(--justificacion-text-light);
+    min-width: 80px;
+}
+
+.irregularidad-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.irregularidad-vacio {
+    text-align: center;
+    padding: 3rem;
+    color: var(--justificacion-text-muted);
+}
+
+.irregularidad-info-panel {
+    background-color: var(--justificacion-dark-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--justificacion-border-color);
+    margin-bottom: 1.5rem;
+}
+
+.irregularidad-info-panel h4 {
+    color: var(--justificacion-text-light);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.info-item strong {
+    color: var(--justificacion-text-light);
+    font-size: 0.9rem;
+}
+
+.info-item span {
+    color: var(--justificacion-text-muted);
+    font-size: 0.9rem;
+}
+
+.justificacion-help {
+    color: var(--justificacion-text-muted);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+/* Badges de gravedad */
+.badge-gravedad {
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.badge-gravedad.alta {
+    background-color: var(--justificacion-danger-color);
+    color: white;
+}
+
+.badge-gravedad.media {
+    background-color: var(--justificacion-warning-color);
+    color: black;
+}
+
+.badge-gravedad.baja {
+    background-color: var(--justificacion-info-color);
+    color: black;
+}
+
+.justificacion-mensaje-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .irregularidad-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .irregularidad-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .irregularidad-detalles {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .justificacion-mensaje-actions {
+        flex-direction: column;
+    }
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .acceso-item,
+    .historial-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .acceso-actions,
+    .historial-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .historial-filtros {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .justificacion-form-actions {
+        flex-direction: column;
+    }
+
+    .justificacion-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .historial-detalles {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+    .justificacion-icons {
+        vertical-align: middle;
+        width: 40px;
+        height: 40px;
+        stroke:var(--justificacion-text-light);
+    }
+
+    .justificacion-sub-icons {
+        vertical-align: middle;
+        width: 25px;
+        height: 25px;
+        stroke:var(--justificacion-text-light);
+    }

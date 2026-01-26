@@ -1,0 +1,560 @@
+/* ===== VARIABLES CSS ORIGINALES CON NAMESPACE ===== */
+        :root {
+            --sensores-dark-bg: #121212;
+            --sensores-navbar-bg: #1a1a1a;
+            --sensores-sidebar-bg: #1a1a1a;
+            --sensores-card-bg: #1e1e1e;
+            --sensores-primary-color: #0d6efd;
+            --sensores-success-color: #198754;
+            --sensores-warning-color: #ffc107;
+            --sensores-danger-color: #dc3545;
+            --sensores-text-light: #f8f9fa;
+            --sensores-text-muted: #adb5bd;
+            --sensores-border-color: #444;
+        }
+
+        /* ===== RESET Y ESTILOS BASE AISLADOS ===== */
+        .sensores-panel,
+        .sensores-panel * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .sensores-panel {
+            background-color: var(--sensores-dark-bg);
+            color: var(--sensores-text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ===== LAYOUT PRINCIPAL ===== */
+        .sensores-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            max-width: 100%;
+        }
+
+        /* ===== HEADER DE SECCIÓN ===== */
+        .sensores-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .sensores-title {
+            font-size: 2rem;
+            color: var(--sensores-text-light);
+        }
+
+        .sensores-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* ===== BOTONES CON NAMESPACE ===== */
+        .sensores-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sensores-btn-primary {
+            background-color: var(--sensores-primary-color);
+            color: white;
+        }
+
+        .sensores-btn-primary:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-2px);
+        }
+
+        .sensores-btn-success {
+            background-color: var(--sensores-success-color);
+            color: white;
+        }
+
+        .sensores-btn-success:hover {
+            background-color: #157347;
+            transform: translateY(-2px);
+        }
+
+        .sensores-btn-outline {
+            background-color: transparent;
+            color: var(--sensores-text-light);
+            border: 2px solid var(--sensores-text-light);
+        }
+
+        .sensores-btn-outline:hover {
+            background-color: var(--sensores-text-light);
+            color: var(--sensores-dark-bg);
+            transform: translateY(-2px);
+        }
+
+        /* ===== ESTADÍSTICAS ===== */
+        .sensores-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .sensores-stat {
+            background: var(--sensores-card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid var(--sensores-primary-color);
+            transition: transform 0.3s;
+        }
+
+        .sensores-stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .sensores-stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sensores-stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--sensores-primary-color);
+            display: block;
+        }
+
+        .sensores-stat-label {
+            color: var(--sensores-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FILTROS ===== */
+        .sensores-filters {
+            background: var(--sensores-card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: end;
+            flex-wrap: wrap;
+        }
+
+        .sensores-search {
+            display: flex;
+            gap: 0.5rem;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .sensores-search-input {
+            padding: 0.75rem 1rem;
+            background-color: #2d2d2d;
+            border: 1px solid var(--sensores-border-color);
+            border-radius: 5px;
+            color: var(--sensores-text-light);
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .sensores-search-input:focus {
+            outline: none;
+            border-color: var(--sensores-primary-color);
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+        }
+
+        .sensores-filter-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .sensores-select {
+            padding: 0.75rem 1rem;
+            background-color: #2d2d2d;
+            border: 1px solid var(--sensores-border-color);
+            border-radius: 5px;
+            color: var(--sensores-text-light);
+            font-size: 1rem;
+            cursor: pointer;
+            min-width: 150px;
+        }
+
+        /* ===== TABLA ===== */
+        .sensores-table-container {
+            background: var(--sensores-card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .sensores-table-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--sensores-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sensores-table-title {
+            font-size: 1.3rem;
+            color: var(--sensores-text-light);
+        }
+
+        .sensores-table-responsive {
+            overflow-x: auto;
+        }
+
+        .sensores-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .sensores-table th {
+            background-color: #2d2d2d;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--sensores-text-light);
+            border-bottom: 1px solid var(--sensores-border-color);
+        }
+
+        .sensores-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--sensores-border-color);
+            color: var(--sensores-text-muted);
+        }
+
+        .sensores-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ===== BADGES ===== */
+        .sensores-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .sensores-status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .sensores-badge-active {
+            background: var(--sensores-success-color);
+            color: white;
+        }
+
+        .sensores-badge-inactive {
+            background: var(--sensores-danger-color);
+            color: white;
+        }
+
+        .sensores-badge-maintenance {
+            background: var(--sensores-warning-color);
+            color: black;
+        }
+
+        .sensores-badge-success {
+            background: var(--sensores-success-color);
+            color: white;
+        }
+
+        .sensores-badge-primary {
+            background: var(--sensores-primary-color);
+            color: white;
+        }
+
+        /* ===== BOTONES PEQUEÑOS ===== */
+        .sensores-actions-small {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .sensores-btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .sensores-btn-edit {
+            background-color: var(--sensores-warning-color);
+            color: black;
+        }
+
+        .sensores-btn-edit:hover {
+            background-color: #ffca2c;
+        }
+
+        .sensores-btn-assign {
+            background-color: var(--sensores-primary-color);
+            color: white;
+        }
+
+        .sensores-btn-assign:hover {
+            background-color: #0b5ed7;
+        }
+
+        .sensores-btn-delete {
+            background-color: var(--sensores-danger-color);
+            color: white;
+        }
+
+        .sensores-btn-delete:hover {
+            background-color: #bb2d3b;
+        }
+
+        /* ===== MODAL ===== */
+        .sensores-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sensores-modal.active {
+            display: flex;
+        }
+
+        .sensores-modal-content {
+            background: var(--sensores-card-bg);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .sensores-modal-content.large {
+            max-width: 900px;
+        }
+
+        .sensores-modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--sensores-border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sensores-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--sensores-text-muted);
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sensores-close-btn:hover {
+            color: var(--sensores-text-light);
+        }
+
+        /* ===== FORMULARIOS ===== */
+        .sensores-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .sensores-form-group {
+            margin-bottom: 1rem;
+        }
+
+        .sensores-form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--sensores-text-light);
+        }
+
+        .sensores-form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #2d2d2d;
+            border: 1px solid var(--sensores-border-color);
+            border-radius: 5px;
+            color: var(--sensores-text-light);
+            font-size: 1rem;
+        }
+
+        .sensores-form-control:focus {
+            outline: none;
+            border-color: var(--sensores-primary-color);
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+        }
+
+        textarea.sensores-form-control {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* ===== LISTA DE AMBIENTES PARA ASIGNAR ===== */
+        .sensores-ambientes-list {
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #2d2d2d;
+            border-radius: 5px;
+        }
+
+        .sensores-ambiente-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+        }
+
+        /* ===== OPCIONES DE ESTADO ===== */
+        .sensores-status-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .sensores-radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .sensores-radio-checkmark {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--sensores-border-color);
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+        }
+
+        input[type="radio"]:checked + .sensores-radio-checkmark::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--sensores-primary-color);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* ===== MODAL ACTIONS ===== */
+        .sensores-modal-actions {
+            padding: 1.5rem;
+            border-top: 1px solid var(--sensores-border-color);
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .sensores-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .sensores-actions {
+                width: 100%;
+            }
+            
+            .sensores-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .sensores-search {
+                min-width: auto;
+            }
+            
+            .sensores-filter-options {
+                flex-direction: column;
+            }
+            
+            .sensores-form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .sensores-modal-actions {
+                flex-direction: column;
+            }
+            
+            .sensores-actions-small {
+                flex-direction: column;
+            }
+            
+            .sensores-table-responsive {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sensores-container {
+                padding: 1rem 0.5rem;
+            }
+            
+            .sensores-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .sensores-modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+        }
+
+
+        .sensores-icons {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+
+
+        .accesos-icons {
+            width: 40px;
+            height: 40px;
+            stroke: var(--sensores-text-light);
+            vertical-align: middle;
+        }

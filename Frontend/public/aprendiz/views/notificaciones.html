@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Notificaciones</title>
+    <!-- AÑADIR ESTA LÍNEA -->
+    <link rel="stylesheet" href="/aprendiz/css/notificaciones.css">
+</head>
+<body>
+<div class="notificaciones-container">
+    <div class="notificaciones-header">
+        <h1 class="notificaciones-title"><i data-lucide="bell" class="notificaciones-icons"></i> Mis Notificaciones</h1>
+        <div class="notificaciones-actions">
+            <!-- AÑADIR onclick A LOS BOTONES -->
+            <button class="notificacion-action-btn primary" onclick="marcarTodasLeidas()">
+                <span><i data-lucide="mail-open" class="notificaciones-icons"></i></span> Marcar todas como leídas
+            </button>
+            <button class="notificacion-action-btn danger" onclick="eliminarTodasNotificaciones()">
+                <span><i data-lucide="trash-2" class="notificaciones-icons"></i></span> Eliminar todas
+            </button>
+        </div>
+    </div>
+
+    <ul class="notificaciones-list" id="notificacionesList">
+        <p style="text-align: center; color: var(--text-muted); padding: 2rem;">
+            Cargando notificaciones...
+        </p>
+    </ul>
+</div>
+
+<script src="/aprendiz/js/modules/notificaciones.js"></script>
+<script>
+    // Inicializar cuando la vista se cargue
+    if (typeof initializeNotificacionesModule === 'function') {
+        // Cambiar a un timeout más largo para asegurar que todo esté cargado
+        setTimeout(() => {
+            initializeNotificacionesModule();
+        }, 300);
+    }
+</script>
+<script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

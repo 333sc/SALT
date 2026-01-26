@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - SALT Admin</title>
+    <link rel="stylesheet" href="/admin/css/configuracion.css">
+</head>
+<body>
+    <div class="config-panel">
+        <div class="config-container">
+            <!-- Header de la sección -->
+            <div class="config-header">
+                <h1 class="config-title"><i data-lucide="settings" class="configuracion-icons"></i> Configuración del Sistema</h1>
+                <div class="config-actions">
+                    <button class="config-btn config-btn-primary" onclick="window.configGuardarCambios && window.configGuardarCambios()">
+                        <span><i data-lucide="save" class="configuracion-icons"></i></span> Guardar Cambios
+                    </button>
+                    <button class="config-btn config-btn-success" onclick="window.configProbarConexiones && window.configProbarConexiones()">
+                        <span><i data-lucide="check-circle" class="configuracion-icons"></i></span> Probar Conexiones
+                    </button>
+                </div>
+            </div>
+
+            <!-- Layout principal corregido -->
+            <div class="config-layout">
+                <!-- Menú lateral - tamaño justo -->
+                <div class="config-sidebar">
+                    <div class="config-sidebar-header">
+                        <h2 class="config-sidebar-title">Ajustes</h2>
+                    </div>
+                    <ul class="config-nav">
+                        <li class="config-nav-item">
+                            <a class="config-nav-link active" data-section="horarios">
+                                <span class="config-nav-ico"><i data-lucide="clock" class="config-sub-icons"></i></span>
+                                Horarios de Acceso
+                            </a>
+                        </li>
+                        <li class="config-nav-item">
+                            <a class="config-nav-link" data-section="hardware">
+                                <span class="config-nav-icon"><i data-lucide="cpu" class="config-sub-icons"></i></span>
+                                Configuración Hardware
+                            </a>
+                        </li>
+                        <li class="config-nav-item">
+                            <a class="config-nav-link" data-section="backup">
+                                <span class="config-nav-icon"><i data-lucide="save" class="config-sub-icons"></i></span>
+                                Copias de Seguridad
+                            </a>
+                        </li>
+                        <li class="config-nav-item">
+                            <a class="config-nav-link" data-section="roles">
+                                <span class="config-nav-icon"><i data-lucide="users" class="config-sub-icons"></i></span>
+                                Roles y Permisos
+                            </a>
+                        </li>
+                        <li class="config-nav-item">
+                            <a class="config-nav-link" data-section="general">
+                                <span class="config-nav-icon"><i data-lucide="settings" class="config-sub-icons"></i></span>
+                                Configuración General
+                            </a>
+                        </li>
+                        <li class="config-nav-item">
+                            <a class="config-nav-link" data-section="logs">
+                                <span class="config-nav-icon"><i data-lucide="file-text" class="config-sub-icons"></i></span>
+                                Logs del Sistema
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contenido principal con scroll -->
+                <div class="config-content">
+                    <div class="config-content-header">
+                        <h2 class="config-content-title" id="configSectionTitle"><i data-lucide="clock" class="configuracion-icons"></i> Horarios de Acceso</h2>
+                    </div>
+                    <div class="config-content-body">
+                        
+                        <!-- Sección: Horarios de Acceso -->
+                        <div id="horarios" class="config-section active">
+                            <div class="config-form-group">
+                                <label class="config-form-label">Horario General del Sistema</label>
+                                <div class="config-form-text">
+                                    Define los horarios en los que el sistema permite accesos a los ambientes
+                                </div>
+                            </div>
+
+                            <div class="config-horarios-grid">
+                                <div class="config-horario-item">
+                                    <div class="config-horario-dia">Lunes - Viernes</div>
+                                    <div>06:00 - 22:00</div>
+                                </div>
+                                <div class="config-horario-item">
+                                    <div class="config-horario-dia">Sábados</div>
+                                    <div>08:00 - 18:00</div>
+                                </div>
+                                <div class="config-horario-item">
+                                    <div class="config-horario-dia">Domingos</div>
+                                    <div>09:00 - 14:00</div>
+                                </div>
+                            </div>
+
+                            <div class="config-form-group">
+                                <label class="config-form-label">Horario Personalizado por Ambiente</label>
+                                <select class="config-form-select">
+                                    <option>Laboratorio de Informática 1</option>
+                                    <option>Laboratorio de Informática 2</option>
+                                    <option>Aula 201</option>
+                                    <option>Biblioteca</option>
+                                </select>
+                            </div>
+
+                            <div class="config-form-group">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <label class="config-form-label">Hora de Inicio</label>
+                                        <input type="time" class="config-form-control" value="06:00">
+                                    </div>
+                                    <div>
+                                        <label class="config-form-label">Hora de Fin</label>
+                                        <input type="time" class="config-form-control" value="22:00">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección: Configuración Hardware -->
+                        <div id="hardware" class="config-section">
+                            <div class="config-status-cards">
+                                <div class="config-status-card">
+                                    <div class="config-status-title"><i data-lucide="server" class="config-sub-icons"></i> Servidor Principal</div>
+                                    <div class="config-status-value config-status-online">Conectado</div>
+                                    <div class="config-form-text">Última conexión: Hoy 14:30</div>
+                                </div>
+                                <div class="config-status-card">
+                                    <div class="config-status-title"><i data-lucide="scan" class="config-sub-icons"></i> Lectores RFID</div>
+                                    <div class="config-status-value">4/5 Activos</div>
+                                    <div class="config-form-text">1 lector en mantenimiento</div>
+                                </div>
+                                <div class="config-status-card">
+                                    <div class="config-status-title"><i data-lucide="wifi" class="config-sub-icons"></i> Conexión en Tiempo Real</div>
+                                    <div class="config-status-value config-status-online">Activa</div>
+                                    <div class="config-form-text">Latencia: 45ms</div>
+                                </div>
+                            </div>
+
+                            <div class="config-form-group">
+                                <label class="config-form-label">Puerto de Comunicación</label>
+                                <input type="text" class="config-form-control" value="COM3">
+                                <div class="config-form-text">Puerto serial para comunicación con lectores RFID</div>
+                            </div>
+
+                            <div class="config-form-group">
+                                <label class="config-form-label">Velocidad de Baudios</label>
+                                <select class="config-form-select">
+                                    <option>9600</option>
+                                    <option selected>19200</option>
+                                    <option>38400</option>
+                                    <option>57600</option>
+                                    <option>115200</option>
+                                </select>
+                            </div>
+
+                            <div class="config-form-group">
+                                <label class="config-switch-label">
+                                    <span>Modo de Prueba</span>
+                                    <label class="config-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="config-slider"></span>
+                                    </label>
+                                </label>
+                                <div class="config-form-text">Simula lecturas RFID sin hardware conectado</div>
+                            </div>
+                        </div>
+
+                        <!-- Sección: Copias de Seguridad -->
+                        <div id="backup" class="config-section">
+                            <div class="config-form-group">
+                                <label class="config-form-label">Frecuencia de Backups Automáticos</label>
+                                <select class="config-form-select">
+                                    <option>Diariamente</option>
+                                    <option selected>Semanalmente</option>
+                                    <option>Mensualmente</option>
+                                    <option>Desactivado</option>
+                                </select>
+                            </div>
+
+                            <div class="config-backup-options">
+                                <div class="config-backup-card" onclick="window.configRealizarBackup && window.configRealizarBackup()">
+                                    <div class="config-backup-icon"><i data-lucide="save" class="configuracion-icons"></i></div>
+                                    <div class="config-backup-title">Backup Completo</div>
+                                    <div class="config-backup-desc">Base de datos y archivos del sistema</div>
+                                </div>
+                                <div class="config-backup-card" onclick="window.configRestaurarBackup && window.configRestaurarBackup()">
+                                    <div class="config-backup-icon"><i data-lucide="rotate-cw" class="configuracion-icons"></i></div>
+                                    <div class="config-backup-title">Restaurar Sistema</div>
+                                    <div class="config-backup-desc">Desde archivo de backup</div>
+                                </div>
+                                <div class="config-backup-card" onclick="window.configExportarDatos && window.configExportarDatos()">
+                                    <div class="config-backup-icon"><i data-lucide="upload" class="configuracion-icons"></i></div>
+                                    <div class="config-backup-title">Exportar Datos</div>
+                                    <div class="config-backup-desc">Solo información de accesos</div>
+                                </div>
+                            </div>
+
+                            <div class="config-form-group">
+                                <label class="config-form-label">Últimos Backups</label>
+                                <div class="config-logs-container">
+                                    <div class="config-log-entry">
+                                        <span class="config-log-time">[2024-01-26 02:00]</span> Backup automático completado (tamaño: 45.2 MB)
+                                    </div>
+                                    <div class="config-log-entry">
+                                        <span class="config-log-time">[2024-01-25 14:30]</span> Backup manual realizado por admin
+                                    </div>
+                                    <div class="config-log-entry">
+                                        <span class="config-log-time">[2024-01-19 02:00]</span> Backup automático completado (tamaño: 44.8 MB)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección: Roles y Permisos -->
+                        <div id="roles" class="config-section">
+                            <div class="config-form-group">
+                                <label class="config-form-label">Gestión de Roles del Sistema</label>
+                                <div class="config-form-text">
+                                    Define los permisos y capacidades de cada tipo de usuario
+                                </div>
+                            </div>
+
+                            <div class="config-roles-grid">
+                                <div class="config-role-card">
+                                    <div class="config-role-header">
+                                        <div class="config-role-title">Administrador</div>
+                                        <span class="config-role-badge config-badge-admin">Admin</span>
+                                    </div>
+                                    <ul class="config-permissions-list">
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Acceso total al sistema</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Gestión de usuarios</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Configuración del sistema</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Reportes y estadísticas</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Backup y restauración</li>
+                                    </ul>
+                                </div>
+
+                                <div class="config-role-card">
+                                    <div class="config-role-header">
+                                        <div class="config-role-title">Instructor</div>
+                                        <span class="config-role-badge config-badge-instructor">Instructor</span>
+                                    </div>
+                                    <ul class="config-permissions-list">
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Acceso a ambientes asignados</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Gestión de aprendices</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Reportes de asistencia</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Configuración del sistema</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Backup y restauración</li>
+                                    </ul>
+                                </div>
+
+                                <div class="config-role-card">
+                                    <div class="config-role-header">
+                                        <div class="config-role-title">Aprendiz</div>
+                                        <span class="config-role-badge config-badge-aprendiz">Aprendiz</span>
+                                    </div>
+                                    <ul class="config-permissions-list">
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Acceso a ambientes autorizados</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Ver horarios propios</li>
+                                        <li class="config-permission-item"><i data-lucide="x-circle" class="configuracion-icons"></i> Gestión de usuarios</li>
+                                        <li class="config-permission-item"><i data-lucide="x-circle" class="configuracion-icons"></i> Reportes del sistema</li>
+                                        <li class="config-permission-item"><i data-lucide="x-circle" class="configuracion-icons"></i> Configuración</li>
+                                    </ul>
+                                </div>
+
+                                <div class="config-role-card">
+                                    <div class="config-role-header">
+                                        <div class="config-role-title">Servicios Generales</div>
+                                        <span class="config-role-badge config-badge-servicios">Servicios</span>
+                                    </div>
+                                    <ul class="config-permissions-list">
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Acceso a áreas comunes</li>
+                                        <li class="config-permission-item"><i data-lucide="check-circle" class="configuracion-icons"></i> Horarios extendidos</li>
+                                        <li class="config-permission-item"><i data-lucide="x-circle" class="configuracion-icons"></i> Gestión de usuarios</li>
+                                        <li class="config-permission-item"><i data-lucide="x-circle" class="configuracion-icons"></i> Reportes del sistema</li>
+                                        <li class="config-permission-item"><i data-lucide="x-circle" class="configuracion-icons"></i> Configuración</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección: Configuración General -->
+                        <div id="general" class="config-section">
+                            <div class="config-form-group">
+                                <label class="config-form-label">Nombre del Sistema</label>
+                                <input type="text" class="config-form-control" value="SALT - Sistema de Acceso con Lectores Tecnológicos">
+                            </div>
+
+                            <div class="config-form-group">
+                                <label class="config-form-label">Zona Horaria</label>
+                                <select class="config-form-select">
+                                    <option>America/Bogota (UTC-5)</option>
+                                    <option>America/Mexico_City (UTC-6)</option>
+                                    <option>America/Buenos_Aires (UTC-3)</option>
+                                </select>
+                            </div>
+
+                            <div class="config-form-group">
+                                <label class="config-switch-label">
+                                    <span>Notificaciones por Email</span>
+                                    <label class="config-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="config-slider"></span>
+                                    </label>
+                                </label>
+                            </div>
+
+                            <div class="config-form-group">
+                                <label class="config-switch-label">
+                                    <span>Registro Detallado de Logs</span>
+                                    <label class="config-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="config-slider"></span>
+                                    </label>
+                                </label>
+                            </div>
+
+                            <div class="config-form-group">
+                                <label class="config-switch-label">
+                                    <span>Modo Mantenimiento</span>
+                                    <label class="config-switch">
+                                        <input type="checkbox">
+                                        <span class="config-slider"></span>
+                                    </label>
+                                </label>
+                                <div class="config-form-text">Bloquea el acceso general al sistema</div>
+                            </div>
+                        </div>
+
+                        <!-- Sección: Logs del Sistema -->
+                        <div id="logs" class="config-section">
+                            <div class="config-form-group">
+                                <label class="config-form-label">Logs Recientes del Sistema</label>
+                                <div class="config-logs-container">
+                                    <div class="config-log-entry">
+                                        <span class="config-log-time">[2024-01-26 15:45:23]</span> Usuario "Juan Pérez" accedió a Laboratorio 1
+                                    </div>
+                                    <div class="config-log-entry">
+                                        <span class="config-log-time">[2024-01-26 15:30:12]</span> Sensor RFID-002 reconectado exitosamente
+                                    </div>
+                                    <div class="config-log-entry config-log-warning">
+                                        <span class="config-log-time">[2024-01-26 15:28:45]</span> Intento de acceso fallido - Tarjeta no registrada
+                                    </div>
+                                    <div class="config-log-entry">
+                                        <span class="config-log-time">[2024-01-26 14:15:33]</span> Backup de configuración guardado
+                                    </div>
+                                    <div class="config-log-entry config-log-error">
+                                        <span class="config-log-time">[2024-01-26 13:45:21]</span> Error de conexión con sensor RFID-004
+                                    </div>
+                                    <div class="config-log-entry">
+                                        <span class="config-log-time">[2024-01-26 12:30:18]</span> Sistema iniciado correctamente
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 1rem;">
+                                <button class="config-btn config-btn-primary" onclick="window.configDescargarLogs && window.configDescargarLogs()">
+                                    <span><i data-lucide="download"></i></span> Descargar Logs
+                                </button>
+                                <button class="config-btn config-btn-warning" onclick="window.configLimpiarLogs && window.configLimpiarLogs()">
+                                    <span><i data-lucide="trash-2"></i></span> Limpiar Logs
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/admin/js/configuracion.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

@@ -1,0 +1,605 @@
+ /* ===== VARIABLES CSS CON NAMESPACE CONFIG ===== */
+        :root {
+            --config-dark-bg: #121212;
+            --config-navbar-bg: #1a1a1a;
+            --config-sidebar-bg: #1a1a1a;
+            --config-card-bg: #1e1e1e;
+            --config-primary-color: #0d6efd;
+            --config-success-color: #198754;
+            --config-warning-color: #ffc107;
+            --config-danger-color: #dc3545;
+            --config-text-light: #f8f9fa;
+            --config-text-muted: #adb5bd;
+            --config-border-color: #444;
+            --config-accent-color: #6f42c1;
+        }
+
+        /* ===== RESET Y ESTILOS BASE AISLADOS ===== */
+        .config-panel,
+        .config-panel * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .config-panel {
+            background-color: var(--config-dark-bg);
+            color: var(--config-text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ===== LAYOUT PRINCIPAL ===== */
+        .config-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* ===== HEADER DE LA SECCIÓN ===== */
+        .config-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .config-title {
+            font-size: 2rem;
+            color: var(--config-text-light);
+        }
+
+        /* ===== BOTONES DE ACCIÓN ===== */
+        .config-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .config-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .config-btn-primary {
+            background-color: var(--config-primary-color);
+            color: white;
+        }
+
+        .config-btn-primary:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-2px);
+        }
+
+        .config-btn-success {
+            background-color: var(--config-success-color);
+            color: white;
+        }
+
+        .config-btn-success:hover {
+            background-color: #157347;
+            transform: translateY(-2px);
+        }
+
+        .config-btn-warning {
+            background-color: var(--config-warning-color);
+            color: black;
+        }
+
+        .config-btn-warning:hover {
+            background-color: #ffca2c;
+            transform: translateY(-2px);
+        }
+
+        .config-btn-danger {
+            background-color: var(--config-danger-color);
+            color: white;
+        }
+
+        .config-btn-danger:hover {
+            background-color: #bb2d3b;
+            transform: translateY(-2px);
+        }
+
+        /* ===== LAYOUT DE CONFIGURACIÓN CORREGIDO ===== */
+        .config-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        /* ===== MENÚ LATERAL CORREGIDO ===== */
+        .config-sidebar {
+            background: var(--config-card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .config-sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--config-border-color);
+        }
+
+        .config-sidebar-title {
+            font-size: 1.2rem;
+            color: var(--config-text-light);
+        }
+
+        .config-nav {
+            list-style: none;
+        }
+
+        .config-nav-item {
+            border-bottom: 1px solid var(--config-border-color);
+        }
+
+        .config-nav-item:last-child {
+            border-bottom: none;
+        }
+
+        .config-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            color: var(--config-text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        .config-nav-link:hover {
+            color: var(--config-text-light);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .config-nav-link.active {
+            color: var(--config-primary-color);
+            background-color: rgba(13, 110, 253, 0.1);
+            border-left-color: var(--config-primary-color);
+        }
+
+        .config-nav-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ===== CONTENIDO PRINCIPAL CON SCROLL ===== */
+        .config-content {
+            background: var(--config-card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .config-content-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--config-border-color);
+            position: sticky;
+            top: 0;
+            background: var(--config-card-bg);
+            z-index: 10;
+        }
+
+        .config-content-title {
+            font-size: 1.5rem;
+            color: var(--config-text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .config-content-body {
+            padding: 2rem;
+        }
+
+        /* ===== SECCIONES DE CONFIGURACIÓN ===== */
+        .config-section {
+            margin-bottom: 3rem;
+            display: none;
+        }
+
+        .config-section.active {
+            display: block;
+        }
+
+        .config-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .config-section-title {
+            font-size: 1.3rem;
+            color: var(--config-text-light);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--config-primary-color);
+        }
+
+        /* ===== FORMULARIOS ===== */
+        .config-form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .config-form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--config-text-light);
+        }
+
+        .config-form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #2d2d2d;
+            border: 1px solid var(--config-border-color);
+            border-radius: 5px;
+            color: var(--config-text-light);
+            font-size: 1rem;
+        }
+
+        .config-form-control:focus {
+            outline: none;
+            border-color: var(--config-primary-color);
+            box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+        }
+
+        .config-form-select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #2d2d2d;
+            border: 1px solid var(--config-border-color);
+            border-radius: 5px;
+            color: var(--config-text-light);
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .config-form-text {
+            color: var(--config-text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* ===== HORARIOS ===== */
+        .config-horarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .config-horario-item {
+            background: #2d2d2d;
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid var(--config-border-color);
+        }
+
+        .config-horario-dia {
+            font-weight: 600;
+            color: var(--config-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== SWITCHES ===== */
+        .config-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .config-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .config-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .config-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .config-slider {
+            background-color: var(--config-success-color);
+        }
+
+        input:checked + .config-slider:before {
+            transform: translateX(26px);
+        }
+
+        .config-switch-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== TARJETAS DE ESTADO ===== */
+        .config-status-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .config-status-card {
+            background: #2d2d2d;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--config-primary-color);
+        }
+
+        .config-status-title {
+            font-weight: 600;
+            color: var(--config-text-light);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .config-status-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--config-primary-color);
+        }
+
+        .config-status-online {
+            color: var(--config-success-color);
+        }
+
+        .config-status-offline {
+            color: var(--config-danger-color);
+        }
+
+        /* ===== BACKUP ===== */
+        .config-backup-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .config-backup-card {
+            background: #2d2d2d;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .config-backup-card:hover {
+            border-color: var(--config-primary-color);
+            transform: translateY(-2px);
+        }
+
+        .config-backup-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .config-backup-title {
+            font-weight: 600;
+            color: var(--config-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .config-backup-desc {
+            color: var(--config-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== ROLES Y PERMISOS ===== */
+        .config-roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .config-role-card {
+            background: #2d2d2d;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--config-border-color);
+        }
+
+        .config-role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .config-role-title {
+            font-weight: 600;
+            color: var(--config-text-light);
+        }
+
+        .config-role-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .config-badge-admin {
+            background: var(--config-danger-color);
+            color: white;
+        }
+
+        .config-badge-instructor {
+            background: var(--config-primary-color);
+            color: white;
+        }
+
+        .config-badge-aprendiz {
+            background: var(--config-success-color);
+            color: white;
+        }
+
+        .config-badge-servicios {
+            background: var(--config-warning-color);
+            color: black;
+        }
+
+        .config-permissions-list {
+            list-style: none;
+        }
+
+        .config-permission-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--config-border-color);
+        }
+
+        .config-permission-item:last-child {
+            border-bottom: none;
+        }
+
+        /* ===== LOGS ===== */
+        .config-logs-container {
+            background: #2d2d2d;
+            border-radius: 5px;
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .config-log-entry {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--config-border-color);
+            color: var(--config-text-muted);
+        }
+
+        .config-log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .config-log-time {
+            color: var(--config-success-color);
+        }
+
+        .config-log-error {
+            color: var(--config-danger-color);
+        }
+
+        .config-log-warning {
+            color: var(--config-warning-color);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .config-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .config-sidebar {
+                order: -1;
+                position: static;
+            }
+            
+            .config-content {
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .config-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .config-actions {
+                width: 100%;
+            }
+            
+            .config-btn {
+                flex: 1;
+                justify-content: center;
+            }
+            
+            .config-content-body {
+                padding: 1.5rem;
+            }
+            
+            .config-status-cards,
+            .config-backup-options,
+            .config-roles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .config-container {
+                padding: 1rem 0.5rem;
+            }
+            
+            .config-content-body {
+                padding: 1rem;
+            }
+            
+            .config-horarios-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .config-icons {
+            width: 40px;
+            height: 40px;
+            stroke: var(--config-text-light);
+            vertical-align: middle;
+        }
+
+
+        .config-sub-icons {
+            width: 20px;
+            height: 20px;
+            stroke: var(--config-text-light);
+        }

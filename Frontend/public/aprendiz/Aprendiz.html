@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Aprendiz - SALT</title>
+    <link rel="stylesheet" href="css/aprendiz.css">
+</head>
+
+<body>
+    <div class="aprendiz-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="side-menu">
+            <div class="sidebar-brand">
+                <a href="#" class="logo">
+                    <span><i data-lucide="graduation-cap" class="aprendiz-side-icons"></i></span> SALT Aprendiz
+                </a>
+                
+            </div>
+            <nav>
+                <ul class="sidebar-nav">
+                    <li class="nav-item">
+                        <a href="#inicio" class="nav-link active" data-view="inicio">
+                            <span class="nav-icon"><i data-lucide="home" class="aprendiz-side-icons"></i></span>
+                            <span>Inicio</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#historial" class="nav-link" data-view="historial">
+                            <span class="nav-icon"><i data-lucide="book-open" class="aprendiz-side-icons"></i></span>
+                            <span>Mi Historial</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#ambientes" class="nav-link" data-view="ambientes">
+                            <span class="nav-icon"><i data-lucide="building" class="aprendiz-side-icons"></i></span>
+                            <span>Mis Ambientes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#notificaciones" class="nav-link" data-view="notificaciones">
+                            <span class="nav-icon"><i data-lucide="bell" class="aprendiz-side-icons"></i></span>
+                            <span>Notificaciones</span>
+                            <!-- Badge de notificaciones - Inicialmente oculto -->
+                            <span class="notification-badge" id="notificationCount" style="display: none;">0</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#justificacion-accesos" class="nav-link" data-view="justificacion-accesos">
+                            <span class="nav-icon"><i data-lucide="shield" class="aprendiz-side-icons"></i></span>
+                            <span>Justificación de Accesos y Faltas</span>
+                        </a>
+                    </li>
+
+                     <li class="nav-item">
+                        <a href="#gestion-tarjetas" class="nav-link" data-view="gestion-tarjetas">
+                            <span class="nav-icon"><i data-lucide="id-card" class="aprendiz-side-icons"></i></span>
+                            <span>Gestión de Tarjetas</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="welcome-message">
+                <h1>Bienvenido, <span class="aprendiz-name" id="aprendizNombre">Juan Pérez</span></h1>
+                <p>Panel del aprendiz - Sistema SALT</p>
+            </div>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name" id="headerUserName">Juan Pérez</div>
+                    <div class="user-role">Aprendiz</div>
+                </div>
+                <div class="user-avatar">JP</div>
+            </div>
+            <div class="btnSidebar" id="btnSidebar">&#9776;</div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <!-- Vista de Inicio -->
+            <div id="inicio" class="view-content active">
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="clock" class="aprendiz-icons"></i></div>
+                        <span class="stat-number" id="accesosHoy">0</span>
+                        <span class="stat-label">Accesos Hoy</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="building" class="aprendiz-icons"></i></div>
+                        <span class="stat-number" id="ambientesAutorizados">0</span>
+                        <span class="stat-label">Ambientes Autorizados</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="clock" class="aprendiz-icons"></i></div>
+                        <span class="stat-number" id="tiempoPromedio">0h</span>
+                        <span class="stat-label">Tiempo Promedio</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i data-lucide="bell" class="aprendiz-icons"></i></div>
+                        <span class="stat-number" id="notificacionesPendientes">0</span>
+                        <span class="stat-label">Notificaciones</span>
+                    </div>
+                </div>
+
+                <!-- Acceso Rápido -->
+                <div class="quick-actions">
+                    <h3>Accesos Rápidos</h3>
+                    <div class="actions-grid">
+                        <button class="action-btn" onclick="aprendizPanel.navigateTo('historial')">
+                            <span class="action-icon"><i data-lucide="book-open" class="aprendiz-icons"></i></span>
+                            <span>Ver Mi Historial</span>
+                        </button>
+                        <button class="action-btn" onclick="aprendizPanel.navigateTo('ambientes')">
+                            <span class="action-icon"><i data-lucide="building" class="aprendiz-icons"></i></span>
+                            <span>Ambientes Autorizados</span>
+                        </button>
+                        <button class="action-btn" onclick="aprendizPanel.navigateTo('notificaciones')">
+                            <span class="action-icon"><i data-lucide="bell" class="aprendiz-icons"></i></span>
+                            <span>Ver Notificaciones</span>
+                            <span class="notification-mini-badge" id="notificacionesMiniBadge" style="font-size: 0.7rem; background: var(--danger-color); color: white; border-radius: 50%; width: 18px; height: 18px; display: none; align-items: center; justify-content: center; margin-top: 0.2rem;">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Estado Actual -->
+                <div class="current-status">
+                    <h3>Estado Actual</h3>
+                    <div class="status-card" id="currentStatus">
+                        <div class="status-indicator" id="statusIndicator"><i data-lucide="circle" class="aprendiz-icons"></i></div>
+                        <div class="status-info">
+                            <strong id="statusText">No estás en ningún ambiente</strong>
+                            <p id="statusTime">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historial Reciente -->
+                <div class="recent-history">
+                    <h3>Actividad Reciente</h3>
+                    <div id="recentActivityList" class="activity-list">
+                        <!-- Se cargará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista de Historial -->
+            <div id="historial" class="view-content">
+                <h2>Mi Historial de Accesos</h2>
+                <p>Contenido de historial cargado dinámicamente...</p>
+            </div>
+
+            <!-- Vista de Ambientes -->
+            <div id="ambientes" class="view-content">
+                <h2>Mis Ambientes Autorizados</h2>
+                <p>Contenido de ambientes cargado dinámicamente...</p>
+            </div>
+
+            <!-- Vista de Notificaciones -->
+            <div id="notificaciones" class="view-content">
+                <h2>Mis Notificaciones</h2>
+                <p>Contenido de notificaciones cargado dinámicamente...</p>
+            </div>
+
+
+            <div id="justificacion-accesos" class="view-content">
+                <h2>Mis Notificaciones</h2>
+                <p>Contenido de notificaciones cargado dinámicamente...</p>
+            </div>
+
+             <div id="gestion-tarjetas" class="view-content">
+              
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+
+</html>

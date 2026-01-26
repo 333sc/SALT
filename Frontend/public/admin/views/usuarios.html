@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - SALT Admin</title>
+    <link rel="stylesheet" href="/admin/css/usuarios.css">
+</head>
+<body>
+    <div class="users-panel">
+        <div class="users-container">
+            <!-- Header de la sección -->
+            <div class="users-header">
+                <h1 class="users-title"><span><i data-lucide="users" class="user-icons" ></i></span> Gestión de Usuarios</h1>
+                <div class="users-actions">
+                    <button class="users-btn users-btn-primary" onclick="openUserModal()">
+                        <span><i data-lucide="plus" class="user-icons"></i></span> Nuevo Usuario
+                    </button>
+                    <button class="users-btn users-btn-success" onclick="openRFIDModal()">
+                        <span><i data-lucide="scan" class="user-icons"></i></span> Leer Tarjeta RFID
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjetas de funcionalidades -->
+            <div class="users-features-grid">
+                <div class="users-feature-card">
+                    <div class="users-feature-icon"><i data-lucide="list" class="user-icons"></i></div>
+                    <h3 class="users-feature-title">Lista de Usuarios</h3>
+                    <p class="users-feature-description">Visualiza y gestiona todos los usuarios registrados en el sistema con información detallada y opciones de filtrado.</p>
+                </div>
+                <div class="users-feature-card">
+                    <div class="users-feature-icon"><i data-lucide="key" class="user-icons"></i></div>
+                    <h3 class="users-feature-title">Asignación de Roles</h3>
+                    <p class="users-feature-description">Administra los permisos y roles de cada usuario (Administrador, Instructor, Aprendiz, Servicios Generales).</p>
+                </div>
+                <div class="users-feature-card">
+                    <div class="users-feature-icon"><i data-lucide="scan" class="user-icons"></i></div>
+                    <h3 class="users-feature-title">Gestión de Tarjetas</h3>
+                    <p class="users-feature-description">Asocia tarjetas RFID a usuarios específicos para control de acceso personalizado.</p>
+                </div>
+            </div>
+
+            <!-- Tabla de usuarios -->
+            <div class="users-table-container">
+                <div class="users-table-header">
+                    <h2 class="users-table-title">Lista de Usuarios Registrados</h2>
+                    <div class="users-search-box">
+                        <input type="text" class="users-search-input" placeholder="Buscar usuario..." id="searchUsers">
+                        <button class="users-btn users-btn-primary">🔍 Buscar</button>
+                    </div>
+                </div>
+                
+                <div class="users-table-responsive">
+                    <table class="users-table" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Documento</th>
+                                <th>Rol</th>
+                                <th>Tarjeta RFID</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- Los usuarios se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Modal de Lectura RFID -->
+            <div class="users-rfid-modal" id="rfidModal">
+                <div class="users-modal-content">
+                    <div class="users-modal-icon"><i data-lucide="scan" class="user-icons"></i></div>
+                    <h2 class="users-modal-title">Lectura de Tarjeta RFID</h2>
+                    <p class="users-modal-description">Acerca una tarjeta RFID al lector para registrar su UID</p>
+                    
+                    <div class="users-rfid-status" id="rfidStatus">
+                        Esperando tarjeta...
+                    </div>
+
+                    <div class="users-form-group">
+                        <label class="users-form-label">Usuario a Asignar</label>
+                        <select class="users-form-select" id="userSelect">
+                            <option value="">Seleccionar usuario...</option>
+                            <!-- Opciones se llenarán dinámicamente -->
+                        </select>
+                    </div>
+
+                    <div class="users-rfid-actions">
+                        <button class="users-btn users-btn-primary" onclick="assignRFID()" id="assignBtn" disabled>
+                            Asignar Tarjeta
+                        </button>
+                        <button class="users-btn" onclick="closeRFIDModal()" style="background: var(--users-border-color); color: white;">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/admin/js/usuarios.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

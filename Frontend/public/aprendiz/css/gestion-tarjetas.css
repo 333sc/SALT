@@ -1,0 +1,532 @@
+:root {
+    --tarjetas-dark-bg: #121212;
+    --tarjetas-card-bg: #1e1e1e;
+    --tarjetas-primary-color: #0d6efd;
+    --tarjetas-success-color: #198754;
+    --tarjetas-warning-color: #ffc107;
+    --tarjetas-danger-color: #dc3545;
+    --tarjetas-info-color: #0dcaf0;
+    --tarjetas-text-light: #f8f9fa;
+    --tarjetas-text-muted: #adb5bd;
+    --tarjetas-border-color: #444;
+    --tarjetas-hover-bg: #2a2a2a;
+}
+
+.gestion-tarjetas-container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.gestion-tarjetas-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.gestion-tarjetas-header h2 {
+    color: var(--tarjetas-text-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.gestion-tarjetas-header p {
+    color: var(--tarjetas-text-muted);
+    font-size: 1rem;
+}
+
+/* Información de Tarjeta */
+.tarjeta-info-container {
+    margin-bottom: 2rem;
+}
+
+.tarjeta-info-container h3 {
+    color: var(--tarjetas-text-light);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.tarjeta-info-card {
+    background-color: var(--tarjetas-card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--tarjetas-border-color);
+}
+
+.tarjeta-estado {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: rgba(25, 135, 84, 0.1);
+    border-left: 4px solid var(--tarjetas-success-color);
+}
+
+.tarjeta-estado.bloqueada {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left-color: var(--tarjetas-danger-color);
+}
+
+.estado-icon {
+    font-size: 2rem;
+}
+
+.estado-info h4 {
+    color: var(--tarjetas-text-light);
+    margin-bottom: 0.25rem;
+}
+
+.estado-info p {
+    color: var(--tarjetas-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.estado-texto {
+    color: var(--tarjetas-success-color);
+}
+
+.tarjeta-estado.bloqueada .estado-texto {
+    color: var(--tarjetas-danger-color);
+}
+
+.tarjeta-detalles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.detalle-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detalle-item strong {
+    color: var(--tarjetas-text-light);
+    font-size: 0.9rem;
+}
+
+.detalle-item span {
+    color: var(--tarjetas-text-muted);
+    font-size: 0.9rem;
+}
+
+.badge-estado {
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.badge-estado.activa {
+    background-color: var(--tarjetas-success-color);
+    color: white;
+}
+
+.badge-estado.bloqueada {
+    background-color: var(--tarjetas-danger-color);
+    color: white;
+}
+
+/* Reporte Container */
+.reporte-container {
+    background-color: var(--tarjetas-card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--tarjetas-border-color);
+    margin-bottom: 2rem;
+}
+
+.reporte-container h3 {
+    color: var(--tarjetas-text-light);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.alerta-importante {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 193, 7, 0.1);
+    border: 1px solid var(--tarjetas-warning-color);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.alerta-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.alerta-content h4 {
+    color: var(--tarjetas-warning-color);
+    margin-bottom: 0.5rem;
+}
+
+.alerta-content p {
+    color: var(--tarjetas-text-muted);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Formulario */
+.reporte-form {
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    color: var(--tarjetas-text-light);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.required {
+    color: var(--tarjetas-danger-color);
+}
+
+.form-select,
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--tarjetas-dark-bg);
+    border: 1px solid var(--tarjetas-border-color);
+    border-radius: 5px;
+    color: var(--tarjetas-text-light);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+.form-select:focus,
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--tarjetas-primary-color);
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.char-count {
+    text-align: right;
+    color: var(--tarjetas-text-muted);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* Checkbox Grid */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: var(--tarjetas-dark-bg);
+    border: 1px solid var(--tarjetas-border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.checkbox-option:hover {
+    border-color: var(--tarjetas-primary-color);
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.checkbox-option input {
+    display: none;
+}
+
+.checkbox-option input:checked + .checkbox-custom {
+    background-color: var(--tarjetas-primary-color);
+    border-color: var(--tarjetas-primary-color);
+}
+
+.checkbox-option input:checked + .checkbox-custom::after {
+    content: '✓';
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--tarjetas-border-color);
+    border-radius: 3px;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+/* Botones */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--tarjetas-border-color);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: var(--tarjetas-primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--tarjetas-text-light);
+    border: 1px solid var(--tarjetas-border-color);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-danger {
+    background-color: var(--tarjetas-danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+/* Modal de Confirmación */
+.confirmacion-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmacion-content {
+    background-color: var(--tarjetas-card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.confirmacion-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.confirmacion-content h3 {
+    color: var(--tarjetas-text-light);
+    margin-bottom: 1rem;
+}
+
+.confirmacion-content p {
+    color: var(--tarjetas-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.confirmacion-details {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.confirmacion-details p {
+    margin-bottom: 0.5rem;
+}
+
+.confirmacion-details ul {
+    color: var(--tarjetas-text-muted);
+    padding-left: 1.5rem;
+}
+
+.confirmacion-details li {
+    margin-bottom: 0.5rem;
+}
+
+.confirmacion-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Historial */
+.historial-container {
+    background-color: var(--tarjetas-card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--tarjetas-border-color);
+}
+
+.historial-container h3 {
+    color: var(--tarjetas-text-light);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.historial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.historial-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: var(--tarjetas-dark-bg);
+    border-radius: 8px;
+    border-left: 4px solid var(--tarjetas-info-color);
+}
+
+.historial-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.historial-content h4 {
+    color: var(--tarjetas-text-light);
+    margin-bottom: 0.5rem;
+}
+
+.historial-content p {
+    color: var(--tarjetas-text-muted);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Mensaje de Éxito */
+.mensaje-exito {
+    background-color: var(--tarjetas-card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--tarjetas-success-color);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.mensaje-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.mensaje-content h3 {
+    color: var(--tarjetas-text-light);
+    margin-bottom: 1rem;
+}
+
+.mensaje-content p {
+    color: var(--tarjetas-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.mensaje-details {
+    text-align: left;
+    background-color: var(--tarjetas-dark-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.mensaje-details p {
+    margin-bottom: 0.5rem;
+}
+
+.mensaje-details ul {
+    color: var(--tarjetas-text-muted);
+    padding-left: 1.5rem;
+}
+
+.mensaje-details li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tarjeta-detalles {
+        grid-template-columns: 1fr;
+    }
+
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .confirmacion-actions {
+        flex-direction: column;
+    }
+
+    .historial-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+    .gestion-tarjetas-icons {
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+        stroke:varc(--tarjetas-primary-color);
+    }
+
+    .gestion-tarjetas-sub-icons {
+        width: 25px;
+        height: 25px;
+        vertical-align: middle;
+        stroke:var(--tarjetas-text-light);
+    }

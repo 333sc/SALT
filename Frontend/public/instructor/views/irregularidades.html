@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irregularidades - Instructor</title>
+    <link rel="stylesheet" href="/instructor/css/irregularidades.css">
+</head>
+<body>
+    <div class="irregularidades-panel">
+        <div class="irregularidades-container">
+            <h1 class="irregularidades-title">⚠️ Gestión de Irregularidades</h1>
+            <p class="text-muted">Revisión y resolución de alertas del sistema.</p>
+
+            <div class="mis-ambientes-filters">
+                <div>
+                    <label class="mis-ambientes-label">Filtrar por estado</label>
+                    <select class="mis-ambientes-select" id="filtroEstadoIrregularidades">
+                        <option value="pendiente">Mostrar Pendientes</option>
+                        <option value="resuelto">Mostrar Resueltos</option>
+                        <option value="todos">Mostrar Todos</option>
+                    </select>
+                </div>
+                <button class="btn-primary btn-success" onclick="actualizarIrregularidadesList()">
+                    Actualizar Lista
+                </button>
+            </div>
+
+            <ul class="irregularidades-list" id="irregularidadesList">
+                <!-- Los datos se cargan dinámicamente -->
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Inicializar cuando el contenido esté listo
+        if (typeof initializeIrregularidadesModule === 'function') {
+            initializeIrregularidadesModule();
+        }
+    </script>
+</body>
+</html>

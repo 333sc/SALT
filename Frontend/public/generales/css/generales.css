@@ -1,0 +1,290 @@
+:root {
+    --generales-dark-bg: #121212;
+    --generales-navbar-bg: #1a1a1a;
+    --generales-sidebar-bg: #1a1a1a;
+    --generales-card-bg: #1e1e1e;
+    --generales-primary-color: #0d6efd;
+    --generales-text-light: #f8f9fa;
+    --generales-text-muted: #adb5bd;
+    --generales-border-color: #444;
+    --generales-sidebar-width: 250px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--generales-dark-bg);
+    color: var(--generales-text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Layout Principal */
+.generales-container {
+    display: grid;
+    grid-template-columns: var(--generales-sidebar-width) 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "generales-sidebar generales-header"
+        "generales-sidebar generales-main";
+    height: 100vh;
+}
+
+/* Sidebar */
+.generales-sidebar {
+    grid-area: generales-sidebar;
+    background-color: var(--generales-sidebar-bg);
+    padding: 1rem 0;
+    border-right: 1px solid var(--generales-border-color);
+    overflow-y: auto;
+}
+
+.generales-sidebar-brand {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--generales-border-color);
+    margin-bottom: 1rem;
+}
+
+.generales-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--generales-text-light);
+    text-decoration: none;
+}
+
+.generales-sidebar-nav {
+    list-style: none;
+}
+
+.generales-nav-item {
+    margin-bottom: 0.2rem;
+}
+
+.generales-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.5rem;
+    color: var(--generales-text-muted);
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.generales-nav-link:hover {
+    color: var(--generales-text-light);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.generales-nav-link.active {
+    color: var(--generales-primary-color);
+    background-color: rgba(13, 110, 253, 0.1);
+    border-left-color: var(--generales-primary-color);
+}
+
+.generales-nav-icon {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+/* Header */
+.generales-header {
+    grid-area: generales-header;
+    background-color: var(--generales-navbar-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--generales-border-color);
+}
+
+.generales-welcome-message h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.generales-admin-name {
+    color: var(--generales-primary-color);
+}
+
+.generales-welcome-message p {
+    color: var(--generales-text-muted);
+    font-size: 0.9rem;
+}
+
+.generales-user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.generales-user-info {
+    text-align: right;
+}
+
+.generales-user-name {
+    font-weight: 500;
+}
+
+.generales-user-role {
+    color: var(--generales-text-muted);
+    font-size: 0.8rem;
+}
+
+.generales-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--generales-primary-color), #6ea8fe);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+/* Contenido Principal */
+.generales-main-content {
+    grid-area: generales-main;
+    padding: 2rem;
+    overflow-y: auto;
+    background-color: var(--generales-dark-bg);
+}
+
+/* Vista Dinámica */
+.generales-view-content {
+    display: none;
+}
+
+.generales-view-content.active {
+    display: block;
+}
+
+/* Vista de Inicio (Dashboard) */
+.generales-dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.generales-stat-card {
+    background-color: var(--generales-card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--generales-primary-color);
+}
+
+.generales-stat-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.generales-stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--generales-primary-color);
+    display: block;
+}
+
+.generales-stat-label {
+    color: var(--generales-text-muted);
+    font-size: 0.9rem;
+}
+
+.generales-recent-activity {
+    background-color: var(--generales-card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1.5rem;
+}
+
+.generales-recent-activity h3 {
+    margin-bottom: 1rem;
+    color: var(--generales-text-light);
+}
+
+.generales-activity-list {
+    list-style: none;
+}
+
+.generales-activity-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--generales-border-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.generales-activity-item:last-child {
+    border-bottom: none;
+}
+
+.generales-activity-icon {
+    color: var(--generales-primary-color);
+    font-size: 1.2rem;
+}
+
+.generales-activity-content {
+    flex: 1;
+}
+
+.generales-activity-time {
+    color: var(--generales-text-muted);
+    font-size: 0.8rem;
+}
+.btnSidebar{
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .generales-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "generales-header"
+            "generales-main";
+    }
+
+    .generales-sidebar {
+        display: none;
+    }
+
+    .generales-header {
+        padding: 1rem;
+        position: fixed;
+    }
+
+    .generales-main-content {
+        padding: 1rem;
+        padding-top: 120px;
+    }
+
+    .generales-welcome-message h1 {
+        font-size: 1.2rem;
+    }
+    .btnSidebar{
+        display: block;
+    }
+
+    .generales-sidebar.active{
+        display: block;
+        height: 100vh;
+        width: 100vw;
+        z-index: 1000;
+        grid-area: auto;
+        position: fixed;
+    }
+   
+
+}

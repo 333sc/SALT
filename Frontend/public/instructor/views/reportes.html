@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Instructor</title>
+    <link rel="stylesheet" href="/instructor/css/reportes.css"> 
+</head>
+<body>
+    <div class="reportes-panel">
+        <div class="reportes-container">
+            <h1 class="reportes-title" style="color: var(--primary-color);">📈 Generación de Reportes de Asistencia e Incidencias</h1>
+            <p class="text-muted" style="margin-bottom: 2rem;">Filtra la información histórica para obtener informes detallados de tu grupo.</p>
+
+            <div class="reportes-form">
+                <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Opciones de Filtro</h3>
+                <div class="reportes-form-grid">
+                    
+                    <div>
+                        <label class="mis-ambientes-label">Tipo de Reporte</label>
+                        <select id="tipoReporte" class="mis-ambientes-select">
+                            <option value="asistencia">Asistencia y Permanencia (Horas)</option>
+                            <option value="incidencias">Incidencias y Anomalías (Histórico)</option>
+                            <option value="accesos">Detalle de Accesos por Ambiente</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="mis-ambientes-label">Aprendiz Específico (Opcional)</label>
+                        <input type="text" placeholder="Cédula o Nombre del Aprendiz" class="mis-ambientes-search-input">
+                    </div>
+
+                    <div>
+                        <label class="mis-ambientes-label">Fecha Inicial</label>
+                        <input type="date" class="mis-ambientes-search-input" required>
+                    </div>
+
+                    <div>
+                        <label class="mis-ambientes-label">Fecha Final</label>
+                        <input type="date" class="mis-ambientes-search-input" required>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <button class="btn-primary" onclick="generarReporte()">
+                        <span>📄</span> Generar Reporte
+                    </button>
+                    <button class="btn-primary btn-success" onclick="descargarReporte()">
+                        <span>📥</span> Descargar (.PDF/.CSV)
+                    </button>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem; color: var(--text-light);">Previsualización</h3>
+            <div id="reporteOutput" class="reporte-output">
+                <p>El resumen del reporte aparecerá aquí al presionar "Generar Reporte".</p>
+            </div>
+
+        </div>
+    </div>
+    <script src="/instructor/js/reportes.js"></script>
+    <script>
+        function generarReporte() { console.log('Generando reporte en pantalla...'); }
+        function descargarReporte() { console.log('Descargando archivo...'); }
+    </script>
+</body>
+</html>

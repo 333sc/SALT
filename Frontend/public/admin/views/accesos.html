@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Accesos</title>
+    <link rel="stylesheet" href="/admin/css/accesos.css">
+</head>
+<body>
+    <div class="accesos-panel">
+        <div class="accesos-container">
+            <!-- Header de la sección -->
+            <div class="accesos-header">
+                <h1 class="accesos-title"><i data-lucide="clock" class="accesos-icons"></i> Registros de Accesos</h1>
+                <div class="accesos-actions">
+                    <button class="accesos-btn accesos-btn-success" onclick="refreshAccesos()">
+                        <span><i data-lucide="refresh-cw" class="accesos-icons"></i></span> Actualizar
+                    </button>
+                    <button class="accesos-btn accesos-btn-primary" onclick="openExportModal()">
+                        <span><i data-lucide="download" class="accesos-icons"></i></span> Exportar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjetas de estadísticas -->
+            <div class="accesos-stats">
+                <div class="accesos-stat">
+                    <div class="accesos-stat-icon"><i data-lucide="clock" class="accesos-icons"></i></div>
+                    <span class="accesos-stat-number" id="totalAccesos">0</span>
+                    <span class="accesos-stat-label">Total Accesos</span>
+                </div>
+                <div class="accesos-stat">
+                    <div class="accesos-stat-icon"><i data-lucide="check-circle" class="accesos-icons"></i></div>
+                    <span class="accesos-stat-number" id="accesosExitosos">0</span>
+                    <span class="accesos-stat-label">Accesos Exitosos</span>
+                </div>
+                <div class="accesos-stat">
+                    <div class="accesos-stat-icon"><i data-lucide="x-circle" class="accesos-icons"></i></div>
+                    <span class="accesos-stat-number" id="accesosDenegados">0</span>
+                    <span class="accesos-stat-label">Accesos Denegados</span>
+                </div>
+                <div class="accesos-stat">
+                    <div class="accesos-stat-icon"><i data-lucide="building" class="accesos-icons"></i></div>
+                    <span class="accesos-stat-number" id="ambientesActivos">0</span>
+                    <span class="accesos-stat-label">Ambientes Activos</span>
+                </div>
+            </div>
+
+            <!-- Filtros avanzados -->
+            <div class="accesos-filters">
+                <div class="accesos-filters-header">
+                    <h3 class="accesos-filters-title"><i data-lucide="filter" class="accesos-icons"></i> Filtros de Búsqueda</h3>
+                    <button class="accesos-filters-toggle" onclick="toggleFilters()">
+                        <span id="filtersToggleText">Ocultar filtros</span>
+                    </button>
+                </div>
+                <div class="accesos-filters-content" id="filtersContent">
+                    <div class="accesos-filter-group">
+                        <label class="accesos-filter-label">Buscar por usuario/ambiente</label>
+                        <div class="accesos-search-box">
+                            <input type="text" class="accesos-search-input" id="searchAccesos" placeholder="Usuario, ambiente, sensor...">
+                            <button class="accesos-btn accesos-btn-primary" onclick="searchAccesos()">🔍 Buscar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="accesos-filter-group">
+                        <label class="accesos-filter-label">Rango de fechas</label>
+                        <div class="accesos-date-inputs">
+                            <input type="date" class="accesos-form-control" id="fechaDesde">
+                            <span>a</span>
+                            <input type="date" class="accesos-form-control" id="fechaHasta">
+                        </div>
+                    </div>
+                    
+                    <div class="accesos-filter-group">
+                        <label class="accesos-filter-label">Resultado de acceso</label>
+                        <select class="accesos-form-select" id="filterResultado">
+                            <option value="">Todos los resultados</option>
+                            <option value="exitoso"><i data-lucide="check-circle" class="accesos-icons"></i> Exitoso</option>
+                            <option value="denegado"><i data-lucide="x-circle" class="accesos-icons"></i> Denegado</option>
+                            <option value="intento"><i data-lucide="alert-triangle" class="accesos-icons"></i> Intento fallido</option>
+                        </select>
+                    </div>
+                    
+                    <div class="accesos-filter-group">
+                        <label class="accesos-filter-label">Ambiente</label>
+                        <select class="accesos-form-select" id="filterAmbiente">
+                            <option value="">Todos los ambientes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de accesos -->
+            <div class="accesos-table-container">
+                <div class="accesos-table-header">
+                    <h2 class="accesos-table-title">Historial de Accesos</h2>
+                    <div class="accesos-table-actions">
+                        <button class="accesos-btn accesos-btn-outline" onclick="clearFilters()">
+                            <span><i data-lucide="trash-2" class="accesos-icons"></i></span> Limpiar Filtros
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="accesos-table-responsive">
+                    <table class="accesos-table" id="accesosTable">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Ambiente</th>
+                                <th>Sensor</th>
+                                <th>Fecha y Hora</th>
+                                <th>Tipo</th>
+                                <th>Resultado</th>
+                                <th>Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="accesosTableBody">
+                            <!-- Los accesos se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Paginación -->
+                <div class="accesos-pagination">
+                    <div class="accesos-pagination-info" id="paginationInfo">
+                        Mostrando 0 de 0 registros
+                    </div>
+                    <div class="accesos-pagination-controls">
+                        <button class="accesos-page-btn" onclick="changePage(-1)" id="prevPage">‹ Anterior</button>
+                        <span class="accesos-page-btn active" id="currentPage">1</span>
+                        <button class="accesos-page-btn" onclick="changePage(1)" id="nextPage">Siguiente ›</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para exportación -->
+        <div class="accesos-modal" id="exportModal">
+            <div class="accesos-modal-content">
+                <div class="accesos-modal-header">
+                    <h3><i data-lucide="download" class="accesos-icons"></i> Exportar Registros de Accesos</h3>
+                    <button class="accesos-close-btn" onclick="closeExportModal()">×</button>
+                </div>
+                
+                <div class="accesos-modal-body">
+                    <div class="accesos-export-options">
+                        <div class="accesos-export-option" onclick="exportToCSV()">
+                            <div class="accesos-export-icon"><i data-lucide="file-csv" class="accesos-icons"></i></div>
+                            <div class="accesos-export-info">
+                                <h4>Exportar a CSV</h4>
+                                <p>Formato compatible con Excel y hojas de cálculo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="accesos-export-option" onclick="exportToPDF()">
+                            <div class="accesos-export-icon"><i data-lucide="file-text" class="accesos-icons"></i></div>
+                            <div class="accesos-export-info">
+                                <h4>Exportar a PDF</h4>
+                                <p>Documento listo para imprimir o compartir</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accesos-modal-actions">
+                    <button class="accesos-btn accesos-btn-outline" onclick="closeExportModal()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/admin/js/accesos.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

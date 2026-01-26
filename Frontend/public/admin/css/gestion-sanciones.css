@@ -1,0 +1,719 @@
+:root {
+    --sanciones-dark-bg: #121212;
+    --sanciones-card-bg: #1e1e1e;
+    --sanciones-primary-color: #0d6efd;
+    --sanciones-success-color: #198754;
+    --sanciones-warning-color: #ffc107;
+    --sanciones-danger-color: #dc3545;
+    --sanciones-info-color: #0dcaf0;
+    --sanciones-text-light: #f8f9fa;
+    --sanciones-text-muted: #adb5bd;
+    --sanciones-border-color: #444;
+    --sanciones-hover-bg: #2a2a2a;
+}
+
+.sanciones-container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.sanciones-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.sanciones-header h2 {
+    color: var(--sanciones-text-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.sanciones-header p {
+    color: var(--sanciones-text-muted);
+    font-size: 1rem;
+}
+
+/* Resumen Stats */
+.resumen-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: var(--sanciones-card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--sanciones-primary-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-icon {
+    font-size: 2rem;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--sanciones-primary-color);
+}
+
+.stat-label {
+    color: var(--sanciones-text-muted);
+    font-size: 0.9rem;
+}
+
+/* Layout Principal */
+.sanciones-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+}
+
+.columna-izquierda {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.columna-derecha {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Paneles Generales */
+.panel-reportes,
+.panel-sancion,
+.panel-gestion-tarjeta,
+.panel-historial {
+    background-color: var(--sanciones-card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--sanciones-border-color);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.panel-header h3 {
+    color: var(--sanciones-text-light);
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* Reportes Pendientes */
+.filtros-rapidos {
+    margin-bottom: 1rem;
+}
+
+.filtro-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filtro-label {
+    color: var(--sanciones-text-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.filtro-select,
+.filtro-input {
+    padding: 0.5rem;
+    background-color: var(--sanciones-dark-bg);
+    border: 1px solid var(--sanciones-border-color);
+    border-radius: 5px;
+    color: var(--sanciones-text-light);
+    font-size: 0.9rem;
+}
+
+.reportes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.reporte-item {
+    background-color: var(--sanciones-dark-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--sanciones-warning-color);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.reporte-item:hover {
+    background-color: var(--sanciones-hover-bg);
+}
+
+.reporte-item.seleccionado {
+    border-left-color: var(--sanciones-primary-color);
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+.reporte-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.reporte-info h4 {
+    color: var(--sanciones-text-light);
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+}
+
+.reporte-usuario {
+    color: var(--sanciones-primary-color);
+    font-weight: 500;
+}
+
+.reporte-fecha {
+    color: var(--sanciones-text-muted);
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+.reporte-detalles {
+    color: var(--sanciones-text-muted);
+    font-size: 0.9rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+}
+
+.reporte-tipo {
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.reporte-tipo.perdida { background-color: var(--sanciones-warning-color); color: black; }
+.reporte-tipo.extraviada { background-color: var(--sanciones-info-color); color: black; }
+.reporte-tipo.robada { background-color: var(--sanciones-danger-color); color: white; }
+.reporte-tipo.danada { background-color: #6c757d; color: white; }
+
+/* Formulario de Sanción */
+.form-sancion {
+    margin-top: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    color: var(--sanciones-text-light);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.required {
+    color: var(--sanciones-danger-color);
+}
+
+.form-select,
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--sanciones-dark-bg);
+    border: 1px solid var(--sanciones-border-color);
+    border-radius: 5px;
+    color: var(--sanciones-text-light);
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+.form-select:focus,
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--sanciones-primary-color);
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.char-count {
+    text-align: right;
+    color: var(--sanciones-text-muted);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.duracion-inputs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.duracion-inputs .form-input {
+    flex: 1;
+}
+
+.duracion-inputs .form-select {
+    width: 120px;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.checkbox-option input {
+    display: none;
+}
+
+.checkbox-option input:checked + .checkbox-custom {
+    background-color: var(--sanciones-primary-color);
+    border-color: var(--sanciones-primary-color);
+}
+
+.checkbox-option input:checked + .checkbox-custom::after {
+    content: '✓';
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-custom {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--sanciones-border-color);
+    border-radius: 3px;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+/* Gestión de Tarjeta */
+.info-vacio {
+    text-align: center;
+    padding: 2rem;
+    color: var(--sanciones-text-muted);
+}
+
+.tarjeta-detalles {
+    background-color: var(--sanciones-dark-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.detalle-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.detalle-item:last-child {
+    margin-bottom: 0;
+}
+
+.detalle-item strong {
+    color: var(--sanciones-text-light);
+}
+
+.detalle-item span {
+    color: var(--sanciones-text-muted);
+}
+
+.acciones-tarjeta h4 {
+    color: var(--sanciones-text-light);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.acciones-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.btn-accion {
+    padding: 0.75rem;
+    border: 1px solid var(--sanciones-border-color);
+    border-radius: 5px;
+    background-color: var(--sanciones-dark-bg);
+    color: var(--sanciones-text-light);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.btn-accion:hover {
+    background-color: var(--sanciones-hover-bg);
+}
+
+.btn-bloquear:hover {
+    border-color: var(--sanciones-danger-color);
+    color: var(--sanciones-danger-color);
+}
+
+.btn-activar:hover {
+    border-color: var(--sanciones-success-color);
+    color: var(--sanciones-success-color);
+}
+
+.btn-reemplazar:hover {
+    border-color: var(--sanciones-primary-color);
+    color: var(--sanciones-primary-color);
+}
+
+.btn-ver-historial:hover {
+    border-color: var(--sanciones-info-color);
+    color: var(--sanciones-info-color);
+}
+
+/* Historial de Sanciones */
+.filtros-historial {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.historial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.sancion-item {
+    background-color: var(--sanciones-dark-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--sanciones-warning-color);
+}
+
+.sancion-item.activa {
+    border-left-color: var(--sanciones-danger-color);
+}
+
+.sancion-item.completada {
+    border-left-color: var(--sanciones-success-color);
+}
+
+.sancion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+}
+
+.sancion-info h4 {
+    color: var(--sanciones-text-light);
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+}
+
+.sancion-usuario {
+    color: var(--sanciones-primary-color);
+    font-weight: 500;
+}
+
+.sancion-fecha {
+    color: var(--sanciones-text-muted);
+    font-size: 0.8rem;
+}
+
+.sancion-detalles {
+    color: var(--sanciones-text-muted);
+    font-size: 0.9rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.sancion-tipo {
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.sancion-tipo.amonestacion_verbal { background-color: var(--sanciones-info-color); color: black; }
+.sancion-tipo.amonestacion_escrita { background-color: var(--sanciones-warning-color); color: black; }
+.sancion-tipo.suspension { background-color: var(--sanciones-danger-color); color: white; }
+.sancion-tipo.multa_economica { background-color: #6c757d; color: white; }
+
+.sancion-acciones {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+/* Botones */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--sanciones-border-color);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: var(--sanciones-primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--sanciones-text-light);
+    border: 1px solid var(--sanciones-border-color);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-warning {
+    background-color: var(--sanciones-warning-color);
+    color: black;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: var(--sanciones-danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--sanciones-primary-color);
+    border: 1px solid var(--sanciones-primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--sanciones-primary-color);
+    color: white;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+/* Modales */
+.confirmacion-modal,
+.detalles-modal,
+.mensaje-exito {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmacion-content,
+.detalles-content,
+.mensaje-exito .mensaje-content {
+    background-color: var(--sanciones-card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.detalles-content {
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.confirmacion-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.confirmacion-content h3,
+.detalles-header h3,
+.mensaje-exito h3 {
+    color: var(--sanciones-text-light);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.confirmacion-content p,
+.mensaje-exito p {
+    color: var(--sanciones-text-muted);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.confirmacion-details {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.confirmacion-details ul {
+    color: var(--sanciones-text-muted);
+    padding-left: 1.5rem;
+}
+
+.confirmacion-details li {
+    margin-bottom: 0.5rem;
+}
+
+.confirmacion-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.detalles-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--sanciones-border-color);
+    padding-bottom: 1rem;
+}
+
+.detalles-close {
+    background: none;
+    border: none;
+    color: var(--sanciones-text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detalles-close:hover {
+    color: var(--sanciones-text-light);
+}
+
+.mensaje-exito .mensaje-content {
+    text-align: center;
+}
+
+.mensaje-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .sanciones-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .resumen-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .filtros-historial {
+        flex-direction: column;
+    }
+
+    .form-actions,
+    .confirmacion-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .duracion-inputs {
+        flex-direction: column;
+    }
+
+    .duracion-inputs .form-select {
+        width: 100%;
+    }
+
+    .reporte-detalles,
+    .sancion-detalles {
+        grid-template-columns: 1fr;
+    }
+}
+
+    .gestion-icons {
+        vertical-align: middle;
+        stroke: var(--sanciones-text-light);
+        width: 40px;
+        height: 40px;
+    }

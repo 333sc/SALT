@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Servicios - SALT Generales</title>
+    <link rel="stylesheet" href="/generales/css/historial-servicios.css">
+</head>
+<body>
+    <div class="historial-container">
+        <div class="historial-header">
+            <h2>📋 Historial de Servicios Generales</h2>
+            <p>Consulte y filtre todos los registros de mantenimiento, limpieza y reportes de fallas</p>
+        </div>
+
+        <!-- Panel de Filtros -->
+        <div class="historial-filtros">
+            <div class="filtros-header">
+                <h3>🔍 Filtros de Búsqueda</h3>
+                <button class="historial-btn historial-btn-outline" id="btn-limpiar-filtros">
+                    🗑️ Limpiar Filtros
+                </button>
+            </div>
+            
+            <div class="filtros-grid">
+                <div class="filtro-group">
+                    <label class="filtro-label">Tipo de Registro</label>
+                    <select class="filtro-select" id="filtro-tipo">
+                        <option value="">Todos los tipos</option>
+                        <option value="falla">Reporte de Fallas</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                        <option value="limpieza">Limpieza</option>
+                    </select>
+                </div>
+
+                <div class="filtro-group">
+                    <label class="filtro-label">Ubicación</label>
+                    <select class="filtro-select" id="filtro-ubicacion">
+                        <option value="">Todas las ubicaciones</option>
+                        <option value="lab1">Laboratorio 1</option>
+                        <option value="lab2">Laboratorio 2</option>
+                        <option value="lab3">Laboratorio 3</option>
+                        <option value="aula101">Aula 101</option>
+                        <option value="aula102">Aula 102</option>
+                        <option value="aula201">Aula 201</option>
+                        <option value="aula202">Aula 202</option>
+                        <option value="oficina1">Oficina Administrativa</option>
+                        <option value="baños">Baños</option>
+                        <option value="pasillos">Pasillos</option>
+                        <option value="almacen">Almacén</option>
+                    </select>
+                </div>
+
+                <div class="filtro-group">
+                    <label class="filtro-label">Estado</label>
+                    <select class="filtro-select" id="filtro-estado">
+                        <option value="">Todos los estados</option>
+                        <option value="completado">Completado</option>
+                        <option value="parcial">Parcial</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="en_proceso">En Proceso</option>
+                        <option value="reportado">Reportado</option>
+                    </select>
+                </div>
+
+                <div class="filtro-group">
+                    <label class="filtro-label">Prioridad</label>
+                    <select class="filtro-select" id="filtro-prioridad">
+                        <option value="">Todas las prioridades</option>
+                        <option value="urgente">Urgente</option>
+                        <option value="alta">Alta</option>
+                        <option value="media">Media</option>
+                        <option value="baja">Baja</option>
+                    </select>
+                </div>
+
+                <div class="filtro-group">
+                    <label class="filtro-label">Fecha Desde</label>
+                    <input type="date" class="filtro-input" id="filtro-fecha-desde">
+                </div>
+
+                <div class="filtro-group">
+                    <label class="filtro-label">Fecha Hasta</label>
+                    <input type="date" class="filtro-input" id="filtro-fecha-hasta">
+                </div>
+
+                <div class="filtro-group">
+                    <label class="filtro-label">Buscar por Texto</label>
+                    <input type="text" class="filtro-input" id="filtro-busqueda" placeholder="ID, descripción, responsable...">
+                </div>
+
+                <div class="filtro-group">
+                    <label class="filtro-label">&nbsp;</label>
+                    <button class="historial-btn historial-btn-primary" id="btn-aplicar-filtros">
+                        🔍 Aplicar Filtros
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas Rápidas -->
+        <div class="historial-stats">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <span class="stat-number" id="total-registros">0</span>
+                    <span class="stat-label">Total Registros</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-content">
+                    <span class="stat-number" id="completados">0</span>
+                    <span class="stat-label">Completados</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔄</div>
+                <div class="stat-content">
+                    <span class="stat-number" id="en-proceso">0</span>
+                    <span class="stat-label">En Proceso</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-content">
+                    <span class="stat-number" id="pendientes">0</span>
+                    <span class="stat-label">Pendientes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de Registros -->
+        <div class="historial-registros">
+            <div class="registros-header">
+                <h3>📝 Registros Encontrados</h3>
+                <div class="registros-actions">
+                    <button class="historial-btn historial-btn-secondary" id="btn-exportar">
+                        📄 Exportar a Excel
+                    </button>
+                    <button class="historial-btn historial-btn-primary" id="btn-actualizar">
+                        🔄 Actualizar
+                    </button>
+                </div>
+            </div>
+
+            <div class="registros-table-container">
+                <table class="historial-table" id="tabla-registros">
+                    <thead>
+                        <tr>
+                            <th data-sort="id">ID</th>
+                            <th data-sort="fecha">Fecha</th>
+                            <th data-sort="tipo">Tipo</th>
+                            <th data-sort="ubicacion">Ubicación</th>
+                            <th data-sort="descripcion">Descripción</th>
+                            <th data-sort="responsable">Responsable</th>
+                            <th data-sort="estado">Estado</th>
+                            <th data-sort="prioridad">Prioridad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-registros">
+                        <!-- Los registros se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginación -->
+            <div class="historial-paginacion">
+                <div class="paginacion-info">
+                    Mostrando <span id="registros-mostrados">0</span> de <span id="registros-totales">0</span> registros
+                </div>
+                <div class="paginacion-controls">
+                    <button class="paginacion-btn" id="btn-prev" disabled>‹ Anterior</button>
+                    <span class="paginacion-pagina" id="pagina-actual">1</span>
+                    <button class="paginacion-btn" id="btn-next">Siguiente ›</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Detalles -->
+        <div class="historial-modal" id="modal-detalles">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Detalles del Registro</h3>
+                    <button class="modal-close" id="modal-close">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- Contenido dinámico del modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/generales/js/historial-servicios.js"></script>
+</body>
+</html>

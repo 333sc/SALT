@@ -1,0 +1,926 @@
+/* ===== VARIABLES CSS CON NAMESPACE IRREGULARIDADES ===== */
+:root {
+  --irregularidades-dark-bg: #121212;
+  --irregularidades-navbar-bg: #1a1a1a;
+  --irregularidades-sidebar-bg: #1a1a1a;
+  --irregularidades-card-bg: #1e1e1e;
+  --irregularidades-primary-color: #0d6efd;
+  --irregularidades-success-color: #198754;
+  --irregularidades-warning-color: #ffc107;
+  --irregularidades-danger-color: #dc3545;
+  --irregularidades-text-light: #f8f9fa;
+  --irregularidades-text-muted: #adb5bd;
+  --irregularidades-border-color: #444;
+}
+
+/* ===== RESET Y ESTILOS BASE AISLADOS ===== */
+.irregularidades-panel,
+.irregularidades-panel * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.irregularidades-panel {
+  background-color: var(--irregularidades-dark-bg);
+  color: var(--irregularidades-text-light);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  min-height: auto;
+  height: auto;
+  overflow: visible;
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.irregularidades-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  min-height: auto;
+}
+
+/* ===== HEADER DE LA SECCIÓN ===== */
+.irregularidades-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.irregularidades-title {
+  font-size: 2rem;
+  color: var(--irregularidades-text-light);
+}
+
+/* ===== BOTONES DE ACCIÓN ===== */
+.irregularidades-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.irregularidades-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.irregularidades-btn-primary {
+  background-color: var(--irregularidades-primary-color);
+  color: white;
+}
+
+.irregularidades-btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+}
+
+.irregularidades-btn-success {
+  background-color: var(--irregularidades-success-color);
+  color: white;
+}
+
+.irregularidades-btn-success:hover {
+  background-color: #157347;
+  transform: translateY(-2px);
+}
+
+.irregularidades-btn-warning {
+  background-color: var(--irregularidades-warning-color);
+  color: black;
+}
+
+.irregularidades-btn-warning:hover {
+  background-color: #ffca2c;
+  transform: translateY(-2px);
+}
+
+.irregularidades-btn-danger {
+  background-color: var(--irregularidades-danger-color);
+  color: white;
+}
+
+.irregularidades-btn-danger:hover {
+  background-color: #bb2d3b;
+  transform: translateY(-2px);
+}
+
+/* ===== ESTADÍSTICAS RÁPIDAS ===== */
+.irregularidades-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.irregularidades-stat {
+  background: var(--irregularidades-card-bg);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  border-left: 4px solid var(--irregularidades-primary-color);
+  transition: transform 0.3s;
+}
+
+.irregularidades-stat:hover {
+  transform: translateY(-5px);
+}
+
+.irregularidades-stat-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.irregularidades-stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--irregularidades-primary-color);
+  display: block;
+}
+
+.irregularidades-stat-label {
+  color: var(--irregularidades-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ===== FILTROS ===== */
+.irregularidades-filters {
+  background: var(--irregularidades-card-bg);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.irregularidades-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.irregularidades-filter-label {
+  font-weight: 500;
+  color: var(--irregularidades-text-light);
+  font-size: 0.9rem;
+}
+
+.irregularidades-select {
+  padding: 0.75rem 1rem;
+  background-color: #2d2d2d;
+  border: 1px solid var(--irregularidades-border-color);
+  border-radius: 5px;
+  color: var(--irregularidades-text-light);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.irregularidades-select:focus {
+  outline: none;
+  border-color: var(--irregularidades-primary-color);
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+.irregularidades-search {
+  display: flex;
+  gap: 0.5rem;
+  flex: 2;
+  min-width: 300px;
+}
+
+.irregularidades-search-input {
+  padding: 0.75rem 1rem;
+  background-color: #2d2d2d;
+  border: 1px solid var(--irregularidades-border-color);
+  border-radius: 5px;
+  color: var(--irregularidades-text-light);
+  font-size: 1rem;
+  flex: 1;
+}
+
+.irregularidades-search-input:focus {
+  outline: none;
+  border-color: var(--irregularidades-primary-color);
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+/* ===== LISTA DE IRREGULARIDADES ===== */
+.irregularidades-list {
+  background: var(--irregularidades-card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.irregularidades-list-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--irregularidades-border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.irregularidades-list-title {
+  font-size: 1.3rem;
+  color: var(--irregularidades-text-light);
+}
+
+.irregularidades-list-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.irregularidades-item {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--irregularidades-border-color);
+  transition: background-color 0.3s;
+}
+
+.irregularidades-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.irregularidades-item:last-child {
+  border-bottom: none;
+}
+
+.irregularidades-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.irregularidades-item-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--irregularidades-text-light);
+  margin-bottom: 0.5rem;
+}
+
+.irregularidades-item-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.irregularidades-item-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--irregularidades-text-muted);
+  font-size: 0.9rem;
+}
+
+.irregularidades-item-description {
+  color: var(--irregularidades-text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.irregularidades-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.irregularidades-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ===== BADGES ===== */
+.irregularidades-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.irregularidades-badge-pendiente {
+  background: var(--irregularidades-warning-color);
+  color: black;
+}
+
+.irregularidades-badge-en-proceso {
+  background: var(--irregularidades-primary-color);
+  color: white;
+}
+
+.irregularidades-badge-resuelto {
+  background: var(--irregularidades-success-color);
+  color: white;
+}
+
+.irregularidades-badge-criticidad-alta {
+  background: var(--irregularidades-danger-color);
+  color: white;
+}
+
+.irregularidades-badge-criticidad-media {
+  background: var(--irregularidades-warning-color);
+  color: black;
+}
+
+.irregularidades-badge-criticidad-baja {
+  background: var(--irregularidades-success-color);
+  color: white;
+}
+
+/* ===== BOTONES PEQUEÑOS ===== */
+.irregularidades-btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.irregularidades-btn-edit {
+  background-color: var(--irregularidades-warning-color);
+  color: black;
+}
+
+.irregularidades-btn-edit:hover {
+  background-color: #ffca2c;
+}
+
+.irregularidades-btn-resolve {
+  background-color: var(--irregularidades-success-color);
+  color: white;
+}
+
+.irregularidades-btn-resolve:hover {
+  background-color: #157347;
+}
+
+.irregularidades-btn-delete {
+  background-color: var(--irregularidades-danger-color);
+  color: white;
+}
+
+.irregularidades-btn-delete:hover {
+  background-color: #bb2d3b;
+}
+
+/* ===== MODAL DE NUEVA IRREGULARIDAD ===== */
+.irregularidades-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.irregularidades-modal.active {
+  display: flex;
+}
+
+.irregularidades-modal-content {
+  background: var(--irregularidades-card-bg);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+.irregularidades-modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--irregularidades-border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.irregularidades-modal-title {
+  font-size: 1.5rem;
+  color: var(--irregularidades-text-light);
+}
+
+.irregularidades-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--irregularidades-text-muted);
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.irregularidades-close-btn:hover {
+  color: var(--irregularidades-text-light);
+}
+
+.irregularidades-modal-body {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(85vh - 130px);
+}
+
+.irregularidades-modal-actions {
+  padding: 1.5rem;
+  border-top: 1px solid var(--irregularidades-border-color);
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+/* ===== FORMULARIOS ===== */
+.irregularidades-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.irregularidades-form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--irregularidades-text-light);
+}
+
+.irregularidades-form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #2d2d2d;
+  border: 1px solid var(--irregularidades-border-color);
+  border-radius: 5px;
+  color: var(--irregularidades-text-light);
+  font-size: 1rem;
+}
+
+.irregularidades-form-control:focus {
+  outline: none;
+  border-color: var(--irregularidades-primary-color);
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25);
+}
+
+textarea.irregularidades-form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ===== ESTILOS PARA FORMULARIOS LARGOS ===== */
+.irregularidades-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.irregularidades-modal-body::-webkit-scrollbar-track {
+  background: #2d2d2d;
+  border-radius: 4px;
+}
+
+.irregularidades-modal-body::-webkit-scrollbar-thumb {
+  background: var(--irregularidades-primary-color);
+  border-radius: 4px;
+}
+
+.irregularidades-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #0b5ed7;
+}
+
+/* ===== SUBIDA DE ARCHIVOS ===== */
+.irregularidades-file-upload {
+  border: 2px dashed var(--irregularidades-border-color);
+  border-radius: 5px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.irregularidades-file-upload:hover {
+  border-color: var(--irregularidades-primary-color);
+}
+
+.irregularidades-file-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--irregularidades-text-muted);
+}
+
+.irregularidades-file-text {
+  color: var(--irregularidades-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.irregularidades-file-hint {
+  font-size: 0.8rem;
+  color: var(--irregularidades-text-muted);
+}
+
+.irregularidades-file-preview {
+  margin-top: 1rem;
+  display: none;
+}
+
+.irregularidades-file-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: #2d2d2d;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.irregularidades-file-name {
+  flex: 1;
+  color: var(--irregularidades-text-light);
+}
+
+.irregularidades-file-remove {
+  background: none;
+  border: none;
+  color: var(--irregularidades-danger-color);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+/* ===== DETALLE DE IRREGULARIDAD ===== */
+.irregularidades-detail {
+  background: var(--irregularidades-card-bg);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.irregularidades-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.irregularidades-detail-title {
+  font-size: 1.5rem;
+  color: var(--irregularidades-text-light);
+  margin-bottom: 0.5rem;
+}
+
+.irregularidades-detail-meta {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.irregularidades-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.irregularidades-detail-label {
+  color: var(--irregularidades-text-muted);
+  font-size: 0.9rem;
+}
+
+.irregularidades-detail-value {
+  color: var(--irregularidades-text-light);
+  font-weight: 500;
+}
+
+.irregularidades-detail-description {
+  background: #2d2d2d;
+  padding: 1.5rem;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
+
+.irregularidades-detail-evidence {
+  margin-top: 2rem;
+}
+
+.irregularidades-evidence-title {
+  font-size: 1.2rem;
+  color: var(--irregularidades-text-light);
+  margin-bottom: 1rem;
+}
+
+.irregularidades-evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.irregularidades-evidence-item {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.irregularidades-evidence-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.irregularidades-evidence-item:hover .irregularidades-evidence-img {
+  transform: scale(1.05);
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA EDICIÓN ===== */
+.irregularidades-archivos-actuales {
+  background: #2d2d2d;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.irregularidades-file-item-existing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #3d3d3d;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.irregularidades-file-item-existing:hover {
+  background: #4d4d4d;
+}
+
+.irregularidades-file-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.irregularidades-file-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  cursor: pointer;
+}
+
+.irregularidades-file-icon-existing {
+  font-size: 1.2rem;
+}
+
+.irregularidades-file-name-existing {
+  flex: 1;
+  color: var(--irregularidades-text-light);
+  font-size: 0.9rem;
+}
+
+.irregularidades-file-new {
+  color: var(--irregularidades-primary-color);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.irregularidades-no-files {
+  color: var(--irregularidades-text-muted);
+  text-align: center;
+  padding: 1rem;
+  font-style: italic;
+}
+
+.irregularidades-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Estilos para archivos en edición */
+.nuevo-archivo {
+  background: rgba(13, 110, 253, 0.1);
+  border-left: 3px solid var(--irregularidades-primary-color);
+}
+
+.archivo-para-eliminar {
+  background: rgba(220, 53, 69, 0.1);
+  opacity: 0.7;
+}
+
+.irregularidades-file-details {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--irregularidades-text-muted);
+}
+
+.irregularidades-file-info {
+  flex: 1;
+  min-width: 0; /* Para que el texto no desborde */
+}
+
+.irregularidades-file-preview-btn {
+  background: none;
+  border: none;
+  color: var(--irregularidades-primary-color);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+}
+
+.irregularidades-file-preview-btn:hover {
+  color: #0b5ed7;
+}
+
+.irregularidades-file-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.irregularidades-file-icon-nuevo {
+  font-size: 1.2rem;
+}
+
+/* Scrollbars personalizados para listas de archivos */
+.irregularidades-archivos-actuales::-webkit-scrollbar,
+.irregularidades-file-preview::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.irregularidades-archivos-actuales::-webkit-scrollbar-track,
+.irregularidades-file-preview::-webkit-scrollbar-track {
+  background: #3d3d3d;
+  border-radius: 3px;
+}
+
+.irregularidades-archivos-actuales::-webkit-scrollbar-thumb,
+.irregularidades-file-preview::-webkit-scrollbar-thumb {
+  background: var(--irregularidades-border-color);
+  border-radius: 3px;
+}
+
+.irregularidades-archivos-actuales::-webkit-scrollbar-thumb:hover,
+.irregularidades-file-preview::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .irregularidades-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .irregularidades-actions {
+    width: 100%;
+  }
+
+  .irregularidades-btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .irregularidades-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .irregularidades-search {
+    min-width: auto;
+  }
+
+  .irregularidades-filter-group {
+    min-width: auto;
+  }
+
+  .irregularidades-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .irregularidades-item-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .irregularidades-modal-actions {
+    flex-direction: column;
+  }
+
+  .irregularidades-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .irregularidades-modal-content {
+    max-height: 90vh;
+  }
+
+  .irregularidades-modal-body {
+    max-height: calc(90vh - 130px);
+  }
+
+  .irregularidades-modal-actions .irregularidades-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .irregularidades-container {
+    padding: 1rem 0.5rem;
+  }
+
+  .irregularidades-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .irregularidades-item-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .irregularidades-item-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .irregularidades-btn-sm {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .irregularidades-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .irregularidades-modal-content {
+    max-height: 90vh; /* Más altura en móviles */
+  }
+
+  .irregularidades-modal-body {
+    max-height: calc(90vh - 130px);
+  }
+
+  .irregularidades-modal-actions {
+    flex-direction: column;
+  }
+
+  .irregularidades-modal-actions .irregularidades-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-height: 700px) {
+  .irregularidades-modal-content {
+    max-height: 95vh; /* Más altura en pantallas cortas */
+  }
+
+  .irregularidades-modal-body {
+    max-height: calc(95vh - 130px);
+  }
+}
+
+
+
+.irregularidades-icons {
+    width: 40px;
+    height: 40px;
+    stroke: var(--irregularidades-text-light);
+    vertical-align: middle;
+}

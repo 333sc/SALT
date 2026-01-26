@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Mantenimiento y Limpieza - SALT Generales</title>
+    <link rel="stylesheet" href="/generales/css/registro-mantenimiento.css">
+</head>
+<body>
+    <div class="mantenimiento-container">
+        <div class="mantenimiento-header">
+            <h2>🧹 Registro de Mantenimiento y Limpieza</h2>
+            <p>Registre las actividades de mantenimiento y limpieza realizadas</p>
+        </div>
+
+        <div class="mantenimiento-form-container">
+            <form id="mantenimiento-form" class="mantenimiento-form">
+                <div class="mantenimiento-form-row">
+                    <div class="mantenimiento-form-group">
+                        <label for="mantenimiento-tipo" class="mantenimiento-form-label">
+                            <span class="mantenimiento-required">*</span> Tipo de Actividad
+                        </label>
+                        <select id="mantenimiento-tipo" name="tipo_actividad" class="mantenimiento-form-select" required>
+                            <option value="">Seleccione el tipo de actividad...</option>
+                            <option value="limpieza_general">Limpieza General</option>
+                            <option value="limpieza_profunda">Limpieza Profunda</option>
+                            <option value="desinfeccion">Desinfección</option>
+                            <option value="mantenimiento_preventivo">Mantenimiento Preventivo</option>
+                            <option value="mantenimiento_correctivo">Mantenimiento Correctivo</option>
+                            <option value="reparacion">Reparación</option>
+                            <option value="inspeccion">Inspección</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="mantenimiento-form-group">
+                        <label for="mantenimiento-ubicacion" class="mantenimiento-form-label">
+                            <span class="mantenimiento-required">*</span> Ubicación
+                        </label>
+                        <select id="mantenimiento-ubicacion" name="ubicacion" class="mantenimiento-form-select" required>
+                            <option value="">Seleccione la ubicación...</option>
+                            <option value="lab1">Laboratorio 1</option>
+                            <option value="lab2">Laboratorio 2</option>
+                            <option value="lab3">Laboratorio 3</option>
+                            <option value="aula101">Aula 101</option>
+                            <option value="aula102">Aula 102</option>
+                            <option value="aula201">Aula 201</option>
+                            <option value="aula202">Aula 202</option>
+                            <option value="oficina1">Oficina Administrativa</option>
+                            <option value="baños">Baños</option>
+                            <option value="pasillos">Pasillos</option>
+                            <option value="almacen">Almacén</option>
+                            <option value="exterior">Área Exterior</option>
+                            <option value="general">Área General</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mantenimiento-form-row">
+                    <div class="mantenimiento-form-group">
+                        <label for="mantenimiento-fecha" class="mantenimiento-form-label">
+                            <span class="mantenimiento-required">*</span> Fecha de Realización
+                        </label>
+                        <input type="date" id="mantenimiento-fecha" name="fecha" class="mantenimiento-form-input" required>
+                    </div>
+
+                    <div class="mantenimiento-form-group">
+                        <label for="mantenimiento-hora" class="mantenimiento-form-label">
+                            <span class="mantenimiento-required">*</span> Hora de Realización
+                        </label>
+                        <input type="time" id="mantenimiento-hora" name="hora" class="mantenimiento-form-input" required>
+                    </div>
+                </div>
+
+                <div class="mantenimiento-form-group">
+                    <label for="mantenimiento-equipo" class="mantenimiento-form-label">
+                        Equipo/Área Específica (opcional)
+                    </label>
+                    <input type="text" id="mantenimiento-equipo" name="equipo" class="mantenimiento-form-input" 
+                           placeholder="Ej: Computadoras, Aire acondicionado, Puerta principal...">
+                </div>
+
+                <div class="mantenimiento-form-group">
+                    <label for="mantenimiento-descripcion" class="mantenimiento-form-label">
+                        <span class="mantenimiento-required">*</span> Descripción Detallada
+                    </label>
+                    <textarea 
+                        id="mantenimiento-descripcion" 
+                        name="descripcion" 
+                        class="mantenimiento-form-textarea" 
+                        placeholder="Describa en detalle las actividades realizadas, materiales utilizados y observaciones..." 
+                        rows="5"
+                        required
+                    ></textarea>
+                    <div class="mantenimiento-char-count">
+                        <span id="mantenimiento-char-counter">0</span> / 1000 caracteres
+                    </div>
+                </div>
+
+                <div class="mantenimiento-form-group">
+                    <label class="mantenimiento-form-label">
+                        Materiales y Suministros Utilizados
+                    </label>
+                    <div class="mantenimiento-materiales-grid">
+                        <label class="mantenimiento-checkbox-option">
+                            <input type="checkbox" name="materiales" value="detergente">
+                            <span class="mantenimiento-checkbox-custom"></span>
+                            <span>Detergente/limpiador</span>
+                        </label>
+                        <label class="mantenimiento-checkbox-option">
+                            <input type="checkbox" name="materiales" value="desinfectante">
+                            <span class="mantenimiento-checkbox-custom"></span>
+                            <span>Desinfectante</span>
+                        </label>
+                        <label class="mantenimiento-checkbox-option">
+                            <input type="checkbox" name="materiales" value="guantes">
+                            <span class="mantenimiento-checkbox-custom"></span>
+                            <span>Guantes de protección</span>
+                        </label>
+                        <label class="mantenimiento-checkbox-option">
+                            <input type="checkbox" name="materiales" value="herramientas">
+                            <span class="mantenimiento-checkbox-custom"></span>
+                            <span>Herramientas</span>
+                        </label>
+                        <label class="mantenimiento-checkbox-option">
+                            <input type="checkbox" name="materiales" value="repuestos">
+                            <span class="mantenimiento-checkbox-custom"></span>
+                            <span>Repuestos</span>
+                        </label>
+                        <label class="mantenimiento-checkbox-option">
+                            <input type="checkbox" name="materiales" value="otros">
+                            <span class="mantenimiento-checkbox-custom"></span>
+                            <span>Otros</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mantenimiento-form-group">
+                    <label class="mantenimiento-form-label">
+                        Adjuntar Evidencia Fotográfica (Opcional)
+                    </label>
+                    <div class="mantenimiento-file-upload">
+                        <input 
+                            type="file" 
+                            id="mantenimiento-foto" 
+                            name="foto" 
+                            class="mantenimiento-file-input" 
+                            accept="image/*"
+                            multiple
+                        >
+                        <label for="mantenimiento-foto" class="mantenimiento-file-label">
+                            <span class="mantenimiento-file-icon">📷</span>
+                            <span class="mantenimiento-file-text">Seleccionar fotos</span>
+                        </label>
+                        <div id="mantenimiento-file-names" class="mantenimiento-file-names">
+                            No se han seleccionado archivos
+                        </div>
+                    </div>
+                    <div class="mantenimiento-file-info">
+                        Puede seleccionar múltiples imágenes. Formatos: JPG, PNG (Máx. 5MB por archivo)
+                    </div>
+                </div>
+
+                <div class="mantenimiento-form-group">
+                    <label class="mantenimiento-form-label">
+                        <span class="mantenimiento-required">*</span> Estado Final
+                    </label>
+                    <div class="mantenimiento-estado-options">
+                        <label class="mantenimiento-radio-option">
+                            <input type="radio" name="estado" value="completado" required>
+                            <span class="mantenimiento-radio-custom"></span>
+                            <span class="mantenimiento-radio-label">
+                                <span class="mantenimiento-estado-completado">✅ Completado</span>
+                                <small>Todas las actividades fueron realizadas exitosamente</small>
+                            </span>
+                        </label>
+                        <label class="mantenimiento-radio-option">
+                            <input type="radio" name="estado" value="parcial" required>
+                            <span class="mantenimiento-radio-custom"></span>
+                            <span class="mantenimiento-radio-label">
+                                <span class="mantenimiento-estado-parcial">🟡 Parcial</span>
+                                <small>Algunas actividades pendientes o requieren seguimiento</small>
+                            </span>
+                        </label>
+                        <label class="mantenimiento-radio-option">
+                            <input type="radio" name="estado" value="pendiente" required>
+                            <span class="mantenimiento-radio-custom"></span>
+                            <span class="mantenimiento-radio-label">
+                                <span class="mantenimiento-estado-pendiente">⏳ Pendiente</span>
+                                <small>Requiere nueva programación o recursos adicionales</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mantenimiento-form-group" id="observaciones-group" style="display: none;">
+                    <label for="mantenimiento-observaciones" class="mantenimiento-form-label">
+                        Observaciones Adicionales
+                    </label>
+                    <textarea 
+                        id="mantenimiento-observaciones" 
+                        name="observaciones" 
+                        class="mantenimiento-form-textarea" 
+                        placeholder="Especifique razones del estado parcial o pendiente..." 
+                        rows="3"
+                    ></textarea>
+                </div>
+
+                <div class="mantenimiento-form-actions">
+                    <button type="button" class="mantenimiento-btn mantenimiento-btn-secondary" id="mantenimiento-btn-cancelar">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="mantenimiento-btn mantenimiento-btn-primary" id="mantenimiento-btn-enviar">
+                        <span class="mantenimiento-btn-loading" style="display: none;">⏳</span>
+                        Registrar Actividad
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="mantenimiento-mensaje-exito" class="mantenimiento-mensaje-exito" style="display: none;">
+            <div class="mantenimiento-mensaje-icon">✅</div>
+            <div class="mantenimiento-mensaje-content">
+                <h3>Actividad Registrada Exitosamente</h3>
+                <p>El registro de mantenimiento/limpieza ha sido guardado en el sistema con el ID: <strong id="mantenimiento-registro-id">#0000</strong></p>
+                <div class="mantenimiento-mensaje-actions">
+                    <button type="button" class="mantenimiento-btn mantenimiento-btn-outline" id="mantenimiento-btn-nuevo-registro">
+                        Nuevo Registro
+                    </button>
+                    <button type="button" class="mantenimiento-btn mantenimiento-btn-secondary" id="mantenimiento-btn-ver-historial">
+                        Ver Historial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/generales/js/registro-mantenimiento.js"></script>
+</body>
+</html>

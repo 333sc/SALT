@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Sensores RFID</title>
+    <link rel="stylesheet" href="/admin/css/sensores.css">
+</head>
+<body>
+    <div class="sensores-panel">
+        <div class="sensores-container">
+            <!-- Header de la sección -->
+            <div class="sensores-header">
+                <h1 class="sensores-title"><i data-lucide="plug" class="sensores-icons"></i> Gestión de Sensores RFID</h1>
+                <div class="sensores-actions">
+                    <button class="sensores-btn sensores-btn-primary" onclick="openSensorModal()">
+                        <span><i data-lucide="plus-circle" class="sensores-icons"></i></span> Nuevo Sensor
+                    </button>
+                    <button class="sensores-btn sensores-btn-success" onclick="refreshSensores()">
+                        <span><i data-lucide="refresh-cw" class="sensores-icons"></i></span> Actualizar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjetas de estadísticas -->
+            <div class="sensores-stats">
+                <div class="sensores-stat">
+                    <div class="sensores-stat-icon"><i data-lucide="plug" class="sensores-icons"></i></div>
+                    <span class="sensores-stat-number" id="totalSensores">0</span>
+                    <span class="sensores-stat-label">Total Sensores</span>
+                </div>
+                <div class="sensores-stat">
+                    <div class="sensores-stat-icon"><i data-lucide="check-circle" class="sensores-icons"></i></div>
+                    <span class="sensores-stat-number" id="sensoresActivos">0</span>
+                    <span class="sensores-stat-label">Sensores Activos</span>
+                </div>
+                <div class="sensores-stat">
+                    <div class="sensores-stat-icon"><i data-lucide="building" class="sensores-icons"></i></div>
+                    <span class="sensores-stat-number" id="sensoresAsignados">0</span>
+                    <span class="sensores-stat-label">Asignados a Ambientes</span>
+                </div>
+                <div class="sensores-stat">
+                    <div class="sensores-stat-icon"><i data-lucide="alert-triangle" class="sensores-icons"></i></div>
+                    <span class="sensores-stat-number" id="sensoresInactivos">0</span>
+                    <span class="sensores-stat-label">Sensores Inactivos</span>
+                </div>
+            </div>
+
+            <!-- Filtros y búsqueda -->
+            <div class="sensores-filters">
+                <div class="sensores-search">
+                    <input type="text" class="sensores-search-input" id="searchSensores" placeholder="Buscar sensor...">
+                    <button class="sensores-btn sensores-btn-primary" onclick="searchSensores()"><i data-lucide="search" class="sensores-icons"></i> Buscar</button>
+                </div>
+                <div class="sensores-filter-options">
+                    <select class="sensores-select" id="filterEstado" onchange="filterSensores()">
+                        <option value="">Todos los estados</option>
+                        <option value="activo">Activos</option>
+                        <option value="inactivo">Inactivos</option>
+                        <option value="mantenimiento">En mantenimiento</option>
+                    </select>
+                    <select class="sensores-select" id="filterAsignacion" onchange="filterSensores()">
+                        <option value="">Todos</option>
+                        <option value="asignado">Asignados</option>
+                        <option value="no-asignado">No asignados</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Lista de sensores -->
+            <div class="sensores-table-container">
+                <div class="sensores-table-header">
+                    <h2 class="sensores-table-title">Lista de Sensores RFID</h2>
+                    <div class="sensores-table-actions">
+                        <button class="sensores-btn sensores-btn-outline" onclick="exportSensores()">
+                            <span><i data-lucide="download" class="sensores-icons"></i></span> Exportar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="sensores-table-responsive">
+                    <table class="sensores-table" id="sensoresTable">
+                        <thead>
+                            <tr>
+                                <th>ID Sensor</th>
+                                <th>Nombre</th>
+                                <th>Ubicación</th>
+                                <th>Puerto/Conectividad</th>
+                                <th>Ambiente Asignado</th>
+                                <th>Estado</th>
+                                <th>Última Conexión</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sensoresTableBody">
+                            <!-- Los sensores se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para nuevo/editar sensor -->
+        <div class="sensores-modal" id="sensorModal">
+            <div class="sensores-modal-content">
+                <div class="sensores-modal-header">
+                    <h3 id="sensorModalTitle">Nuevo Sensor RFID</h3>
+                    <button class="sensores-close-btn" onclick="closeSensorModal()">×</button>
+                </div>
+                <form id="sensorForm">
+                    <div class="sensores-form-row">
+                        <div class="sensores-form-group">
+                            <label class="sensores-form-label">ID del Sensor *</label>
+                            <input type="text" class="sensores-form-control" id="sensorId" required>
+                        </div>
+                        <div class="sensores-form-group">
+                            <label class="sensores-form-label">Nombre del Sensor *</label>
+                            <input type="text" class="sensores-form-control" id="sensorNombre" required>
+                        </div>
+                    </div>
+
+                    <div class="sensores-form-row">
+                        <div class="sensores-form-group">
+                            <label class="sensores-form-label">Ubicación Física *</label>
+                            <input type="text" class="sensores-form-control" id="sensorUbicacion" required>
+                        </div>
+                        <div class="sensores-form-group">
+                            <label class="sensores-form-label">Puerto/Conectividad *</label>
+                            <select class="sensores-select" id="sensorPuerto" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="usb">USB</option>
+                                <option value="ethernet">Ethernet</option>
+                                <option value="wifi">WiFi</option>
+                                <option value="bluetooth">Bluetooth</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="sensores-form-group">
+                        <label class="sensores-form-label">Descripción</label>
+                        <textarea class="sensores-form-control" id="sensorDescripcion" rows="3"></textarea>
+                    </div>
+
+                    <!-- Asignación a ambiente -->
+                    <div class="sensores-form-group">
+                        <label class="sensores-form-label">Asignar a Ambiente</label>
+                        <div class="sensores-ambientes-list" id="ambientesList">
+                            <!-- Los ambientes se cargarán dinámicamente -->
+                        </div>
+                    </div>
+
+                    <div class="sensores-form-group">
+                        <label class="sensores-form-label">Estado</label>
+                        <div class="sensores-status-options">
+                            <label class="sensores-radio-label">
+                                <input type="radio" name="estado" value="activo" checked> 
+                                <span class="sensores-radio-checkmark"></span>
+                                <i data-lucide="check-circle" class="sensores-icons"></i> Activo
+                            </label>
+                            <label class="sensores-radio-label">
+                                <input type="radio" name="estado" value="inactivo"> 
+                                <span class="sensores-radio-checkmark"></span>
+                                <i data-lucide="x-circle" class="sensores-icons"></i> Inactivo
+                            </label>
+                            <label class="sensores-radio-label">
+                                <input type="radio" name="estado" value="mantenimiento"> 
+                                <span class="sensores-radio-checkmark"></span>
+                                <i data-lucide="wrench" class="sensores-icons"></i> En mantenimiento
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="sensores-modal-actions">
+                        <button type="button" class="sensores-btn sensores-btn-outline" onclick="closeSensorModal()">Cancelar</button>
+                        <button type="submit" class="sensores-btn sensores-btn-primary">Guardar Sensor</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/admin/js/sensores.js"></script>
+    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

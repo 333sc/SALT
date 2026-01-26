@@ -1,0 +1,56 @@
+/*
+ * reportes.css
+ * Estilos específicos para la vista de Generación de Reportes
+ */
+
+:root {
+    --reportes-card-bg: #1e1e1e;
+    --reportes-primary-color: #0d6efd; 
+    --reportes-text-light: #f8f9fa;
+    --reportes-text-muted: #adb5bd;
+    --reportes-border-color: #444;
+}
+
+/* Formulario de Reporte */
+.reportes-form { 
+    background: var(--reportes-card-bg); 
+    padding: 2rem; 
+    border-radius: 10px; 
+    margin-bottom: 2rem;
+}
+
+.reportes-form-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 1.5rem; 
+}
+
+/* Área de Previsualización */
+.reporte-output {
+    background: #2d2d2d;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    min-height: 200px;
+    color: var(--reportes-text-muted);
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+
+/* Reutilización de estilos de formulario */
+.reportes-label { 
+    display: block; 
+    margin-bottom: 0.5rem; 
+    color: var(--reportes-text-muted); 
+    font-size: 0.9rem; 
+}
+
+.reportes-select, 
+.reportes-search-input { 
+    width: 100%; 
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--reportes-border-color);
+    background: #2d2d2d;
+    color: var(--reportes-text-light);
+}
