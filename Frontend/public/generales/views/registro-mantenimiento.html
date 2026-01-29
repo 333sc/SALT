@@ -9,7 +9,7 @@
 <body>
     <div class="mantenimiento-container">
         <div class="mantenimiento-header">
-            <h2><i data-lucide="brush-cleaning" class="mantenimiento-icons"></i> Registro de Mantenimiento y Limpieza</h2>
+            <h2>🧹 Registro de Mantenimiento y Limpieza</h2>
             <p>Registre las actividades de mantenimiento y limpieza realizadas</p>
         </div>
 
@@ -149,7 +149,7 @@
                             multiple
                         >
                         <label for="mantenimiento-foto" class="mantenimiento-file-label">
-                            <span class="mantenimiento-file-icon"><i data-lucide="camera" class="mantenimiento-sub-iconss"></i></span>
+                            <span class="mantenimiento-file-icon">📷</span>
                             <span class="mantenimiento-file-text">Seleccionar fotos</span>
                         </label>
                         <div id="mantenimiento-file-names" class="mantenimiento-file-names">
@@ -170,7 +170,7 @@
                             <input type="radio" name="estado" value="completado" required>
                             <span class="mantenimiento-radio-custom"></span>
                             <span class="mantenimiento-radio-label">
-                                <span class="mantenimiento-estado-completado"><i data-lucide="check-circle" class="mantenimiento-sub-icons"></i> Completado</span>
+                                <span class="mantenimiento-estado-completado">✅ Completado</span>
                                 <small>Todas las actividades fueron realizadas exitosamente</small>
                             </span>
                         </label>
@@ -178,7 +178,7 @@
                             <input type="radio" name="estado" value="parcial" required>
                             <span class="mantenimiento-radio-custom"></span>
                             <span class="mantenimiento-radio-label">
-                                <span class="mantenimiento-estado-parcial"><i data-lucide="alert-triangle" class="mantenimiento-sub-icons"></i> Parcial</span>
+                                <span class="mantenimiento-estado-parcial">🟡 Parcial</span>
                                 <small>Algunas actividades pendientes o requieren seguimiento</small>
                             </span>
                         </label>
@@ -186,7 +186,7 @@
                             <input type="radio" name="estado" value="pendiente" required>
                             <span class="mantenimiento-radio-custom"></span>
                             <span class="mantenimiento-radio-label">
-                                <span class="mantenimiento-estado-pendiente"><i data-lucide="clock" class="mantenimiento-sub-icons"></i> Pendiente</span>
+                                <span class="mantenimiento-estado-pendiente">⏳ Pendiente</span>
                                 <small>Requiere nueva programación o recursos adicionales</small>
                             </span>
                         </label>
@@ -211,7 +211,7 @@
                         Cancelar
                     </button>
                     <button type="submit" class="mantenimiento-btn mantenimiento-btn-primary" id="mantenimiento-btn-enviar">
-                        <span class="mantenimiento-btn-loading" style="display: none;"><i data-lucide="clock" class="mantenimiento-sub-icons"></i></span>
+                        <span class="mantenimiento-btn-loading" style="display: none;">⏳</span>
                         Registrar Actividad
                     </button>
                 </div>
@@ -236,7 +236,5 @@
     </div>
 
     <script src="/generales/js/registro-mantenimiento.js"></script>
-    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
-
 </body>
 </html>

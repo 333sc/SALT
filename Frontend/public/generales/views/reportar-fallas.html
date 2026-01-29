@@ -9,8 +9,8 @@
 <body>
     <div class="reportar-fallas-container">
         <div class="reportar-fallas-content-header">
-            <h2 class="header-title"><i data-lucide="alert-triangle" class="reportar-fallas-icon"></i> Reportar Fallas o Incidentes</h2>
-            <p class="header-subtitle">Complete el formulario para reportar fallas en el sistema o incidentes detectados</p>
+            <h2>Reportar Fallas o Incidentes</h2>
+            <p>Complete el formulario para reportar fallas en el sistema o incidentes detectados</p>
         </div>
 
         <div class="reportar-fallas-form-container">
@@ -98,7 +98,7 @@
                             accept="image/*,.pdf"
                         >
                         <label for="reportar-fallas-foto" class="reportar-fallas-file-label">
-                            <span class="reportar-fallas-file-icon"><i data-lucide="paperclip" class="reportar-fallas-icons"></i></span>
+                            <span class="reportar-fallas-file-icon">📎</span>
                             <span class="reportar-fallas-file-text">Seleccionar archivo</span>
                         </label>
                         <div id="reportar-fallas-file-name" class="reportar-fallas-file-name">No se ha seleccionado ningún archivo</div>
@@ -161,7 +161,7 @@
         </div>
 
         <div id="reportar-fallas-mensaje-exito" class="reportar-fallas-mensaje-exito" style="display: none;">
-            <div class="reportar-fallas-mensaje-icon"><i data-lucide="check-circle" class="reportar-fallas-mensaje-icon"></i></div>
+            <div class="reportar-fallas-mensaje-icon">✅</div>
             <div class="reportar-fallas-mensaje-content">
                 <h3>Reporte Enviado Exitosamente</h3>
                 <p>El reporte de falla ha sido registrado en el sistema con el ID: <strong id="reportar-fallas-reporte-id">#0000</strong></p>
@@ -173,6 +173,5 @@
     </div>
 
     <script src="/generales/js/reporte-fallas.js"></script>
-    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
 </body>
 </html>

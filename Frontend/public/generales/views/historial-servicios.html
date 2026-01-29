@@ -9,16 +9,16 @@
 <body>
     <div class="historial-container">
         <div class="historial-header">
-            <h2><i data-lucide="clipboard-list" class="historial-icons"></i> Historial de Servicios Generales</h2>
+            <h2>📋 Historial de Servicios Generales</h2>
             <p>Consulte y filtre todos los registros de mantenimiento, limpieza y reportes de fallas</p>
         </div>
 
         <!-- Panel de Filtros -->
         <div class="historial-filtros">
             <div class="filtros-header">
-                <h3><i data-lucide="search" class="historial-sub-icons"></i> Filtros de Búsqueda</h3>
+                <h3>🔍 Filtros de Búsqueda</h3>
                 <button class="historial-btn historial-btn-outline" id="btn-limpiar-filtros">
-                    <i data-lucide="trash-2" class="histrial-sub-icons"></i> Limpiar Filtros
+                    🗑️ Limpiar Filtros
                 </button>
             </div>
             
@@ -92,7 +92,7 @@
                 <div class="filtro-group">
                     <label class="filtro-label">&nbsp;</label>
                     <button class="historial-btn historial-btn-primary" id="btn-aplicar-filtros">
-                        <i data-lucide="search" class="historial-sub-icons"></i> Aplicar Filtros
+                        🔍 Aplicar Filtros
                     </button>
                 </div>
             </div>
@@ -101,28 +101,28 @@
         <!-- Estadísticas Rápidas -->
         <div class="historial-stats">
             <div class="stat-card">
-                <div class="stat-icon"><i data-lucide="chart-column" class="historial-icons"></i></div>
+                <div class="stat-icon">📊</div>
                 <div class="stat-content">
                     <span class="stat-number" id="total-registros">0</span>
                     <span class="stat-label">Total Registros</span>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon"><i data-lucide="square-check-big" class="historial-icons"></i></div>
+                <div class="stat-icon">✅</div>
                 <div class="stat-content">
                     <span class="stat-number" id="completados">0</span>
                     <span class="stat-label">Completados</span>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon"><i data-lucide="rotate-cw" class="historial-icons"></i></div>
+                <div class="stat-icon">🔄</div>
                 <div class="stat-content">
                     <span class="stat-number" id="en-proceso">0</span>
                     <span class="stat-label">En Proceso</span>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon"><i data-lucide="clock" class="historial-icons"></i></div>
+                <div class="stat-icon">⏳</div>
                 <div class="stat-content">
                     <span class="stat-number" id="pendientes">0</span>
                     <span class="stat-label">Pendientes</span>
@@ -133,13 +133,13 @@
         <!-- Lista de Registros -->
         <div class="historial-registros">
             <div class="registros-header">
-                <h3><i data-lucide="clipboard-list" class="historial-sub-icons"></i> Registros Encontrados</h3>
+                <h3>📝 Registros Encontrados</h3>
                 <div class="registros-actions">
                     <button class="historial-btn historial-btn-secondary" id="btn-exportar">
-                        <i data-lucide="file-text" class="historial-sub-icons"></i> Exportar a Excel
+                        📄 Exportar a Excel
                     </button>
                     <button class="historial-btn historial-btn-primary" id="btn-actualizar">
-                        <i data-lucide="refresh-cw" class="historial-sub-icons"></i> Actualizar
+                        🔄 Actualizar
                     </button>
                 </div>
             </div>
@@ -193,6 +193,5 @@
     </div>
 
     <script src="/generales/js/historial-servicios.js"></script>
-    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
 </body>
 </html>

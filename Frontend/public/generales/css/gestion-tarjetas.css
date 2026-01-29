@@ -516,18 +516,3 @@
         text-align: center;
     }
 }
-
-
-.gestion-tarjetas-icons {
-    width: 40px;
-    height: 40px;
-    vertical-align: middle;
-    color: var(--tarjetas-text-light);
-}
-
-.gestion-tarjetas-sub-icons {
-    width: 23px;
-    height: 23px;
-    vertical-align: middle;
-    color: var(--tarjetas-text-light);
-}

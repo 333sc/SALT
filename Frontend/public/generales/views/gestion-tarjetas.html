@@ -9,16 +9,16 @@
 <body>
     <div class="gestion-tarjetas-container">
         <div class="gestion-tarjetas-header">
-            <h2><i data-lucide="id-card" class="gestion-tarjetas-icons"></i> Gestión de Tarjetas</h2>
+            <h2>🪪 Gestión de Tarjetas</h2>
             <p>Reporte tarjetas perdidas, extraviadas o dañadas para prevenir accesos no autorizados</p>
         </div>
 
         <!-- Información de Tarjeta Actual -->
         <div class="tarjeta-info-container">
-            <h3><i data-lucide="info" class="gestion-tarjetas-sub-icons"></i> Información de su Tarjeta Actual</h3>
+            <h3>📋 Información de su Tarjeta Actual</h3>
             <div class="tarjeta-info-card">
                 <div class="tarjeta-estado activa">
-                    <div class="estado-icon"><i data-lucide="check-square" class="gestion-tarjetas-icons"></i></div>
+                    <div class="estado-icon">✅</div>
                     <div class="estado-info">
                         <h4>Estado: <span class="estado-texto">Activa</span></h4>
                         <p>Su tarjeta está actualmente activa y operativa</p>
@@ -47,9 +47,9 @@
 
         <!-- Reporte de Pérdida/Extravió -->
         <div class="reporte-container">
-            <h3><i data-lucide="siren" class="gestion-tarjetas-sub-icons"></i> Reportar Tarjeta Perdida/Extraviada</h3>
+            <h3>🚨 Reportar Tarjeta Perdida/Extraviada</h3>
             <div class="alerta-importante">
-                <div class="alerta-icon"><i data-lucide="alert-triangle" class="gestion-tarjetas-icons"></i></div>
+                <div class="alerta-icon">⚠️</div>
                 <div class="alerta-content">
                     <h4>Importante</h4>
                     <p>Al reportar una tarjeta como perdida o extraviada, esta será <strong>bloqueada inmediatamente</strong> en el sistema para prevenir accesos no autorizados.</p>
@@ -153,7 +153,7 @@
                     </button>
                     <button type="submit" class="btn btn-danger" id="btn-reportar">
                         <span class="btn-loading" style="display: none;">⏳</span>
-                        <i data-lucide="siren" class="gestion-tarjetas-sub-icons"></i> Reportar y Bloquear Tarjeta
+                        🚨 Reportar y Bloquear Tarjeta
                     </button>
                 </div>
             </form>
@@ -162,16 +162,16 @@
         <!-- Confirmación de Bloqueo -->
         <div id="confirmacion-bloqueo" class="confirmacion-modal" style="display: none;">
             <div class="confirmacion-content">
-                <div class="confirmacion-icon"><i data-lucide="alert-triangle" class="gestion-tarjetas-sub-icons"></i></div>
+                <div class="confirmacion-icon">⚠️</div>
                 <h3>Confirmar Bloqueo de Tarjeta</h3>
                 <p>Está a punto de reportar su tarjeta como <strong id="confirmacion-tipo">perdida</strong> y <strong>bloquearla permanentemente</strong> en el sistema.</p>
                 <div class="confirmacion-details">
                     <p><strong>Esta acción:</strong></p>
                     <ul>
-                        <li><i data-lucide="lock" class="gestion-tarjetas-sub-icons"></i> Bloqueará el acceso inmediatamente</li>
-                        <li><i data-lucide="mail" class="gestion-tarjetas-sub-icons"></i> Notificará al administrador</li>
-                        <li><i data-lucide="refresh-cw" class="gestion-tarjetas-sub-icons"></i> Requerirá una nueva tarjeta para reactivar</li>
-                        <li><i data-lucide="clock" class="gestion-tarjetas-sub-icons"></i> Puede tomar hasta 24 horas procesar</li>
+                        <li>❌ Bloqueará el acceso inmediatamente</li>
+                        <li>📧 Notificará al administrador</li>
+                        <li>🔄 Requerirá una nueva tarjeta para reactivar</li>
+                        <li>⏰ Puede tomar hasta 24 horas procesar</li>
                     </ul>
                 </div>
                 <div class="confirmacion-actions">
@@ -179,7 +179,7 @@
                         Cancelar
                     </button>
                     <button type="button" class="btn btn-danger" id="btn-confirmar-bloqueo">
-                        <i data-lucide="check-square" class="gestion-tarjetas-icons"></i> Confirmar y Bloquear
+                        ✅ Confirmar y Bloquear
                     </button>
                 </div>
             </div>
@@ -187,11 +187,11 @@
 
         <!-- Historial de Reportes -->
         <div class="historial-container">
-            <h3><i data-lucide="history" class="gestion-tarjetas-sub-icons"></i> Historial de Reportes</h3>
+            <h3>📊 Historial de Reportes</h3>
             
             <div class="historial-list" id="lista-historial">
                 <div class="historial-item">
-                    <div class="historial-icon"><i data-lucide="check-square" class="gestion-tarjetas-icons"></i></div>
+                    <div class="historial-icon">✅</div>
                     <div class="historial-content">
                         <h4>No hay reportes anteriores</h4>
                         <p>No ha realizado reportes de tarjetas anteriormente</p>
@@ -202,7 +202,7 @@
 
         <!-- Mensaje de Éxito -->
         <div id="mensaje-exito" class="mensaje-exito" style="display: none;">
-            <div class="mensaje-icon"><i data-lucide="check-circle" class="gestion-tarjetas-sub-icons"></i></div>
+            <div class="mensaje-icon">✅</div>
             <div class="mensaje-content">
                 <h3>Reporte Enviado Exitosamente</h3>
                 <p>Su tarjeta ha sido <strong>bloqueada exitosamente</strong> en el sistema.</p>
@@ -210,9 +210,9 @@
                     <p><strong>ID del Reporte:</strong> <span id="reporte-id">#TRP-0001</span></p>
                     <p><strong>Próximos pasos:</strong></p>
                     <ul>
-                        <li><i data-lucide="phone-call" class="gestion-tarjetas-sub-icons"></i> Contacte al administrador para solicitar una nueva tarjeta</li>
-                        <li><i data-lucide="mail" class="gestion-tarjetas-sub-icons"></i> Recibirá una notificación cuando su solicitud sea procesada</li>
-                        <li><i data-lucide="clock" class="gestion-tarjetas-sub-icons"></i> Tiempo estimado: 24-48 horas</li>
+                        <li>📞 Contacte al administrador para solicitar una nueva tarjeta</li>
+                        <li>📧 Recibirá una notificación cuando su solicitud sea procesada</li>
+                        <li>⏰ Tiempo estimado: 24-48 horas</li>
                     </ul>
                 </div>
                 <button type="button" class="btn btn-primary" id="btn-cerrar-mensaje">
@@ -223,6 +223,5 @@
     </div>
 
     <script src="/generales/js/gestion-tarjetas.js"></script>
-    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
 </body>
 </html>

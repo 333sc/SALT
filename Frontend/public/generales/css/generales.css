@@ -186,23 +186,18 @@ body {
 }
 
 .generales-stat-icon {
-    display: flex;
-    justify-content: center;
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
 .generales-stat-number {
-    display: flex;
-    justify-content: center;
     font-size: 2rem;
     font-weight: bold;
     color: var(--generales-primary-color);
+    display: block;
 }
 
 .generales-stat-label {
-    display: flex;
-    justify-content: center;
     color: var(--generales-text-muted);
     font-size: 0.9rem;
 }
@@ -292,26 +287,4 @@ body {
     }
    
 
-}
-
-.generales-icons-sidebar {
-    width: 25px;
-    height: 25px;
-    stroke:var(--generales-text-light);
-    vertical-align: middle;
-}
-
-.generales-sub-icons {
-    width: 40px;
-    height: 40px;
-    stroke:var(--generales-text-light);
-    vertical-align: middle;
-}
-
-
-.generales-sub-icons-1 {
-    width: 30px;
-    height: 30px;
-    stroke:var(--generales-text-light);
-    vertical-align: middle;
 }
