@@ -388,3 +388,17 @@
         flex-direction: column;
     }
 }
+
+.mantenimiento-icons{
+    width: 40px;
+    height: 40px;
+    stroke:var(--mantenimiento-text-light);
+    vertical-align: middle;
+}
+
+.mantenimiento-sub-icons{
+    width: 20px;
+    height: 20px;
+    stroke:var(--mantenimiento-text-light);
+    vertical-align: middle;
+}
