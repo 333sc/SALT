@@ -455,18 +455,3 @@
         padding: 0.5rem;
     }
 }
-
-
-.historial-icons{
-    width: 40px;
-    height: 40px;
-    stroke: var(--historial-text-light);
-    vertical-align: middle;
-}
-
-.historial-sub-icons{
-    width: 25px;
-    height: 25px;
-    stroke: var(--historial-text-light);
-    vertical-align: middle;
-}

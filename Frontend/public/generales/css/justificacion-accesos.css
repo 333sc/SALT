@@ -678,17 +678,3 @@
         gap: 0.5rem;
     }
 }
-
-.justificacion-icons {
-    width: 40px;
-    height: 40px;
-    color: var(--justificacion-text-light);
-    vertical-align: middle;
-}
-
-.justificacion-sub-icons {
-    width: 23px;
-    height: 23px;
-    color: var(--justificacion-text-light);
-    vertical-align: middle;
-}

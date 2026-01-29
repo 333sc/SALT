@@ -9,13 +9,13 @@
 <body>
     <div class="justificacion-container">
         <div class="justificacion-header">
-            <h2><i data-lucide="shield-alert" class="justificacion-icons"></i> Justificación de Irregularidades</h2>
+            <h2>🛡️ Justificación de Irregularidades</h2>
             <p>Justifique las irregularidades detectadas por el sistema para evitar sanciones injustas</p>
         </div>
 
         <!-- Panel de Irregularidades Notificadas -->
         <div class="justificacion-pendientes">
-            <h3><i data-lucide="clipboard-list" class="justificacion-sub-icons"></i> Irregularidades Pendientes de Justificación</h3>
+            <h3>📋 Irregularidades Pendientes de Justificación</h3>
             <p class="justificacion-subtitulo">Estas son las irregularidades que el sistema ha detectado y notificado</p>
             
             <div class="irregularidades-list" id="lista-irregularidades-pendientes">
@@ -28,7 +28,7 @@
 
         <!-- Formulario de Justificación -->
         <div class="justificacion-form-container">
-            <h3><i data-lucide="file-text" class="justificacion-sub-icons"></i> Justificar Irregularidad Detectada</h3>
+            <h3>📝 Justificar Irregularidad Detectada</h3>
             
             <form id="justificacion-form" class="justificacion-form">
                 <div class="justificacion-form-group">
@@ -46,7 +46,7 @@
 
                 <!-- Información de la Irregularidad Seleccionada -->
                 <div class="irregularidad-info" id="info-irregularidad" style="display: none;">
-                    <h4><i data-lucide="info" class="justificacion-sub-icons"></i> Información de la Irregularidad</h4>
+                    <h4>📄 Información de la Irregularidad</h4>
                     <div class="info-grid">
                         <div class="info-item">
                             <strong>Tipo:</strong>
@@ -123,7 +123,7 @@
                             required
                         >
                         <label for="justificacion-documento" class="justificacion-file-label">
-                            <span class="justificacion-file-icon"><i data-lucide="paperclip" class="justificacion-sub-icons"></i></span>
+                            <span class="justificacion-file-icon">📎</span>
                             <span class="justificacion-file-text">Seleccionar archivo</span>
                         </label>
                         <div id="justificacion-file-name" class="justificacion-file-name">
@@ -149,7 +149,7 @@
 
         <!-- Historial de Justificaciones -->
         <div class="justificacion-historial">
-            <h3><i data-lucide="history" class="justificacion-sub-icons"></i> Historial de Justificaciones</h3>
+            <h3>📊 Historial de Justificaciones</h3>
             
             <div class="historial-filtros">
                 <div class="filtro-group">
@@ -174,7 +174,7 @@
                     </select>
                 </div>
                 <button class="justificacion-btn justificacion-btn-outline" id="btn-aplicar-filtros">
-                    <i data-lucide="search" class="justificacion-sub-icons"></i> Aplicar Filtros
+                    🔍 Aplicar Filtros
                 </button>
             </div>
 
@@ -219,7 +219,6 @@
     </div>
 
     <script src="/generales/js/justificacion-accesos.js"></script>
-    <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
 </body>
 </html>
 
